@@ -1,4 +1,4 @@
-package com.leetcode.leetcode.listQuestions.iterations;
+package com.leetcode.leetcode.collections.listQuestions.iterations;
 
 import java.util.*;
 

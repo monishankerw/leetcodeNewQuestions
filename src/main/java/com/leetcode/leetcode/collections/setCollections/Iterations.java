@@ -1,4 +1,4 @@
-package com.leetcode.leetcode.setCollections;
+package com.leetcode.leetcode.collections.setCollections;
 
 import java.util.Arrays;
 import java.util.HashSet;
