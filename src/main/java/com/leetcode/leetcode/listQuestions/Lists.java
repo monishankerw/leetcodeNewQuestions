@@ -1,8 +1,6 @@
 package com.leetcode.leetcode.listQuestions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 
 public class Lists {
 
@@ -332,4 +330,13 @@ String[] str = {"Dog", "Cat", "Elephant"};
 //    All Elements:Elephant
 //    List Elements:[Dog, cat, Elephant]
 
+    //How would you remove duplicate elements from list using a set?
+    public static class RemoveDuplicate{
+        public static void main(String[] args) {
+            List<String> list = Arrays.asList("abc", "bvc", "abc", "ygf", "bvc");
+            Set<String> set = new HashSet<>(list);//remove duplicate
+            List<String> list1 = new ArrayList<>(set);
+            System.out.println(list1);
+        }
+    }
 }
