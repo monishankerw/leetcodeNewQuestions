@@ -10,7 +10,25 @@ import java.util.OptionalInt;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+/*
+     STREAMAPI JAVA8FEATURES
+->WHICH HELPS US TO MANIPULATE COLLECTION
+->A STREAM IS A SEQUENCE OF OBJECTS THAT SUPPORTS VARIOUS METHODS.
+->PRESENT IN java.util.package
+-> A STREAM IS NOT PRESENT IN JAVA.UTIL PACKAGE
+....INTERMEDIATE OPERATION
+                            THREE METHODS:
+                            1.FILTER():->FILTER IS USED FOR FILTERING THE DATA. IT ALWAYS RETURNS THE BOOLEAN VALUE.
+                            2.MAP():->TRANSFER THE OBJECT VALUE.
+.....TERMINAL OPERATIONS
+                            1.COLLECT()->THE COLLECT METHOD IS USED TO RETURN THE RESULT OF THE INTERMEDIATE OPERATIONS PERFORMED ON THE STREAM.
+                            2.FOREACH()->THE FOREACH METHOD IS USED TO ITERATE THROUGH EVERY ELEMENTS OF THE STREAM.
+                            3.REDUCE()->THE REDUCE METHOD IS USED TO REDUCE THE ELEMENTS OF A STREAM TO A SINGLE VALUE.
+                            STREAM(): STREAM IS A SEQUENCE OF OBJECT WE CAN TRAVELS THROUGH SEQUENCE OF OBJECT THROUGH JAVA8.
+                            1.SEQUENTIAL STREAM: sequential stream is where you current stream execute in one core in one thread.
+                            2.PARALLEL STREAM:Parallel stream is applicable for multiple core sequential stream execute single core.
 
+ */
 public class StreamAPi {
 
     public static void main(String[] args) {
@@ -173,5 +191,7 @@ Arrays.stream(arr2)
       .filter(set::contains)
       .distinct() // To ensure unique elements
       .forEach(System.out::println); // Correct usage of forEach
+
+
     }  
 }
