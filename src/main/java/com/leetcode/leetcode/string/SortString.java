@@ -28,7 +28,7 @@ public class SortString {
     }
         */
 
-    public class DescendingOrder {
+    public static class DescendingOrder {
         public static void main(String[] args) {
             String s = "edcab";
             System.out.println(sortingString(s));
