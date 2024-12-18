@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
-
+//Intersection 1
 public class Intersection {
     public static void main(String[] args) {
         int [] arr1={1,2,3,4};
@@ -30,4 +30,42 @@ public class Intersection {
             }
         }
     }
+
+    //Intesection 2
+    Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+
+ 
+
+Example 1:
+
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2,2]
+Example 2:
+
+Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+Output: [4,9]
+Explanation: [9,4] is also accepted.
+
+
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        // Create a map to store the frequency of elements in nums1
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num : nums1) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        // List to store the intersection elements
+        List<Integer> result = new ArrayList<>();
+        for (int num : nums2) {
+            if (map.containsKey(num) && map.get(num) > 0) {
+                result.add(num);
+                map.put(num, map.get(num) - 1); // Decrease the frequency
+            }
+        }
+
+        // Convert the result list to an array
+        return result.stream().mapToInt(i -> i).toArray();
+    }
+}
 }
