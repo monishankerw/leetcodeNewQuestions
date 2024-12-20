@@ -568,4 +568,362 @@ public class StringQuestion {
             return str.replace(target, replacement);
         }
     }
+    public static class LongestPalindromicSubstring {
+
+        // Method to find the longest palindromic substring
+        public String longestPalindrome(String s) {
+            int n = s.length();
+            if (n == 0) {
+                return "";
+            }
+
+            // dp[i][j] will be true if the substring s[i...j] is a palindrome
+            boolean[][] dp = new boolean[n][n];
+
+            int start = 0; // Start index of the longest palindrome
+            int maxLength = 1; // Length of the longest palindrome
+
+            // Single character substrings are palindromes
+            for (int i = 0; i < n; i++) {
+                dp[i][i] = true;
+            }
+
+            // Fill the dp table for substrings of length 2 or more
+            for (int i = n - 1; i >= 0; i--) { // Start from the end
+                for (int j = i + 1; j < n; j++) { // Expand to the right
+                    if (s.charAt(i) == s.charAt(j)) { // Check for matching characters
+                        // If the length is 2 or the inner substring is a palindrome
+                        if (j - i == 1 || dp[i + 1][j - 1]) {
+                            dp[i][j] = true;
+
+                            // Update the longest palindrome details
+                            if (j - i + 1 > maxLength) {
+                                maxLength = j - i + 1;
+                                start = i;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Return the longest palindromic substring
+            return s.substring(start, start + maxLength);
+        }
+
+        // Main method to test the functionality
+        public static void main(String[] args) {
+            LongestPalindromicSubstring lps = new LongestPalindromicSubstring();
+
+            // Test cases
+            String str1 = "babad";
+            String str2 = "cbbd";
+            String str3 = "a";
+            String str4 = "ac";
+
+            System.out.println("Longest Palindromic Substring of \"" + str1 + "\": " + lps.longestPalindrome(str1)); // Output: "bab" or "aba"
+            System.out.println("Longest Palindromic Substring of \"" + str2 + "\": " + lps.longestPalindrome(str2)); // Output: "bb"
+            System.out.println("Longest Palindromic Substring of \"" + str3 + "\": " + lps.longestPalindrome(str3)); // Output: "a"
+            System.out.println("Longest Palindromic Substring of \"" + str4 + "\": " + lps.longestPalindrome(str4)); // Output: "a" or "c"
+        }
+    }
+    public static class LongestCommonPrefix {
+
+        // Method to find the longest common prefix
+        public String longestCommonPrefix(String[] strs) {
+            if (strs == null || strs.length == 0) {
+                return "";
+            }
+
+            // Start with the first string as the prefix
+            StringBuilder prefix = new StringBuilder(strs[0]);
+
+            for (int i = 1; i < strs.length; i++) {
+                int j = 0;
+
+                // Compare the current prefix with the next string
+                while (j < prefix.length() && j < strs[i].length() && prefix.charAt(j) == strs[i].charAt(j)) {
+                    j++;
+                }
+
+                // Trim the prefix to the matched length
+                prefix.setLength(j);
+
+                // If the prefix becomes empty, return early
+                if (prefix.length() == 0) {
+                    return "";
+                }
+            }
+
+            return prefix.toString();
+        }
+
+        // Main method to test the functionality
+        public static void main(String[] args) {
+            LongestCommonPrefix lcp = new LongestCommonPrefix();
+
+            // Test cases
+            String[] strs1 = {"flower", "flow", "flight"};
+            String[] strs2 = {"dog", "racecar", "car"};
+            String[] strs3 = {"interspecies", "interstellar", "interstate"};
+            String[] strs4 = {"", "prefix", "pre"};
+            String[] strs5 = {"single"};
+
+            System.out.println("Longest Common Prefix of strs1: " + lcp.longestCommonPrefix(strs1)); // Output: "fl"
+            System.out.println("Longest Common Prefix of strs2: " + lcp.longestCommonPrefix(strs2)); // Output: ""
+            System.out.println("Longest Common Prefix of strs3: " + lcp.longestCommonPrefix(strs3)); // Output: "inters"
+            System.out.println("Longest Common Prefix of strs4: " + lcp.longestCommonPrefix(strs4)); // Output: ""
+            System.out.println("Longest Common Prefix of strs5: " + lcp.longestCommonPrefix(strs5)); // Output: "single"
+        }
+    }
+
+
+
+    public static class FirstNonRepeatedCharacter {
+
+        // Method to find the first non-repeated character in a string
+        public char findFirstNonRepeatedCharacter(String s) {
+            if (s == null || s.isEmpty()) {
+                return '\0'; // Return null character if input is null or empty
+            }
+
+            // LinkedHashMap to maintain the order of characters and their counts
+            Map<Character, Integer> charCount = new LinkedHashMap<>();
+
+            // Populate the map with character counts
+            for (char c : s.toCharArray()) {
+                charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+            }
+
+            // Find the first character with a count of 1
+            for (Map.Entry<Character, Integer> entry : charCount.entrySet()) {
+                if (entry.getValue() == 1) {
+                    return entry.getKey();
+                }
+            }
+
+            return '\0'; // If no non-repeated character is found
+        }
+
+        // Main method to test the functionality
+        public static void main(String[] args) {
+            FirstNonRepeatedCharacter fnrc = new FirstNonRepeatedCharacter();
+
+            // Test cases
+            String str1 = "swiss";
+            String str2 = "success";
+            String str3 = "aabbcc";
+            String str4 = "abcd";
+            String str5 = "";
+
+            System.out.println("First non-repeated character in \"" + str1 + "\": " + fnrc.findFirstNonRepeatedCharacter(str1)); // Output: 'w'
+            System.out.println("First non-repeated character in \"" + str2 + "\": " + fnrc.findFirstNonRepeatedCharacter(str2)); // Output: 'u'
+            System.out.println("First non-repeated character in \"" + str3 + "\": " + fnrc.findFirstNonRepeatedCharacter(str3)); // Output: '\0'
+            System.out.println("First non-repeated character in \"" + str4 + "\": " + fnrc.findFirstNonRepeatedCharacter(str4)); // Output: 'a'
+            System.out.println("First non-repeated character in \"" + str5 + "\": " + fnrc.findFirstNonRepeatedCharacter(str5)); // Output: '\0'
+        }
+    }
+
+    public static class LongestWordInDictionary {
+
+        // Method to find the longest word in the dictionary
+        public String longestWord(String[] words) {
+            // Sort the words array lexicographically
+            Arrays.sort(words);
+
+            // Use a HashSet to keep track of valid prefixes
+            Set<String> wordSet = new HashSet<>();
+            String longestWord = "";
+
+            for (String word : words) {
+                // Check if the current word can be built one character at a time
+                if (word.length() == 1 || wordSet.contains(word.substring(0, word.length() - 1))) {
+                    wordSet.add(word); // Add the current word to the set
+
+                    // Update the longest word if needed
+                    if (word.length() > longestWord.length()) {
+                        longestWord = word;
+                    }
+                }
+            }
+
+            return longestWord;
+        }
+
+        // Main method to test the functionality
+        public static void main(String[] args) {
+            LongestWordInDictionary lwid = new LongestWordInDictionary();
+
+            // Test cases
+            String[] words1 = {"w", "wo", "wor", "worl", "world"};
+            String[] words2 = {"a", "banana", "app", "appl", "ap", "apply", "apple"};
+            String[] words3 = {"cat", "bat", "rat"};
+            String[] words4 = {"e", "el", "ele", "elep", "eleph", "elepha", "elephan", "elephant"};
+
+            System.out.println("Longest word in words1: " + lwid.longestWord(words1)); // Output: "world"
+            System.out.println("Longest word in words2: " + lwid.longestWord(words2)); // Output: "apple"
+            System.out.println("Longest word in words3: " + lwid.longestWord(words3)); // Output: "cat" or "bat" or "rat"
+            System.out.println("Longest word in words4: " + lwid.longestWord(words4)); // Output: "elephant"
+        }
+    }
+
+    public static class LongestSubstringWithTwoDistinct {
+
+        // Method to find the length of the longest substring with at most two distinct characters
+        public int lengthOfLongestSubstringTwoDistinct(String s) {
+            int n = s.length();
+            if (n == 0) {
+                return 0;
+            }
+
+            int maxLength = 0;
+            int left = 0;
+            int right = 0;
+
+            // HashMap to store the count of characters in the current window
+            Map<Character, Integer> charCount = new HashMap<>();
+
+            while (right < n) {
+                // Add the current character to the map
+                char c = s.charAt(right);
+                charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+
+                // Shrink the window until there are at most 2 distinct characters
+                while (charCount.size() > 2) {
+                    char leftChar = s.charAt(left);
+                    charCount.put(leftChar, charCount.get(leftChar) - 1);
+
+                    if (charCount.get(leftChar) == 0) {
+                        charCount.remove(leftChar);
+                    }
+
+                    left++;
+                }
+
+                // Update the maximum length
+                maxLength = Math.max(maxLength, right - left + 1);
+
+                // Expand the window
+                right++;
+            }
+
+            return maxLength;
+        }
+
+        // Main method to test the functionality
+        public static void main(String[] args) {
+            LongestSubstringWithTwoDistinct lswtd = new LongestSubstringWithTwoDistinct();
+
+            // Test cases
+            String str1 = "eceba";
+            String str2 = "ccaabbb";
+            String str3 = "aaaa";
+            String str4 = "abcabcabc";
+            String str5 = "";
+
+            System.out.println("Length of longest substring with two distinct characters in \"" + str1 + "\": " + lswtd.lengthOfLongestSubstringTwoDistinct(str1)); // Output: 3
+            System.out.println("Length of longest substring with two distinct characters in \"" + str2 + "\": " + lswtd.lengthOfLongestSubstringTwoDistinct(str2)); // Output: 5
+            System.out.println("Length of longest substring with two distinct characters in \"" + str3 + "\": " + lswtd.lengthOfLongestSubstringTwoDistinct(str3)); // Output: 4
+            System.out.println("Length of longest substring with two distinct characters in \"" + str4 + "\": " + lswtd.lengthOfLongestSubstringTwoDistinct(str4)); // Output: 2
+            System.out.println("Length of longest substring with two distinct characters in \"" + str5 + "\": " + lswtd.lengthOfLongestSubstringTwoDistinct(str5)); // Output: 0
+        }
+    }
+    public static class LongestCommonSubsequence {
+
+        // Method to find the longest common subsequence between two strings
+        public String longestCommonSubsequence(String text1, String text2) {
+            int m = text1.length();
+            int n = text2.length();
+
+            // DP table to store lengths of LCS
+            int[][] dp = new int[m + 1][n + 1];
+
+            // Fill the DP table
+            for (int i = 1; i <= m; i++) {
+                for (int j = 1; j <= n; j++) {
+                    if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
+                        dp[i][j] = dp[i - 1][j - 1] + 1;
+                    } else {
+                        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                    }
+                }
+            }
+
+            // Backtrack to construct the LCS string
+            StringBuilder lcs = new StringBuilder();
+            int i = m, j = n;
+            while (i > 0 && j > 0) {
+                if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
+                    lcs.insert(0, text1.charAt(i - 1));
+                    i--;
+                    j--;
+                } else if (dp[i - 1][j] > dp[i][j - 1]) {
+                    i--;
+                } else {
+                    j--;
+                }
+            }
+
+            return lcs.toString();
+        }
+
+        // Main method to test the functionality
+        public static void main(String[] args) {
+            LongestCommonSubsequence lcsFinder = new LongestCommonSubsequence();
+
+            // Test cases
+            String text1 = "abcde";
+            String text2 = "ace";
+            String text3 = "abc";
+            String text4 = "def";
+            String text5 = "abcdgh";
+            String text6 = "aedfhr";
+
+            System.out.println("LCS of \"" + text1 + "\" and \"" + text2 + "\": " + lcsFinder.longestCommonSubsequence(text1, text2)); // Output: "ace"
+            System.out.println("LCS of \"" + text3 + "\" and \"" + text4 + "\": " + lcsFinder.longestCommonSubsequence(text3, text4)); // Output: ""
+            System.out.println("LCS of \"" + text5 + "\" and \"" + text6 + "\": " + lcsFinder.longestCommonSubsequence(text5, text6)); // Output: "adh"
+        }
+    }
+
+
+    public static class FirstNonRepeatedCharacters {
+
+        // Method to find the first non-repeated character in a string
+        public char findFirstNonRepeatedCharacter(String str) {
+            // Map to store character frequencies
+            Map<Character, Integer> charCountMap = new HashMap<>();
+
+            // First pass: Count the occurrences of each character
+            for (char c : str.toCharArray()) {
+                charCountMap.put(c, charCountMap.getOrDefault(c, 0) + 1);
+            }
+
+            // Second pass: Find the first character with a count of 1
+            for (char c : str.toCharArray()) {
+                if (charCountMap.get(c) == 1) {
+                    return c;
+                }
+            }
+
+            return '\0'; // Return null character if no non-repeated character found
+        }
+
+        // Main method to test the functionality
+        public static void main(String[] args) {
+            FirstNonRepeatedCharacter fnrc = new FirstNonRepeatedCharacter();
+
+            // Test cases
+            String str1 = "swiss";
+            String str2 = "teeter";
+            String str3 = "success";
+            String str4 = "aabbcc";
+            String str5 = "abcde";
+
+            System.out.println("First non-repeated character in \"" + str1 + "\": " + fnrc.findFirstNonRepeatedCharacter(str1)); // Output: "w"
+            System.out.println("First non-repeated character in \"" + str2 + "\": " + fnrc.findFirstNonRepeatedCharacter(str2)); // Output: "r"
+            System.out.println("First non-repeated character in \"" + str3 + "\": " + fnrc.findFirstNonRepeatedCharacter(str3)); // Output: "u"
+            System.out.println("First non-repeated character in \"" + str4 + "\": " + fnrc.findFirstNonRepeatedCharacter(str4)); // Output: '\0'
+            System.out.println("First non-repeated character in \"" + str5 + "\": " + fnrc.findFirstNonRepeatedCharacter(str5)); // Output: "a"
+        }
+    }
+
 }
