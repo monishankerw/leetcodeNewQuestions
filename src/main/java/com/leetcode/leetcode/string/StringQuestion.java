@@ -114,6 +114,40 @@ public class StringQuestion {
                 return Arrays.equals(chars1, chars2);
             }
         }
+        public static class AnagramWords {
+            public static void main(String[] args) {
+
+                char str1[]= {'l','i','s','t','e','n'};
+
+                char str2[]= {'s','i','l','e','n','t'};
+
+                if(Anagram(str1,str2))
+                    System.out.println("The two strings are anagram of each other");
+
+                else
+                    System.out.println("The two strings are not anagram of each other");
+            }
+            private static boolean Anagram(char[] str1, char[] str2) {
+
+                int n1=str1.length;
+
+                int n2=str2.length;
+
+                if(n1!=n2)
+
+                    return false;
+                Arrays.sort(str1);
+                Arrays.sort(str2);
+
+                for(int i=0;i<n1;i++)
+
+                    if(str1[i]!=str2[i])
+
+                        return false;
+
+                return true;
+            }
+        }
 
         // Class for finding frequency of characters in a string
         public static class FreqOcc {
@@ -925,5 +959,66 @@ public class StringQuestion {
             System.out.println("First non-repeated character in \"" + str5 + "\": " + fnrc.findFirstNonRepeatedCharacter(str5)); // Output: "a"
         }
     }
+    public static class PermutationString {
+        public static void main(String[] args) {
+            Scanner sc=new Scanner(System.in);
+            String s1="ABC";
+            String s2=" ";
+            permun(s1,s2);
+        }
 
+        private static void permun(String s1, String s2) {
+            if(s1.length()==0) {//The length() method returns the length of a specified string
+                System.out.print(s2+" ");
+                return;
+            }
+            for(int i=0;i<s1.length();i++) {
+                char ch=s1.charAt(i);//it return the charvalue of the particular index as mentained
+                String left_substr=s1.substring(0,i);//SUBSTRING is a string manipulation function that manipulates all string data types (BIT, BLOB, and CHARACTER), and extracts characters from a string to create another string
+                String rigtht_substr=s1.substring(i+1);
+                String rest=left_substr+rigtht_substr;
+                permun(rest,s2+ch);
+            }
+        }
+
+    }
+    public static class PreservingSpace {
+
+        public static void main(String[] args) {
+            String str = "Java Developer";
+            preservingSpace(str);
+        }
+
+        private static void preservingSpace(String str) {
+            // Initialize two pointers as two corners
+            int n = str.length();
+            int start = 0, end = n - 1;
+
+            char[] ch = str.toCharArray();
+
+            // Move both pointers toward each other
+            while (start < end) {
+                // If character at start is a space, skip it
+                if (ch[start] == ' ') {
+                    start++;
+                    continue;
+                }
+                // If character at end is a space, skip it
+                if (ch[end] == ' ') {
+                    end--;
+                    continue;
+                }
+                // If both are not spaces, swap
+                char temp = ch[start];
+                ch[start] = ch[end];
+                ch[end] = temp;
+
+                start++;
+                end--;
+            }
+
+            // Convert character array back to a string and print it
+            System.out.println(new String(ch));
+        }
+    }
 }
