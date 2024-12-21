@@ -7,6 +7,7 @@ CREATE TABLE employees (
     branch VARCHAR(50)
 );
 
+
 INSERT INTO employees (first_name, salary, branch)
 VALUES
 ('John1', 50000, 'IT'),
