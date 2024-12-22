@@ -36,6 +36,10 @@ FROM employees
 ORDER BY salary DESC
 LIMIT 1 OFFSET 1;
 
+Select Max(salary) FROM company.employees where salary<52000;
+
+(Select Max(salary) FROM company.employees);Select Max(salary) FROM company.employees where salary<(Select Max(salary) FROM company.employees);
+
 Explanation:
 	1.	SELECT DISTINCT salary:
 	•	Ensures that duplicate salaries are not considered (e.g., if multiple employees have the same salary).
