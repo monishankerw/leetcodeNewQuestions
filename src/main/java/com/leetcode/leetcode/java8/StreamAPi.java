@@ -56,11 +56,23 @@ public class StreamAPi {
         //Used to perform a reduction on the elements of a stream using an associative accumulation function and returning an optional with the reduced value.
 
         Integer sum = num.stream().filter(nums -> nums % 2 == 0).reduce(0, (a, b) -> a + b);
+       /*
+       Method	Explanation
+list.stream()	Creates a stream from the list.
+.filter(x -> x % 2 == 0)	Filters even numbers (x % 2 == 0).
+.reduce(0, (a, b) -> a + b)	Reduces the stream to a single value (sum of elements).
+        */
         System.out.println(sum);
 
         //4.
 
         Map<Boolean, List<Integer>> map = num.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
+       /*
+       Operation	Explanation
+list.stream()	Creates a stream from the list.
+s -> s % 2 == 0	Predicate to check if a number is even.
+Collectors.partitioningBy	Partitions the stream elements into two groups.
+        */
         System.out.println("EVEN NUMBER:"+map.get(true));
         System.out.println("ODD NUMBER:"+map.get(false));
 
@@ -88,6 +100,8 @@ public class StreamAPi {
         List<Integer> descendingOrder = num1.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
         System.out.println("DescendingOrder:"+descendingOrder);
 
+
+
         // 11. greater than 4 and then find their average
         OptionalDouble average = num1.stream().filter(x -> x > 4).mapToInt(x -> x).average();
         System.out.println("AVERAGE:"+average);
@@ -103,24 +117,24 @@ public class StreamAPi {
         List<Integer> merge = lists.stream().flatMap(List::stream).distinct().collect(Collectors.toList());
         System.out.println("Merge List::"+merge);
 
-        // 14.Find the second-highest number
+        // 15.Find the second-highest number
         Optional<Integer> secondHighestNumber = num.stream().distinct().sorted(Comparator.reverseOrder()).skip(1).findFirst();
         System.out.println("Second Highest Number::"+secondHighestNumber);
 
-        //15. Maximum Value in a List
+        //16. Maximum Value in a List
         OptionalInt maxNumber = num.stream().mapToInt(x -> x).max();
         System.out.println("Max Number:"+maxNumber);
         OptionalInt minNumber = num.stream().mapToInt(x -> x).min();
 
-        //16. Average of Even Numbers
+        //17. Average of Even Numbers
         OptionalDouble avgOfEvenNumber = num.stream().filter(x -> x % 2 == 0).mapToInt(x -> x).average();
         System.out.println("Avg Of even number"+avgOfEvenNumber);
 
-        //17. Count Numbers Divisible by 3
+        //18. Count Numbers Divisible by 3
         long count = num.stream().mapToInt(x -> x).filter(x -> x % 3 == 0).count();
         System.out.println("Count Numbers Divisible by 3:"+count);
 
-        //18. Convert a List of Numbers to Their ASCII Characters
+        //19. Convert a List of Numbers to Their ASCII Characters
 
         List<Integer> assValue = Arrays.asList(67, 67, 68, 98, 97);
         assValue.stream().mapToInt(x->x).mapToObj(c->(char)c).forEach(c->System.out.println("Characters::"+c));
