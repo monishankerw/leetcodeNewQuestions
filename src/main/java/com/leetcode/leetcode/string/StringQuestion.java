@@ -486,6 +486,63 @@ public class StringQuestion {
         }
     }
 
+
+
+   public static class MostCommonWord {
+        public String mostCommonWord(String paragraph, String[] banned) {
+            // Normalize the paragraph to lowercase and replace punctuations with spaces
+            String normalized = paragraph.toLowerCase().replaceAll("[!?',;\\.]", " ");
+
+            // Split the paragraph into words
+            String[] words = normalized.split("\\s+");
+
+            // Create a set of banned words for quick lookup
+            Set<String> bannedSet = new HashSet<>(Arrays.asList(banned));
+
+            // Map to store word frequencies
+            Map<String, Integer> wordCount = new HashMap<>();
+
+            // Count occurrences of non-banned words
+            for (String word : words) {
+                if (!bannedSet.contains(word)) {
+                    wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+                }
+            }
+
+            // Find the most common word
+            String mostCommon = "";
+            int maxCount = 0;
+
+            for (Map.Entry<String, Integer> entry : wordCount.entrySet()) {
+                if (entry.getValue() > maxCount) {
+                    mostCommon = entry.getKey();
+                    maxCount = entry.getValue();
+                }
+            }
+
+            return mostCommon;
+        }
+
+        public static void main(String[] args) {
+            MostCommonWord solution = new MostCommonWord();
+
+            // Test case 1
+            String paragraph1 = "Bob hit a ball, the hit BALL flew far after it was hit.";
+            String[] banned1 = {"hit"};
+            System.out.println("Most common word: " + solution.mostCommonWord(paragraph1, banned1)); // Output: "ball"
+
+            // Test case 2
+            String paragraph2 = "a, a, a, a, b,b,b,c, c";
+            String[] banned2 = {"a"};
+            System.out.println("Most common word: " + solution.mostCommonWord(paragraph2, banned2)); // Output: "b"
+
+            // Test case 3
+            String paragraph3 = "This is a simple example, Example! Example!";
+            String[] banned3 = {"example"};
+            System.out.println("Most common word: " + solution.mostCommonWord(paragraph3, banned3)); // Output: "is"
+        }
+    }
+
     public static class RemoveDuplicateElements {
         public static void main(String[] args) {
             List<String>x=new ArrayList<>();

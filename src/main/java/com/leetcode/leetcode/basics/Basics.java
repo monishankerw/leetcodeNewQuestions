@@ -2,8 +2,7 @@
         package com.leetcode.leetcode.basics;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.Map.Entry;
+
 
 public class Basics {
 
@@ -199,7 +198,221 @@ public class Basics {
             for (int num : arr) {
                 freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
             }
-            freqMap.forEach((key, value) -> System.out.println(key + " -> " + value));
+            //freqMap.forEach((key, value) -> System.out.println(key + " -> " + value));
+            System.out.println(freqMap);
+        }
+    }
+
+    //15. count pair
+    public static class CountPair {
+        public static void main(String[] args) {
+            int arr[] = {1, 2, 4, -1, -6, -2};
+            int sum = 3;
+            countpair(arr, sum);
+        }
+
+        private static void countpair(int[] arr, int sum) {
+            int count = 0;
+            for (int i = 0; i < arr.length; i++)
+                for (int j = 0; j < arr.length; j++)
+                    if (arr[i] + arr[j] == sum)
+                        count++;
+            System.out.println(count);
+
+        }
+    }
+//16.rotates arrays
+    public static class Roatatearray {
+        public static void main(String[] args) {
+            int[] arr = new int[]{1, 2, 3, 4, 5};
+            int n = 3, j;
+            for (int i = 0; i < n; i++) {
+                int first = arr[0];
+                for (j = 0; j < arr.length - 1; j++) {
+                    arr[j] = arr[j + 1];
+                }
+
+                arr[j] = first;
+            }
+            for (int i = 0; i < arr.length; i++) {
+                System.out.println(arr[i] + " ");
+            }
+        }
+    }
+
+    //17. Intersection
+    public static class Intersection {
+        public static void main(String[] args) {
+            int arr1[] = {1, 2, 3, 4};
+            int arr2[] = {1, 2};
+            intersection(arr1, arr2);
+        }
+
+        private static void intersection(int[] arr1, int[] arr2) {
+            HashSet<Integer> s = new HashSet<Integer>();
+            for (int i = 0; i < arr1.length; i++) {
+                s.add(arr1[i]);
+            }
+            for (int i = 0; i < arr2.length; i++) {
+                if (s.contains(arr2[i])) {
+                    System.out.println(arr2[i]);
+                }
+            }
+        }
+    }
+//18. singleturn class
+    public static final class A {
+        public static A a1 = null;
+
+        private A() {
+        }
+
+        public static A getInstance() {
+            if (a1 == null) {
+                A a1 = new A();
+                return a1;
+            }
+            return a1;
+        }
+
+
+        public static void main(String[] args) {
+            A a1 = A.getInstance();
+            A a2 = A.getInstance();
+            System.out.println(a1);
+            System.out.println(a2);
+        }
+    }
+
+    //19. sum of arrays
+    public static class Sum {
+        public static void main(String[] args) {
+            int arr[] = {1, 2, 3, 4, 5}; // Initialize the array
+            sum(arr); // Call the sum method
+        }
+
+        // Method to calculate and print the sum of elements in the array
+        private static void sum(int[] arr) {
+            int sum = 0;
+            for (int num : arr) { // Enhanced for-loop for readability
+                sum += num; // Add each element to the sum
+            }
+            System.out.println("The sum of the array elements is: " + sum);
+        }
+    }
+
+    //20. subset
+    public static class SubSet {
+        public static void main(String[] args) {
+            int arr1[] = {1, 2, 3, 4, 5}; // Main array
+            int arr2[] = {3, 4, 12};      // Array to check as subset
+            int m = arr1.length;
+            int n = arr2.length;
+
+            if (isSubset(arr1, arr2, m, n)) {
+                System.out.println("arr2[] is a subset of arr1[]");
+            } else {
+                System.out.println("arr2[] is not a subset of arr1[]");
+            }
+        }
+
+        private static boolean isSubset(int[] arr1, int[] arr2, int m, int n) {
+            for (int i = 0; i < n; i++) {
+                boolean found = false; // Flag to check if arr2[i] exists in arr1
+                for (int j = 0; j < m; j++) {
+                    if (arr2[i] == arr1[j]) {
+                        found = true;
+                        break; // Exit the inner loop if a match is found
+                    }
+                }
+                if (!found) {
+                    return false; // If arr2[i] is not found in arr1, return false
+                }
+            }
+            return true; // All elements of arr2[] are found in arr1[]
+        }
+
+        //21. reverse array
+        public static class ReverseArray {
+            public static void main(String[] args) {
+                int[] arr = {1, 2, 3, 4, 5, 6};
+                System.out.println("Original Array: " + Arrays.toString(arr));
+                reverseArray(arr);
+                System.out.println("Reversed Array: " + Arrays.toString(arr));
+            }
+
+            private static void reverseArray(int[] arr) {
+                int left = 0, right = arr.length - 1;
+                while (left < right) {
+                    // Swap elements
+                    int temp = arr[left];
+                    arr[left] = arr[right];
+                    arr[right] = temp;
+                    left++;
+                    right--;
+                }
+            }
+        }
+    }
+
+    //22. trappping rainwater
+    public static class TrappingRainwater {
+        public static void main(String[] args) {
+            int arr[] = {6, 9, 9};
+            System.out.println("Maximum Trapped Water: " + maxTrappingWater(arr));
+        }
+
+        private static int maxTrappingWater(int[] arr) {
+            int n = arr.length;
+            if (n < 3) return 0; // No trapping possible with less than 3 elements
+
+            int[] leftMax = new int[n];
+            int[] rightMax = new int[n];
+
+            // Fill leftMax array
+            leftMax[0] = arr[0];
+            for (int i = 1; i < n; i++) {
+                leftMax[i] = Math.max(leftMax[i - 1], arr[i]);
+            }
+
+            // Fill rightMax array
+            rightMax[n - 1] = arr[n - 1];
+            for (int i = n - 2; i >= 0; i--) {
+                rightMax[i] = Math.max(rightMax[i + 1], arr[i]);
+            }
+
+            // Calculate total water trapped
+            int totalWater = 0;
+            for (int i = 0; i < n; i++) {
+                totalWater += Math.min(leftMax[i], rightMax[i]) - arr[i];
+            }
+
+            return totalWater;
+        }
+
+        //23. subarrays
+       public static class Subarrays {
+            static int arr[] = {1, 2, 3, 4};
+
+            // Method to print all subarrays
+            public static void subArray(int n) {
+                // Pick starting point
+                for (int i = 0; i < n; i++) {
+                    // Pick ending point
+                    for (int j = i; j < n; j++) {
+                        // Print subarray between i and j
+                        for (int k = i; k <= j; k++) {
+                            System.out.print(arr[k] + " ");
+                        }
+                        System.out.println(); // New line after each subarray
+                    }
+                }
+            }
+
+            public static void main(String[] args) {
+                System.out.println("All Non-empty Subarrays:");
+                subArray(arr.length);
+            }
         }
     }
 }
