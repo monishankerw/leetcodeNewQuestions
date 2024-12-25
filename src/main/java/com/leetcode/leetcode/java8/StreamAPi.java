@@ -179,12 +179,12 @@ public class StreamAPi {
         System.out.println("Find the first non-repeating element::"+firstNonRepeating);
     
 // Intersection
-int[] arr1 = {1, 2, 3, 4};
+int[] arr1 = {1, 2, 3,2, 4};
 int[] arr2 = {1, 2};
 
 // Convert arr1 to a Set for efficient lookup
 Set<Integer> set = Arrays.stream(arr1).boxed().collect(Collectors.toSet());
-
+        System.out.println("SET:"+set);
 // Filter arr2 to find elements present in set and print them
 System.out.print("Intersection: ");
 Arrays.stream(arr2)
@@ -192,6 +192,18 @@ Arrays.stream(arr2)
       .distinct() // To ensure unique elements
       .forEach(System.out::println); // Correct usage of forEach
 
+/*
+Step	            Function	                   Result
+Arrays.stream(arr1)	Convert int[] to IntStream	    [1, 2, 3, 2, 1]
+.boxed()	Convert IntStream to Stream<Integer>	[Integer(1), Integer(2), Integer(3), Integer(2), Integer(1)]
+.collect(Collectors.toSet())	Collect elements into a Set<Integer>	[1, 2, 3]
 
+
+Step	Function	Result
+Arrays.stream(arr2)	Converts arr2 to a stream	[3, 4, 5, 6]
+.filter(set::contains)	Filters elements present in set	[3, 4] (if set = {3, 4})
+.distinct()	Ensures no duplicates	[3, 4]
+.forEach(System.out::println)	Prints each element in the stream	Prints 3 on one line and 4 on the next
+ */
     }  
 }
