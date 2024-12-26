@@ -1,24 +1,28 @@
-package com.leetcode.leetcode.hibernates;
+package com.leetcode.leetcode.hibernates.ecomerace;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.HashSet;
-import java.util.Set;
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity
-public class Department {
+public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private int quantity;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "department")
-    private Set<Employee>employees=new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 }

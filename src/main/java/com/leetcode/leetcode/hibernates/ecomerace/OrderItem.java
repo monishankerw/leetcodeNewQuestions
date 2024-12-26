@@ -1,4 +1,4 @@
-package com.leetcode.leetcode.hibernates;
+package com.leetcode.leetcode.hibernates.ecomerace;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,21 +6,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.HashSet;
-import java.util.Set;
-
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Project {
+@Entity
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private int quantity;
 
-    @ManyToMany(mappedBy = "projects") // Inverse side of the relationship
-    private Set<Employee> employees = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 }
+

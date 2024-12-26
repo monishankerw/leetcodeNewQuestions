@@ -1,4 +1,4 @@
-package com.leetcode.leetcode.hibernates;
+package com.leetcode.leetcode.hibernates.employess;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
