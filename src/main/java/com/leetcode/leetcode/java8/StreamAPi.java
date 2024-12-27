@@ -53,6 +53,7 @@ public class StreamAPi {
 
         //3.sum of even number
         // reduce():Terminal Operation
+        // 3.REDUCE()->THE REDUCE METHOD IS USED TO REDUCE THE ELEMENTS OF A STREAM TO A SINGLE VALUE.
         //Used to perform a reduction on the elements of a stream using an associative accumulation function and returning an optional with the reduced value.
 
         Integer sum = num.stream().filter(nums -> nums % 2 == 0).reduce(0, (a, b) -> a + b);
