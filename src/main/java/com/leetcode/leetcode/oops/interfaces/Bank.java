@@ -1,4 +1,4 @@
-package com.leetcode.leetcode.oops.inheritances.singleInheritance.interfaces;
+package com.leetcode.leetcode.oops.interfaces;
 
 public interface Bank {
     public void balance();

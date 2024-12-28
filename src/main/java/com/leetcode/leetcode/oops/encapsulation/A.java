@@ -1,4 +1,4 @@
-package com.leetcode.leetcode.oops.inheritances.singleInheritance.encapsulation;
+package com.leetcode.leetcode.oops.encapsulation;
 
 public class A {
     private int i;

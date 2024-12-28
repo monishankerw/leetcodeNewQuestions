@@ -1,4 +1,4 @@
-package com.leetcode.leetcode.oops.inheritances.singleInheritance.singleInheritance;
+package com.leetcode.leetcode.oops.singleInheritance;
 
 public class A {
     public void  test(){

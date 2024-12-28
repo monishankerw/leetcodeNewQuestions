@@ -1,4 +1,4 @@
-package com.leetcode.leetcode.oops.inheritances.singleInheritance.abstraction;
+package com.leetcode.leetcode.oops.abstraction;
 
 public interface A {
     public abstract void test();
