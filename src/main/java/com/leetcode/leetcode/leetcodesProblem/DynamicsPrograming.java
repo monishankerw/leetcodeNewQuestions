@@ -279,6 +279,7 @@ public class DynamicsPrograming {
             int n=input.length;
             if(n==1)
                 return 0;
+
             int jumps=0;
             int farthest=0;
             int currentEnd=0;
