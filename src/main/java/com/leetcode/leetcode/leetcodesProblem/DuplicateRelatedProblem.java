@@ -18,7 +18,7 @@ public class DuplicateRelatedProblem {
         }
     }
 
-    //2. check Duplicate
+    //2. check DuplicateI
     public static class CheckDuplicate {
         public static void main(String[] args) {
             int[] arr = {1, 2, 3, 2, 1};
@@ -39,9 +39,7 @@ public class DuplicateRelatedProblem {
         }
     }
 //3. contain DuplicateII
-
-
-    public static class ContainDuplicate {
+      public static class ContainDuplicate {
         public static void main(String[] args) {
             int[] nums = {1, 2, 3, 1};
             int k = 3; // Corrected variable declaration
@@ -271,6 +269,147 @@ public class DuplicateRelatedProblem {
             int[] arr2 = {1, 2, 3};
             solution.duplicateZeros(arr2);
             System.out.println("Output: " + java.util.Arrays.toString(arr2)); // [1, 2, 3]
+        }
+    }
+    //11.
+    public static class DuplicateElements {
+        public static void main(String[] args) {
+            String str = "javadeveloper";
+
+            System.out.println("Duplicate elements in the string:");
+
+            printDuplicateCharacters(str);
+        }
+
+        private static void printDuplicateCharacters(String str) {
+            HashSet<Character> set = new HashSet<>();
+            HashSet<Character> duplicates = new HashSet<>();
+
+            for (char ch : str.toCharArray()) {
+                if (!set.add(ch)) { // If adding fails, it's a duplicate
+                    duplicates.add(ch);
+                }
+            }
+
+            // Print all unique duplicate characters
+            duplicates.forEach(System.out::print);
+        }
+    /*
+    java8
+    private static void findDuplicateCharactersUsingStreams(String str) {
+        str.chars()  // Convert string to IntStream
+            .mapToObj(c -> (char) c)  // Convert int to Character
+            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))  // Group and count
+            .entrySet().stream()  // Stream the map entries
+            .filter(entry -> entry.getValue() > 1)  // Filter only duplicates
+            .forEach(entry -> System.out.print(entry.getKey() + " "));  // Print the duplicates
+    }
+     */
+    }
+    //12
+    public static class DuplicateWord {
+        public static void main(String[] args) {
+            String str = "This is new word is This new word";
+
+            // Remove punctuation (except spaces) and convert to lower case
+            String input = str.replaceAll("[^a-zA-Z ]", "").toLowerCase();
+
+            // Split the string into words
+            String[] words = input.split("\\s+");
+
+            // Use a HashMap to count the occurrences of each word
+            Map<String, Integer> map = new HashMap<>();
+            for (String word : words) {
+                map.put(word, map.getOrDefault(word, 0) + 1);
+            }
+
+            // Print the duplicate words
+            System.out.println("Duplicate Words::::");
+            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                if (entry.getValue() > 1) {
+                    System.out.println(entry.getKey() + ": " + entry.getValue());
+                }
+            }
+        }
+    }
+    public static class RemoveDuplicateElements {
+        public static void main(String[] args) {
+            List<String>x=new ArrayList<>();
+            x.add("a");
+            x.add("b");
+            x.add("c");
+            x.add("a");
+            x.add("b");
+            x.add("a");
+            System.out.println("All Elements:"+x);
+            List<String> x1= x.stream().distinct().collect(Collectors.toList());
+            System.out.println("Remove Duplicate:"+x1);
+        }
+    }
+    public static class FindDuplicateElement {
+        public static void main(String[] args) {
+            String str = "JavaDeveloper";
+            int r = 0;
+            char[] x = str.toCharArray();
+            for (int i = 0; i < str.length(); i++) {
+                for (int j = i + 1; j < str.length(); j++) {
+                    if (x[i] == x[j]) {
+                        System.out.print(x[j]);
+                        r++;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public static class RemoveDuplicateCharacter {
+        public static void main(String[] args) {
+            String st="aabdsddee";
+            String result=removeCharacter(st);
+            System.out.println("Remove Duplicate Character:"+result);
+        }
+
+        private static String removeCharacter(String st) {
+            Set<Character>set=new LinkedHashSet<>();
+            for (char ch:st.toCharArray()){
+                set.add(ch);
+                System.out.println(set);
+
+            }
+            StringBuilder sb=new StringBuilder();
+            for(char ch:set){
+                sb.append(ch);
+            }
+            return sb.toString();
+        }
+    }
+
+    public static class RemoveDuplicateString {
+        public static void main(String[] args) {
+            String str = "programmming";
+            String res = str.chars().mapToObj(c -> (char) c)
+                    .distinct()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining());
+            System.out.println(res);
+        }
+    }
+
+    public static class RemoveDuplicates {
+        public static void main(String[] args) {
+            String str = "aabbccdef";
+            System.out.println("String without duplicates: " + removeDuplicates(str));
+        }
+
+        private static String removeDuplicates(String str) {
+            StringBuilder result = new StringBuilder();
+            for (char ch : str.toCharArray()) {
+                if (result.indexOf(String.valueOf(ch)) == -1) {
+                    result.append(ch);
+                }
+            }
+            return result.toString();
         }
     }
 }
