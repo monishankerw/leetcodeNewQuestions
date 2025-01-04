@@ -1039,6 +1039,35 @@ public class StringQuestion {
         }
 
     }
+
+
+    public static class PermutationArray {
+        public static void main(String[] args) {
+            int[] nums = {1, 2, 3}; // Input array
+            List<List<Integer>> result = new ArrayList<>();
+            permute(nums, new ArrayList<>(), result);
+
+            // Print the result
+            System.out.println("Permutations of the array:");
+            for (List<Integer> permutation : result) {
+                System.out.println(permutation);
+            }
+        }
+
+        // Recursive method to generate permutations
+        private static void permute(int[] nums, List<Integer> current, List<List<Integer>> result) {
+            if (current.size() == nums.length) {
+                result.add(new ArrayList<>(current)); // Add current permutation to the result
+                return;
+            }
+            for (int num : nums) {
+                if (current.contains(num)) continue; // Skip numbers already in the current permutation
+                current.add(num); // Choose
+                permute(nums, current, result); // Explore
+                current.remove(current.size() - 1); // Unchoose (backtrack)
+            }
+        }
+    }
     public static class PreservingSpace {
 
         public static void main(String[] args) {
