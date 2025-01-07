@@ -39,6 +39,55 @@ which helps in identifying where the error occurred.
 - The **stack trace** provided by `e.printStackTrace()` prints detailed information about
 where the exception occurred. In this case, the error happens at line 5 in the `Test` class (`Test.java:5`).
 
+
+What is the purpose of the assert statement in Java?
+The assert statement is used to create assertions, which are conditions that must be true at a certain point in the program. If the condition is false, the program will throw an AssertionError. Assertions are generally used for testing and debugging purposes.
+
+Example:
+
+
+public class Test {
+public static void main(String[] args) {
+int age = 15;
+assert age >= 18 : "Age must be at least 18";
+System.out.println("Age is " + age);
+}
+}
+Output when assertions are enabled (-ea flag):
+
+
+Exception in thread "main" java.lang.AssertionError: Age must be at least 18
+If assertions are enabled using the -ea flag, this will throw an AssertionError. If assertions are disabled, the program will execute normally.
+
+
+How are exceptions propagated in Java?
+Exception propagation refers to the process of passing an exception from the method where it occurs to its caller, and this continues until it is caught or until it reaches the main method. If not caught, it causes the program to terminate.
+
+Example:
+
+
+public class Test {
+public static void method1() {
+int data = 10 / 0; // This will cause an ArithmeticException
+}
+
+    public static void method2() {
+        method1();  // method1 is called here
+    }
+
+    public static void main(String[] args) {
+        try {
+            method2();  // method2 is called here
+        } catch (ArithmeticException e) {
+            System.out.println("Exception caught in main: " + e.getMessage());
+        }
+    }
+}
+Output:
+
+
+Exception caught in main: / by zero
+Here, the exception is propagated from method1 to method2 to main where it is finally caught.
      */
     public static class A1{
         public static void main(String[] args) {
@@ -187,6 +236,7 @@ InternalError       UnsatisfiedLinkError       ArrayIndexOutOfBoundsException   
             System.out.println("Welcome:");
         }
     }
+
     public static class A3{
         private boolean x;
 
@@ -218,6 +268,7 @@ InternalError       UnsatisfiedLinkError       ArrayIndexOutOfBoundsException   
             System.out.println(val);
         }
  */
+
     public static class A${
         public static void main(String[] args) {
             try{
@@ -231,12 +282,14 @@ InternalError       UnsatisfiedLinkError       ArrayIndexOutOfBoundsException   
             System.out.println("welcome");
         }
     }
+
     /*
     Difference between using ExceptionClass and NumberFormat class
 
     When we you number format exception class in catch block only it can handle number format exception
     If you use exception in catch block it can handle all the exception that then in try block.
      */
+
 
     public static class A5{
         int x=8;
@@ -252,6 +305,7 @@ InternalError       UnsatisfiedLinkError       ArrayIndexOutOfBoundsException   
             System.out.println(100);
         }
     }
+
     // Q. Can you write multi catch block?
 // Ans: Yes, We can create more than one catch block in try-catch. We can create child-specific exceptions followed by parent exceptions.
     public static class MultiCatchBlock {
@@ -274,6 +328,7 @@ InternalError       UnsatisfiedLinkError       ArrayIndexOutOfBoundsException   
             }
         }
     }
+
     /*
     1. Is finally block always get executed in Java?
 Yes, the finally block is always get executed unless there is an abnormal program
@@ -287,6 +342,7 @@ b. Jvm crash, out of memory.
 c. forced fully killed java program.
 d. deadlock condition not used finally.
 e. shutdown system due to power failure.
+
 
 3. Difference between final,finally, finalize.
 finally
@@ -306,6 +362,8 @@ finalize():
 4. But when garbage collector will be called is quite difficult to predict.
 
      */
+
+
 //yes, we write finally without catch block
     public static class A {
         int x = 1;
@@ -322,6 +380,7 @@ finalize():
             System.out.println(2);
         }
     }
+
     public static class B {
         //---->Whenever Exception occur or not finally block continuous to execute.
 //----> finally is the extension of try and catch block.
@@ -355,6 +414,64 @@ When System.exit() is called, the JVM will terminate the program, and no further
             System.out.println("This will not execute");
         }
     }
+
+
+    /*
+
+```markdown
+# Throwing an Exception from a Static Block in Java
+
+In Java, exceptions can be thrown from a static block. However, there are some important rules to keep in mind:
+
+- **Unchecked exceptions** (i.e., exceptions that inherit from `RuntimeException`) can be thrown directly from a static block.
+- **Checked exceptions** must be handled within the static block because static blocks are not methods, and they do not have a method signature where exceptions can be declared.
+
+Q. Can we throw an exception from a static block?
+Yes, exceptions can be thrown from a static block.
+However, only unchecked exceptions can be thrown directly from a static block
+because checked exceptions must be either caught or declared in a method signature.
+Since static blocks are not methods, checked exceptions must be handled within the block.
+## Example: Throwing an Unchecked Exception from a Static Block
+
+In the following example, an unchecked exception (`RuntimeException`) is thrown from the static block. Since this is an unchecked exception, it doesn't need to be handled or declared.
+
+```java
+public class Test {
+    static {
+        System.out.println("Inside static block");
+        throw new RuntimeException("Unchecked exception from static block");
+    }
+
+    public static void main(String[] args) {
+        System.out.println("This will not execute");
+    }
+}
+```
+
+### Output:
+
+```
+Inside static block
+Exception in thread "main" java.lang.RuntimeException: Unchecked exception from static block
+    at Test.<clinit>(Test.java:4)
+```
+
+### Explanation:
+- When the class is loaded, the static block is executed before the `main` method.
+- In this case, the static block throws a `RuntimeException`, which is an unchecked exception.
+- As a result, the program terminates, and the `main` method is not executed.
+
+## Key Points:
+- **Unchecked Exceptions**: You can throw unchecked exceptions (like `RuntimeException` and its subclasses) from a static block without handling them.
+- **Checked Exceptions**: If you want to throw a checked exception (like `IOException`), you must catch it inside the static block since there's no way to declare exceptions for a static block.
+- **Program Termination**: If an unchecked exception is thrown from a static block, the program will terminate, and any subsequent code (like the `main` method) will not be executed.
+
+## Conclusion:
+Static blocks can throw exceptions, but only unchecked exceptions can be thrown without explicit handling. Checked exceptions must be caught within the static block because there's no way to declare exceptions for it.
+```
+
+
+     */
     /*
 Java throw Exception
 -> throw keyword is used to throw an exception explicitly.
@@ -373,6 +490,10 @@ throw new IOException("error");
 
  */
 
+    /*
+    Q. Give me practically example where finally block can be used.
+    Database closing connections
+     */
         public static class A12{
             public static void main(String[] args) {
                 try {
