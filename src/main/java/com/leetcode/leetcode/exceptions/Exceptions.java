@@ -306,6 +306,9 @@ InternalError       UnsatisfiedLinkError       ArrayIndexOutOfBoundsException   
         }
     }
 
+    /*
+    What is the use of try-with resources?
+     */
     // Q. Can you write multi catch block?
 // Ans: Yes, We can create more than one catch block in try-catch. We can create child-specific exceptions followed by parent exceptions.
     public static class MultiCatchBlock {
