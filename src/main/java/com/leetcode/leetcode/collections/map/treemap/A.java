@@ -12,7 +12,7 @@ public class A {
         map.put(1,"req");
         map.put(3,"aq");
         //not thread safe and not synchronized
-        //sorting data in accending order
+        //sorting data in accenting order
         System.out.println(map);
         try{
             map.put(null,"fr");
