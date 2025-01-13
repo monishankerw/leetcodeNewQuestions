@@ -10,6 +10,250 @@ import java.util.stream.Collectors;
 public class CollectionsInJava {
 
     /*
+    collection: Any group of individual objects which are represents as a single unit is
+    known as a collection of object.
+
+    Difference between Collection and Collections.
+    Collection:
+    1. Interface 2. Store server object in single entity
+
+    Collections
+    1. class 2. Help us perform like sorting, searching
+
+    What is a Collection in java?
+    1. It is an interface.
+    2. It stores server an object as single entity.
+    3. Collection gives us radimate data structure.
+    4. Size of collection is dynamics.
+
+    Collection Framework in java
+    Collection Hierarchy
+
+                           Iterable
+                               |
+                         Collection
+        ----------------------------------------------------
+       |                   |                           |
+      List                Set                        Queue
+   -----------      ----------------          ------------------
+  |           |    |                |        |                |
+ArrayList  LinkedList HashSet   LinkedHashSet PriorityQueue  Deque
+                          |                                 |
+                      SortedSet                        ArrayDeque
+                          |
+                       TreeSet
+
+                           Map
+        --------------------------------------------
+       |                      |                   |
+    HashMap          LinkedHashMap           TreeMap
+       |
+  ConcurrentHashMap
+
+  Difference between Arrays nad Collections
+  Array
+  1. Fixed Size
+  2.Homogeneous Data
+  3.Memory usage it is less efficient
+  4.No underlying data structure.
+
+  Collections
+  1. Size Dynamics
+  2. Both homogeneous and Hetrogeneous
+  3. Memory are more efficient
+  4.He got underlying data structure to simplify our work.
+
+
+  Commonly used methods in the collections class.
+  The Collections class in Java is a utility class in the java.util package that provides static methods for operating on or returning collections. These methods include searching, sorting, shuffling, reversing, and more. Below is a list of commonly used methods in the Collections class along with explanations and examples.
+
+1. Sorting Methods
+	•	sort(List<T> list)
+	•	Sorts the specified list in ascending order.
+	•	Example:
+
+List<Integer> list = Arrays.asList(5, 3, 8, 1);
+Collections.sort(list);
+System.out.println(list); // Output: [1, 3, 5, 8]
+
+
+	•	sort(List<T> list, Comparator<? super T> c)
+	•	Sorts the specified list based on the custom comparator.
+	•	Example:
+
+Collections.sort(list, Collections.reverseOrder());
+System.out.println(list); // Output: [8, 5, 3, 1]
+
+2. Searching Methods
+	•	binarySearch(List<? extends T> list, T key)
+	•	Performs a binary search for the specified key in a sorted list.
+	•	Example:
+
+List<Integer> list = Arrays.asList(1, 3, 5, 7);
+int index = Collections.binarySearch(list, 5);
+System.out.println(index); // Output: 2
+
+3. Shuffle and Randomization
+	•	shuffle(List<?> list)
+	•	Randomly shuffles the elements of the specified list.
+	•	Example:
+
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Collections.shuffle(list);
+System.out.println(list); // Output: [3, 1, 5, 2, 4] (varies)
+
+
+	•	shuffle(List<?> list, Random rnd)
+	•	Shuffles the list with a custom random number generator.
+
+4. Reverse and Rotation
+	•	reverse(List<?> list)
+	•	Reverses the order of elements in the specified list.
+	•	Example:
+
+List<Integer> list = Arrays.asList(1, 2, 3, 4);
+Collections.reverse(list);
+System.out.println(list); // Output: [4, 3, 2, 1]
+
+
+	•	rotate(List<?> list, int distance)
+	•	Rotates the elements in the list by the specified distance.
+	•	Example:
+
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Collections.rotate(list, 2);
+System.out.println(list); // Output: [4, 5, 1, 2, 3]
+
+5. Frequency and Disjoint
+	•	frequency(Collection<?> c, Object o)
+	•	Returns the frequency of the specified object in the collection.
+	•	Example:
+
+List<String> list = Arrays.asList("a", "b", "a", "c");
+int freq = Collections.frequency(list, "a");
+System.out.println(freq); // Output: 2
+
+
+	•	disjoint(Collection<?> c1, Collection<?> c2)
+	•	Checks if two collections have no elements in common.
+	•	Example:
+
+List<Integer> list1 = Arrays.asList(1, 2, 3);
+List<Integer> list2 = Arrays.asList(4, 5, 6);
+boolean result = Collections.disjoint(list1, list2);
+System.out.println(result); // Output: true
+
+6. Min and Max
+	•	min(Collection<? extends T> coll)
+	•	Returns the minimum element in the collection.
+	•	Example:
+
+List<Integer> list = Arrays.asList(3, 5, 2, 8);
+int min = Collections.min(list);
+System.out.println(min); // Output: 2
+
+
+	•	max(Collection<? extends T> coll)
+	•	Returns the maximum element in the collection.
+	•	Example:
+
+int max = Collections.max(list);
+System.out.println(max); // Output: 8
+
+7. Thread-Safe Collections
+	•	synchronizedList(List<T> list)
+	•	Returns a thread-safe version of the specified list.
+	•	Example:
+
+List<Integer> list = Collections.synchronizedList(new ArrayList<>());
+
+
+	•	synchronizedMap(Map<K, V> map)
+	•	Returns a thread-safe version of the specified map.
+
+8. Singleton and Empty Collections
+	•	singleton(T o)
+	•	Returns an immutable set containing the specified element.
+	•	Example:
+
+Set<String> singletonSet = Collections.singleton("Hello");
+
+
+	•	emptyList()
+	•	Returns an empty, immutable list.
+	•	Example:
+
+List<String> emptyList = Collections.emptyList();
+
+9. Add All
+	•	addAll(Collection<? super T> c, T... elements)
+	•	Adds all specified elements to the collection.
+	•	Example:
+
+List<Integer> list = new ArrayList<>();
+Collections.addAll(list, 1, 2, 3, 4);
+System.out.println(list); // Output: [1, 2, 3, 4]
+
+10. Unmodifiable Collections
+	•	unmodifiableList(List<? extends T> list)
+	•	Returns an unmodifiable view of the specified list.
+	•	Example:
+
+List<Integer> list = Arrays.asList(1, 2, 3);
+List<Integer> unmodifiableList = Collections.unmodifiableList(list);
+
+Summary Table
+
+Method	Description
+sort()	Sort a list in ascending order.
+binarySearch()	Search for an element in a sorted list.
+shuffle()	Shuffle elements randomly.
+reverse()	Reverse the order of elements in a list.
+frequency()	Count occurrences of an element.
+disjoint()	Check if two collections have no common elements.
+min() / max()	Find the minimum/maximum element in a collection.
+synchronizedList()	Create a thread-safe list.
+addAll()	Add multiple elements to a collection.
+
+*/
+
+/*
+LIST:
+ArrayList,LinkList,Vector,stack
+Index based data structure.
+allow to store duplicate elements
+List can store any value of null elements
+performance is low
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    MAP
    Key Points about Map in Java:
 	1.	Definition:
 	•	Map is an interface in the Java Collections Framework that represents a collection of key-value pairs.
