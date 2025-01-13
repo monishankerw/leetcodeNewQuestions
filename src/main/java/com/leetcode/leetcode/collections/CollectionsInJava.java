@@ -224,7 +224,231 @@ Index based data structure.
 allow to store duplicate elements
 List can store any value of null elements
 performance is low
+
+Difference between Array and ArrayList?
+Array
+Fixed Size
+not inside build method
+contain both permitive datatype as well as object type.
+can be multidimensional
+part of core java program
+ArrayList
+size dynamics
+many build method
+support only object entity
+one dimensional
+part of collection framework.
+
+ArrayList
+It can contains duplicate elements
+It maintains insertion order.
+Allows Random access of data.
+Internally it is implements as dynamics arrays.
+used wrapper class.
+ArrayList cannot used for primitivity type order
+
+Difference between Arraylist and LinkedList.
+ArrayList
+ArrayList internally used a dynamics array to store the elements.
+Manipulation with Arraylist is slow.
+ArrayList consumes less memory than linked list.
+An arraylist class can acts as a list only.
+Arraylist better for sorting and accessing data.
+LinkedList
+1. LinkedList internally used a doubly linked list to store the elements.
+2. Manipulation with arraylist is fast
+Linked list consumes more memory the arraylist.
+An likedlist class can acts as a list and queue.
+Linkedlist better for manipulation data.
+
+Difference between Arraylist and vector.
+ArrayList
+Arraylist gives better performance
+non-synchronized and non-thread safe.
+Arraylist can use iterator for traversing its elements
+
+Vector
+poor performance
+synchronized and thread safe
+vector can use both enumeration and iterator for traversing over elements.
+
+
+vector
+The vector Thread safe and synchronized and poor performance.
+maintain insertion order
+similar to arraylist
+vector fall in legacy class
+vector implements a dynamics array.
+
+How do you make arraylist as synchronized?
+Two ways:
+1.Collections.synchronizedList()
+2.copyoneWriteArrayList
+
  */
+
+    /*
+    Use for retrieving of data in collection
+    forEach,iterator,Listiterator,EnumerationIterator,cursor
+
+    In Java, various mechanisms are provided to retrieve data from collections. These include forEach, Iterator, ListIterator, Enumeration, and Cursors. Each method has its own use case, functionality, and advantages. Below is an explanation of these mechanisms with code examples.
+
+1. forEach
+
+The forEach method allows concise iteration over collections using lambda expressions (introduced in Java 8).
+
+Key Features:
+	•	Simplifies iteration.
+	•	Supports functional programming with lambda expressions.
+
+Example:
+
+List<String> list = Arrays.asList("Apple", "Banana", "Cherry");
+
+list.forEach(item -> System.out.println(item));
+
+Output:
+
+Apple
+Banana
+Cherry
+
+2. Iterator
+
+The Iterator interface provides a way to traverse elements one by one. It works for all collection types.
+
+Key Features:
+	•	Allows traversal in one direction.
+	•	Can remove elements during iteration.
+
+Methods:
+	•	hasNext(): Checks if there are more elements.
+	•	next(): Retrieves the next element.
+	•	remove(): Removes the last element returned by the iterator.
+
+Example:
+
+List<Integer> numbers = Arrays.asList(10, 20, 30);
+
+Iterator<Integer> iterator = numbers.iterator();
+while (iterator.hasNext()) {
+    System.out.println(iterator.next());
+}
+
+Output:
+
+10
+20
+30
+
+3. ListIterator
+
+ListIterator extends Iterator and allows bi-directional traversal of lists.
+
+Key Features:
+	•	Traverses in both directions (hasPrevious() and previous()).
+	•	Can modify elements during iteration (set()).
+
+Methods:
+	•	hasNext(), next(), hasPrevious(), previous().
+	•	add(), remove(), set().
+
+Example:
+
+List<String> list = Arrays.asList("A", "B", "C", "D");
+
+ListIterator<String> listIterator = list.listIterator();
+System.out.println("Forward Traversal:");
+while (listIterator.hasNext()) {
+    System.out.println(listIterator.next());
+}
+
+System.out.println("Backward Traversal:");
+while (listIterator.hasPrevious()) {
+    System.out.println(listIterator.previous());
+}
+
+Output:
+
+Forward Traversal:
+A
+B
+C
+D
+Backward Traversal:
+D
+C
+B
+A
+
+4. Enumeration
+
+Enumeration is a legacy interface used to iterate over Vector and Hashtable.
+
+Key Features:
+	•	Works only with legacy collections.
+	•	Does not support element modification.
+
+Methods:
+	•	hasMoreElements()
+	•	nextElement()
+
+Example:
+
+Vector<String> vector = new Vector<>();
+vector.add("X");
+vector.add("Y");
+vector.add("Z");
+
+Enumeration<String> enumeration = vector.elements();
+while (enumeration.hasMoreElements()) {
+    System.out.println(enumeration.nextElement());
+}
+
+Output:
+
+X
+Y
+Z
+
+5. Cursor
+
+Cursors are used to retrieve data from collections like Iterator and ListIterator. They are not a separate interface but are generic terms for data retrieval mechanisms.
+
+Types of Cursors:
+	1.	Iterator: For one-way traversal.
+	2.	ListIterator: For bi-directional traversal.
+	3.	Enumeration: For legacy collections.
+
+Cursor Comparison:
+
+Feature	Iterator	ListIterator	Enumeration
+Direction	Forward	Forward and backward	Forward
+Modify Elements	Yes (remove)	Yes (add, set, remove)	No
+Applicable To	All collections	List only	Legacy collections
+Introduced In	Java 2	Java 2	Java 1
+
+Comparison of Methods
+
+Method	Scope	Supports Modification	Key Features
+forEach	All collections	No	Functional programming style, concise.
+Iterator	All collections	Yes (remove only)	Universal cursor, one-way traversal.
+ListIterator	Lists only	Yes (add, set, remove)	Bi-directional traversal.
+Enumeration	Legacy collections	No	Lightweight, only forward traversal.
+Cursor (Generic)	All collections	Depends (Iterator/ListIterator)	Unified term for iterators and enumerations.
+
+Choosing the Right Method
+	•	Use forEach:
+When you need concise and readable iteration for any collection.
+	•	Use Iterator:
+When you need to traverse and remove elements during iteration.
+	•	Use ListIterator:
+When you need to traverse in both directions or modify elements in a list.
+	•	Use Enumeration:
+When working with legacy collections like Vector or Hashtable.
+
+These mechanisms provide flexibility for retrieving and operating on data in collections effectively.
+     */
 
 
 
