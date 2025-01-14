@@ -1,8 +1,6 @@
 package com.leetcode.leetcode.collections;
 
 import com.leetcode.leetcode.collections.listQuestions.Lists;
-import jakarta.persistence.criteria.CriteriaBuilder;
-
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
@@ -1239,6 +1237,126 @@ HashSet vs. TreeSet:
 	•	HashSet allows a single null element because it does not rely on ordering, but
 	     TreeSet always enforces sorting, which makes null invalid.
  */
+
+//Longest Substring using Sliding Window technique
+public static class LongestSubString {
+    public static void main(String[] args) {
+        String str = "abcabcbb";
+        LongestSubString output = new LongestSubString();
+        int result = output.longSubString(str);
+        System.out.println("Length of the longest substring without repeating characters: " + result);
+    }
+
+    private int longSubString(String str) {
+        Set<Character> set = new HashSet<>();
+        int maxLength = 0;
+        int left = 0;
+
+        for (int right = 0; right < str.length(); right++) {
+            // If the character at the right pointer is already in the set, remove characters from the left
+            while (set.contains(str.charAt(right))) {
+                set.remove(str.charAt(left));
+                left++;
+            }
+
+            // Add the character at the right pointer to the set
+            set.add(str.charAt(right));
+
+            // Update the maximum length
+            maxLength = Math.max(maxLength, right - left + 1);
+        }
+
+        return maxLength;
+    }
+}
+
+    public static class DuplicateElements {
+        public static void main(String[] args) {
+            int arr[] = {1, 2, 3, 1, 2, 4, 5};
+
+            // Use a Set to track unique elements
+            Set<Integer> uniqueElements = new HashSet<>();
+            int j = 0;
+
+            for (int i = 0; i < arr.length; i++) {
+                if (!uniqueElements.contains(arr[i])) {
+                    uniqueElements.add(arr[i]);
+                    arr[j++] = arr[i];
+                }
+            }
+
+            // Print the array without duplicates
+            for (int i = 0; i < j; i++) {
+                System.out.print(arr[i] + " ");
+            }
+        }
+    }
+    public static class D1 {
+        public static void main(String[] args) {
+            Set<Integer> a = new HashSet<>(Arrays.asList(1, 3, 2, 4, 8, 9, 0));
+            Set<Integer> b = new HashSet<>(Arrays.asList(1, 3, 7, 5, 4, 0, 7, 5));
+
+            System.out.println("Elements in a: " + a);
+            System.out.println("Elements in b: " + b);
+
+            Set<Integer> union = new HashSet<>(a);
+            union.addAll(b);
+            System.out.println("UNION: " + union);
+
+            Set<Integer> intersection = new HashSet<>(a);
+            intersection.retainAll(b);//Retain only common elements
+            System.out.println("INTERSECTION: " + intersection);
+
+            Set<Integer> symmetricDifference = new HashSet<>(union);
+            symmetricDifference.removeAll(intersection);
+            System.out.println("SYMMETRIC DIFFERENCE: " + symmetricDifference);
+        }
+    }
+
+
+    public static class ReverseVowelOfString {
+        public static void main(String[] args) {
+
+            ReverseVowelOfString solution = new ReverseVowelOfString();
+            // Example 1
+            String input1 = "IceCreAm";
+            String output1 = solution.reverseVowels(input1);
+            System.out.println("Input: " + input1);
+            System.out.println("Output: " + output1);
+
+            // Example 2
+            String input2 = "leetcode";
+            String output2 = solution.reverseVowels(input2);
+            System.out.println("Input: " + input2);
+            System.out.println("Output: " + output2);
+        }
+
+        private String reverseVowels(String s) {
+            char[] ch=s.toCharArray();
+            System.out.println("Character Array: " + java.util.Arrays.toString(ch)); // Print the character array
+            Set<Character>vowels=new HashSet<>(Arrays.asList('a','e','i','o','u','A','E','I','O','U'));
+            int left=0;
+            int right=ch.length-1;
+            while (left<right){
+                while (left<right&&!vowels.contains(ch[left])){
+                    left++;
+                }
+                while (left<right&&!vowels.contains(ch[right])){
+                    right--;
+                }
+                if(left<right){
+                    char temp=ch[left];
+                    ch[left]=ch[right];
+                    ch[right]=temp;
+                    left++;
+                    right--;
+                }
+            }
+            return new String(ch);
+
+        }
+    }
+
 
 
 
