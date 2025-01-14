@@ -1,5 +1,6 @@
 package com.leetcode.leetcode.collections;
 
+import com.leetcode.leetcode.collections.listQuestions.Lists;
 import jakarta.persistence.criteria.CriteriaBuilder;
 
 import java.util.*;
@@ -450,24 +451,794 @@ When working with legacy collections like Vector or Hashtable.
 These mechanisms provide flexibility for retrieving and operating on data in collections effectively.
      */
 
+    //1. WAP to traverse(ot iterate) ArrayList.
+    public class A {
+        public static void main(String[] args) {
+            ArrayList<Integer> a=new ArrayList<>();
+            a.add(3);
+            a.add(17);
+            a.add(6);
+            a.add(9);
+            a.add(7);
+            System.out.println(a);
+        }
+
+//         ArrayList<Integer> a = new ArrayList<>(Arrays.asList(3, 17, 6, 9, 7));
+//        System.out.println(a);
+    }//op:[3, 17, 6, 9, 7]
 
 
+    public static class B {
+        public static void main(String[] args) {
+            ArrayList<Integer>a=new ArrayList<>();
+            a.add(3);
+            a.add(17);
+            a.add(6);
+            a.add(9);
+            a.add(7);
+
+            for (Integer num:a){
+                System.out.print(" "+num);
+            }
+        }//o/p  3 17 6 9 7
+// ArrayList<Integer> a = new ArrayList<>(Arrays.asList(3, 17, 6, 9, 7));
+//
+//        a.forEach(num -> System.out.print(" " + num)); // Using lambda expression
+    }
+
+    public static class C {
+        public static void main(String[] args) {
+            ArrayList<Integer> a = new ArrayList<>();
+            for (int i = 0; i <= 5; i++) {
+                a.add(i);
+                System.out.println(a);
+            }
+
+            // Removing element at index 3
+            a.remove(3);
+
+            System.out.println(a);
+            for (int i=0;i<a.size();i++){
+                System.out.println(a.get(i)+" ");
+            }
+        }
+        /*
+          // Initialize the list with elements from 0 to 5
+        ArrayList<Integer> a = new ArrayList<>();
+        IntStream.rangeClosed(0, 5).forEach(i -> {
+            a.add(i);
+            System.out.println(a);
+        });
+
+        // Remove the element at index 3
+        a.remove(3);
+        System.out.println(a);
+
+        // Print each element using forEach and a lambda expression
+        a.forEach(num -> System.out.print(num + " "));
+    }
+         */
+    }//op:[0, 1, 2, 3, 4, 5]
+//       [0, 1, 2, 4, 5]
+//               0 1 2 4 5
+//
+//    add(object):used to add an object to the collection
+//    size():used to return the number of elements in the collection.
+//            remove():remove only one elements.
+
+//       4. Given an element write a program check if element(value)
+//    exist in elements.
+
+    public static class Contains {
+        public static void main(String[] args) {
+            ArrayList<Integer>a=new ArrayList<>();
+            a.add(1);
+            a.add(4);
+            a.add(2);
+            a.add(3);
+            System.out.println(a);
+            if(a.contains(2)){
+                System.out.println("Found");
+            } else{
+                System.out.println("Not found");
+            }
+        }
+        /*
+         ArrayList<Integer> a = new ArrayList<>(Arrays.asList(1, 4, 2, 3));
+        System.out.println(a);
+
+        // Using lambda expression to check the condition
+        System.out.println(a.contains(2) ? "Found" : "Not found");
+    }
+         */
+    }
+    //[1, 4, 2, 3]
+    // Found
+//    contains(object o);
+//    This method returns true if the collection contains the specified elements.
+
+    // 5. Reverse An ArrayList
+    public static class ReverseElements {
+        public static void main(String[] args) {
+            ArrayList<Integer>a=new ArrayList<>();
+            a.add(4);
+            a.add(3);
+            a.add(1);
+            a.add(2);
+            System.out.println("OriginalList:"+a);
+            Collections.reverse(a);
+            System.out.println("ReverseNumber:"+a);
+        }
+    }
+    /*
+     ArrayList<Integer> a = new ArrayList<>(Arrays.asList(4, 3, 1, 2));
+        System.out.println("Original List: " + a);
+
+        // Using Stream to reverse the list
+        List<Integer> reversedList = a.stream()
+                                      .sorted(Collections.reverseOrder())
+                                      .collect(Collectors.toList());
+
+        System.out.println("Reversed List: " + reversedList);
+    }
+     */
+//    OriginalList:[4, 3, 1, 2]
+//    ReverseNumber:[2, 1, 3, 4]
+
+    // 6.
+    public static class ComPareElements {
+        public static void main(String[] args) {
+            ArrayList<Integer> a=new ArrayList<>();
+
+            a.add(4);
+            a.add(3);
+            a.add(1);
+            a.add(2);
+            a.add(5);
+            a.add(8);
+            int min= Collections.min(a);
+            int max=Collections.max(a);
+
+            /*
+                    ArrayList<Integer> a = new ArrayList<>(Arrays.asList(4, 3, 1, 2, 5, 8));
+
+        // Using Stream API to find the min and max values
+        int min = a.stream().min(Comparator.naturalOrder()).orElseThrow();
+        int max = a.stream().max(Comparator.naturalOrder()).orElseThrow();
+
+        System.out.println("Minimum: " + min);
+        System.out.println("Maximum: " + max);
+    }
+             */
+            if(min==max){
+                System.out.println("All Elements are Equal");
+            } else{
+                System.out.println("Minimum Elements");
+                System.out.println("max");
+            }
+        }
+    }
+
+    //    Minimum Elements max
+//       7. WAP to add elements at the specified index in the list using add(index,elements) method.
+    public static class D {
+        public static void main(String[] args) {
+            ArrayList<Integer>a=new ArrayList<>();
+            //add method for integer arraylist
+            a.add(1);
+            a.add(2);
+            // index is zero based
+            a.add(1,3);
+            a.add(2,4);
+            System.out.println(a);
+        }
+        /*
+          ArrayList<Integer> a = new ArrayList<>(Arrays.asList(4, 3, 1, 2, 5, 8));
+
+        // Using Stream API to find min and max
+        Optional<Integer> min = a.stream().min(Integer::compareTo);
+        Optional<Integer> max = a.stream().max(Integer::compareTo);
+
+        if (min.isPresent() && max.isPresent() && min.get().equals(max.get())) {
+            System.out.println("All Elements are Equal");
+        } else {
+            System.out.println("Minimum Element: " + min.orElseThrow());
+            System.out.println("Maximum Element: " + max.orElseThrow());
+        }
+         */
+    }
+    //       [1, 3, 4, 2]
+//
+//               8.
+    public static class Student {
+        private String name;
+        private String rollNo;
+
+        public Student(String name, String rollNo) {
+            this.name = name;
+            this.rollNo = rollNo;
+        }
+
+        @Override
+        public String toString() {
+            return "Student{" +
+                    "name='" + name + '\'' +
+                    ", rollNo='" + rollNo + '\'' +
+                    '}';
+        }
+
+        public static void main(String[] args) {
+            ArrayList<Lists.Student> a=new ArrayList<>();
+            Lists.Student student1=new Lists.Student("abc","12");
+            Lists.Student student2=new Lists.Student("abcd","13");
+            Lists.Student student3=new Lists.Student("abcde","14");
+            a.add(student1);
+            a.add(student2);
+            a.add(student3);
+            for (Lists.Student C:a){
+                System.out.println(C);
+            }
+//        a.forEach(student -> System.out.println(student));
+
+        }
+    }
+
+    //       9. WAP to sort ArrayList in descending order.
+    public static class DescendingOrder {
+        public static void main(String[] args) {
+            ArrayList<String> a = new ArrayList<>();
+            a.add("pqr");
+            a.add("mno");
+            a.add("abc");
+            a.add("str");
+            System.out.println(a);//unsorted
+            Collections.sort(a, Collections.reverseOrder());
+            System.out.println(a);//reverse
+        }
+    }
+/*
+  ArrayList<String> a = new ArrayList<>(Arrays.asList("pqr", "mno", "abc", "str"));
+
+        System.out.println("Original List: " + a); // unsorted
+
+        // Using Stream API to sort in reverse order
+        List<String> sortedList = a.stream()
+                                   .sorted((s1, s2) -> s2.compareTo(s1)) // Custom comparator for descending order
+                                   .collect(Collectors.toList());
+
+        System.out.println("Sorted in Descending Order: " + sortedList); // reverse
+    }
+ */
+//    }All Elements::
+//            [pqr, mno, abc, str]
+//    Descending Order::
+//            [str, pqr, mno, abc]
+
+    //  10. WAP to convert List to Array.
+    public static class ListToArray {
+        public static void main(String[] args) {
+            ArrayList<String>a=new ArrayList<>();
+            a.add("Apple");
+            a.add("Banana");
+            a.add("Pear");
+            a.add("Mango");
+            String[]str=new String[a.size()];
+            for(int i=0;i<a.size();i++){
+                str[i]=a.get(i);
+            }
+            for (String s:str){
+                System.out.println(s);
+            }
+        }
+        /*
+         ArrayList<String> a = new ArrayList<>(Arrays.asList("Apple", "Banana", "Pear", "Mango"));
+
+        // Using Stream API to convert the list to an array
+        String[] str = a.stream().toArray(String[]::new);
+
+        // Using forEach to print each element
+        Arrays.stream(str).forEach(System.out::println);
+    }
+         */
+    }
+    //    Apple
+//            Banana
+//    Pear
+//            Mango
+//
+//       11.WAP to convert Array to List.
+    public static class ArrayToList {
+        public static void main(String[] args) {
+            String[] str={"Dog","cat","Elephant"};
+            for (String value:str){
+                System.out.println("All Elements:"+value);
+            }
+            ArrayList arrayList=new ArrayList<>(Arrays.asList(str));
+            System.out.println("List Elements:"+arrayList);
+        }
+    }
+
+/*
+String[] str = {"Dog", "Cat", "Elephant"};
+
+        // Using Stream API to print all elements of the array
+        Arrays.stream(str).forEach(value -> System.out.println("All Elements: " + value));
+
+        // Converting array to ArrayList (with generics for type safety)
+        List<String> arrayList = new ArrayList<>(Arrays.asList(str));
+
+        // Printing the ArrayList
+        System.out.println("List Elements: " + arrayList);
+    }
+}
+ */
+//    All Elements:Dog
+//    All Elements:cat
+//    All Elements:Elephant
+//    List Elements:[Dog, cat, Elephant]
+
+    //How would you remove duplicate elements from list using a set?
+    public static class RemoveDuplicate{
+        public static void main(String[] args) {
+            List<String> list = Arrays.asList("abc", "bvc", "abc", "ygf", "bvc");
+            Set<String> set = new HashSet<>(list);//remove duplicate
+            List<String> list1 = new ArrayList<>(set);
+            System.out.println(list1);
+        }
+    }
 
 
+/*
+In Java, the Set interface is part of the Java Collections Framework and represents a collection that does not allow duplicate elements.
+ It is derived from the Collection interface, forming part of the collection hierarchy.
+ Below is a detailed explanation of the Set hierarchy, its types, and their uses.
+
+Set in the Collection Hierarchy
+
+The Collection hierarchy for Set is as follows:
+
+java.lang.Object
+   |
+   +--java.util.Collection (Interface)
+           |
+           +--java.util.Set (Interface)
+                   |
+                   +--java.util.HashSet (Class)
+                   |
+                   +--java.util.LinkedHashSet (Class)
+                   |
+                   +--java.util.SortedSet (Interface)
+                           |
+                           +--java.util.NavigableSet (Interface)
+                                   |
+                                   +--java.util.TreeSet (Class)
+
+Key Characteristics of Set
+	1.	No Duplicates: A Set does not allow duplicate elements.
+	2.	Unordered: Most implementations do not maintain the order of elements (except for LinkedHashSet and TreeSet).
+	3.	Null Values: Set allows a single null element (except for TreeSet).
+
+Types of Set Implementations
+
+1. HashSet
+	•	Characteristics:
+	•	Implements the Set interface.
+	    It will contains only unique elements,does not maintain insertion order,
+	    Not synchronized and not thread safe
+	    not allow duplicate value
+	    Hashing technique to inject data into database
+	•	Hashset internally use  HashMap.
+	•	Unordered: Elements are stored based on their hash code, so the order is not guaranteed.
+	•	Allows one null element.
+	•	Performance:
+	•	Constant-time performance for add, remove, and contains.
+	•	Code Example:
+
+Set<String> hashSet = new HashSet<>();
+hashSet.add("Apple");
+hashSet.add("Banana");
+hashSet.add("Apple"); // Duplicate, ignored
+System.out.println(hashSet); // Output: [Apple, Banana] (Order may vary)
+
+2. LinkedHashSet
+	•	Characteristics:
+	•	Extends HashSet.
+	•	Maintains insertion order of elements.
+	•	Allows one null element.
+	•	Performance:
+	•	Slightly slower than HashSet due to the maintenance of insertion order.
+	•	Code Example:
+
+Set<String> linkedHashSet = new LinkedHashSet<>();
+linkedHashSet.add("Apple");
+linkedHashSet.add("Banana");
+linkedHashSet.add("Cherry");
+System.out.println(linkedHashSet); // Output: [Apple, Banana, Cherry]
+
+3. TreeSet
+	•	Characteristics:
+	•	Implements the NavigableSet and SortedSet interfaces.
+	•	Maintains elements in sorted order (natural ordering or via a custom comparator).
+	•	Does not allow null elements.
+	•	Performance:
+	•	Operations like add, remove, and contains take O(log n) due to the underlying Red-Black Tree implementation.
+	•	Code Example:
+
+Set<Integer> treeSet = new TreeSet<>();
+treeSet.add(20);
+treeSet.add(10);
+treeSet.add(30);
+System.out.println(treeSet); // Output: [10, 20, 30]
+
+Set Interface Methods
+
+The Set interface inherits methods from the Collection interface. Key methods include:
+	•	Basic Operations:
+	•	add(E e): Adds an element to the set.
+	•	remove(Object o): Removes the specified element.
+	•	contains(Object o): Checks if the set contains the element.
+	•	size(): Returns the number of elements.
+	•	isEmpty(): Checks if the set is empty.
+	•	clear(): Removes all elements.
+	•	Bulk Operations:
+	•	addAll(Collection<? extends E> c): Adds all elements from another collection.
+	•	removeAll(Collection<?> c): Removes all elements from another collection.
+	•	retainAll(Collection<?> c): Retains only the elements that are also in another collection.
+
+Set Comparison Table
+
+Implementation	Ordering	Duplicates	Null Values	Performance
+HashSet	Unordered	No	Allows one	Fast (constant time)
+LinkedHashSet	Insertion order	No	Allows one	Slightly slower
+TreeSet	Sorted (natural/custom)	No	Not allowed	Slower (O(log n))
+
+Use Cases of Set
+	1.	HashSet:
+	•	When you need to ensure uniqueness but don’t care about the order.
+	•	Example: Storing unique IDs or email addresses.
+	2.	LinkedHashSet:
+	•	When you need to maintain the order of insertion.
+	•	Example: Caching elements where insertion order is important.
+	3.	TreeSet:
+	•	When you need to store elements in a sorted order.
+	•	Example: Storing sorted employee IDs or maintaining a sorted leaderboard.
+
+Iterating Over a Set
+	1.	Using forEach:
+
+hashSet.forEach(System.out::println);
 
 
+	2.	Using Iterator:
+
+Iterator<String> iterator = hashSet.iterator();
+while (iterator.hasNext()) {
+    System.out.println(iterator.next());
+}
 
 
+	3.	Using Enhanced for Loop:
+
+for (String element : hashSet) {
+    System.out.println(element);
+}
+
+Conclusion
+	•	Set is a fundamental part of the Java Collections Framework and ensures that elements are unique.
+	•	Choose the specific implementation (HashSet, LinkedHashSet, or TreeSet) based on requirements like ordering, performance, and sorting.
+ */
+/*
+Difference between alist and a set in java?
+List allows duplicate elements where set does not
+List maintain the order of elements while the set implementations (Hashset,Treeset)may or not maintain the order
+ex:
+HashSet does not maintain any order
+LinkedHashSet maintain insertion order
+Tree set maintain nature or custom sorted order
+
+can a null elements be add to a set?
+Hashset and linkedHashset allow a single null elements
+Treeset does not allow null elements because it tries to sort elements.
+if add throws a nullpointer exception when comparing null for other elements.
 
 
+What happens if you try to add a duplicate elements to a set?
+If you try to add a duplicate element the set will simple ignore the new elements and retain the existing one. no error will be throw.
+
+HashSet set vs LinkedHashSet
+HashSet
+HashSet does not maintain insertion order
+Hashset internally used HashMap
+LinkeHashMap
+LinkedHashMap maintain insertion order
+LinkedHashMap internally used LinkedHashMap
+
+How to HashSet internally work.
+Internally it used a HAshMap to store its elements
+1. The Hashset used a HashMap internally where each elements it stored as a key with a constant dummay value.
+2. Hashcode of an elements determines the index of the bucket where it will be store.
+3. Collision are handled by using Linked lists or balanced trees within the buckets.
+4. Duplicate Check Using equals():
+	•	Before adding an element, the HashSet checks if the element is already present using the equals() method.
+	•	If an element with the same key exists, it does not add the duplicate.
+
+ */
+    /*
+    What is TreeSet?
+    It is sort the data
+    Contains unique elements only its sort
+    The data is the accending order
+    not allow null values
+    not allow to duplicate and not maintain insertion order
+    Three set internally create TreeMap
+
+    What is the time complexity of basic operation in a Treeset.
+    Insertion,Removal and search operation in TreeSet have a time complexity ofO(logn) due to the underly red-black tree structure.
+
+    TreeSet vs HashSet
+    Here’s a comparison of TreeSet and HashSet in Java:
+
+1. Overview
+
+Aspect	TreeSet	HashSet
+Implementation	Based on TreeMap (Red-Black Tree)	Based on HashMap
+Order	Maintains elements in sorted order	Does not guarantee any specific order
+Performance	Slower due to sorting (O(log n))	Faster for basic operations (O(1))
+
+2. Key Differences
+
+Feature	TreeSet	HashSet
+Ordering	Maintains natural or custom order (via comparator).	No order is maintained (neither insertion nor sorting).
+Performance	add(), remove(), and contains() take O(log n) due to the Red-Black Tree.	add(), remove(), and contains() take O(1) on average.
+Null Elements	Does not allow null elements. Throws NullPointerException.	Allows one null element.
+Usage Scenario	Use when sorted order is required.	Use when order is not important and performance is key.
+Customization	Supports custom ordering with a Comparator.	No customization for ordering.
+
+3. Similarities
+	1.	Both Implement Set Interface:
+	•	Both ensure that no duplicate elements are stored.
+	2.	No Duplicates:
+	•	Both rely on equals() to check for duplicate elements.
+	3.	Thread-Safety:
+	•	Neither TreeSet nor HashSet is thread-safe. Use Collections.synchronizedSet() or ConcurrentSkipListSet/ConcurrentHashMap for thread safety.
+
+4. Examples
+
+TreeSet Example:
+
+import java.util.TreeSet;
+
+public class TreeSetDemo {
+    public static void main(String[] args) {
+        TreeSet<Integer> treeSet = new TreeSet<>();
+        treeSet.add(5);
+        treeSet.add(1);
+        treeSet.add(3);
+
+        System.out.println("TreeSet: " + treeSet); // Output: [1, 3, 5]
+    }
+}
+
+HashSet Example:
+
+import java.util.HashSet;
+
+public class HashSetDemo {
+    public static void main(String[] args) {
+        HashSet<Integer> hashSet = new HashSet<>();
+        hashSet.add(5);
+        hashSet.add(1);
+        hashSet.add(3);
+
+        System.out.println("HashSet: " + hashSet); // Output: [3, 1, 5] (order not guaranteed)
+    }
+}
+
+5. When to Use
+
+Scenario	Recommended Set
+You need elements in sorted order.	TreeSet
+Order is not important, and you want speed.	HashSet
+You want custom sorting.	TreeSet
+You need to store null.	HashSet
+
+6. Performance Comparison
+
+Operation	TreeSet (O)	HashSet (O)
+add()	O(log n)	O(1)
+remove()	O(log n)	O(1)
+contains()	O(log n)	O(1)
+Iteration	O(n)	O(n)
+
+Summary
+
+Feature	TreeSet	HashSet
+Use Case	Sorted and ordered data	Fast operations and unordered data
+Order	Maintains order	No specific order
+Performance	Slower due to sorting	Faster for basic operations
+Null Handling	Does not allow null	Allows one null value
+
+Choose TreeSet for sorted data needs and HashSet for faster, unordered storage.
+
+     */
 
 
+    public static class TreeSetDemo {
+        public static void main(String[] args) {
+            TreeSet<Integer> treeSet = new TreeSet<>();
+            treeSet.add(5);
+            treeSet.add(1);
+            treeSet.add(3);
+
+            System.out.println("TreeSet: " + treeSet); // Output: [1, 3, 5]
+        }
+    }
+
+    public static class HashSetDemo {
+        public static void main(String[] args) {
+            HashSet<Integer> hashSet = new HashSet<>();
+            hashSet.add(5);
+            hashSet.add(1);
+            hashSet.add(3);
+
+            System.out.println("HashSet: " + hashSet); // Output: [3, 1, 5] (order not guaranteed)
+        }
+    }
+
+/*
+TreeSet vs TreeMap
+Here is a detailed comparison between TreeSet and TreeMap in Java:
+
+1. Overview
+
+Aspect	TreeSet	TreeMap
+Definition	Implements the Set interface.	Implements the Map interface.
+Data Structure	Backed by a TreeMap internally.	Based on a Red-Black Tree (self-balancing).
+Purpose	Used to store unique elements in a sorted order.	Used to store key-value pairs in sorted order of keys.
+
+2. Key Differences
+
+Feature	TreeSet	TreeMap
+Interface Implemented	Implements the Set interface.	Implements the Map interface.
+Data Stored	Stores only unique elements.	Stores key-value pairs.
+Sorting	Maintains elements in natural order or custom order defined by a Comparator.	Maintains keys in sorted order (natural or custom). Values are not sorted.
+Null Handling	Does not allow null elements.	Does not allow null keys, but allows null values.
+Usage	Use when you need unique, sorted elements.	Use when you need key-value pairs sorted by keys.
+
+3. Similarities
+	1.	Tree-Based Structure:
+	•	Both are implemented using a Red-Black Tree, which ensures sorted order and provides O(log n) time complexity for most operations.
+	2.	Custom Sorting:
+	•	Both can use a custom comparator for sorting.
+	•	Example: new TreeSet<>(Comparator.reverseOrder()) or new TreeMap<>(Comparator.reverseOrder()).
+	3.	Thread-Safety:
+	•	Neither is thread-safe. Use Collections.synchronizedSet() or Collections.synchronizedMap() for thread safety.
+
+4. Examples
+
+TreeSet Example:
+
+import java.util.TreeSet;
+
+public class TreeSetDemo {
+    public static void main(String[] args) {
+        TreeSet<Integer> treeSet = new TreeSet<>();
+        treeSet.add(5);
+        treeSet.add(1);
+        treeSet.add(3);
+
+        System.out.println("TreeSet: " + treeSet); // Output: [1, 3, 5]
+    }
+}
+
+TreeMap Example:
+
+import java.util.TreeMap;
+
+public class TreeMapDemo {
+    public static void main(String[] args) {
+        TreeMap<String, Integer> treeMap = new TreeMap<>();
+        treeMap.put("Apple", 3);
+        treeMap.put("Banana", 5);
+        treeMap.put("Cherry", 2);
+
+        System.out.println("TreeMap: " + treeMap); // Output: {Apple=3, Banana=5, Cherry=2}
+    }
+}
+
+5. Use Cases
+
+Scenario	Recommended
+Need unique elements in sorted order.	TreeSet
+Need key-value pairs in sorted key order.	TreeMap
+Need fast access to sorted elements.	TreeSet
+Need fast access to sorted keys/values.	TreeMap
+
+6. Performance
+
+Operation	TreeSet (O)	TreeMap (O)
+Add/Delete/Lookup	O(log n)	O(log n)
+Iteration	O(n)	O(n)
+
+7. Null Handling
+
+Feature	TreeSet	TreeMap
+Null Elements	Does not allow null elements.	Does not allow null keys but allows null values.
+Example (TreeSet)	treeSet.add(null); → Throws NullPointerException.	N/A
+Example (TreeMap)	treeMap.put(null, 1); → Throws NullPointerException.	treeMap.put("key", null); → Works.
+
+8. Summary Table
+
+Feature	TreeSet	TreeMap
+Interface	Set	Map
+Data Stored	Unique elements	Key-value pairs
+Sorting	Natural/custom order	Keys in natural/custom order
+Null Handling	No null elements	No null keys, but allows null values
+Performance	O(log n) for basic operations	O(log n) for basic operations
+
+Conclusion
+	•	Use TreeSet when you need unique, sorted elements.
+	•	Use TreeMap when you need a sorted map of key-value pairs.
+ */
 
 
+    public static class TreeSetDemos {
+        public static void main(String[] args) {
+            TreeSet<Integer> treeSet = new TreeSet<>();
+            treeSet.add(5);
+            treeSet.add(1);
+            treeSet.add(3);
+
+            System.out.println("TreeSet: " + treeSet); // Output: [1, 3, 5]
+        }
+    }
+
+    public static class TreeMapDemo {
+        public static void main(String[] args) {
+            TreeMap<String, Integer> treeMap = new TreeMap<>();
+            treeMap.put("Apple", 3);
+            treeMap.put("Banana", 5);
+            treeMap.put("Cherry", 2);
+
+            System.out.println("TreeMap: " + treeMap); // Output: {Apple=3, Banana=5, Cherry=2}
+        }
+    }
+
+/*
+What happen if you try to add null to a TreeSet
+If you try to add a null element to a TreeSet in Java, a NullPointerException will be thrown.
+Reason
+	1.	Sorting Requirement:
+	•	A TreeSet internally uses a Red-Black Tree to maintain elements in sorted order.
+Violation of Contract:
+	•	TreeSet does not permit null because it cannot ensure proper ordering, as null does not have a defined order with respect to other non-null elements.
+
+ */
 
 
+    public static class TreeSetNullExample {
+        public static void main(String[] args) {
+            TreeSet<Integer> treeSet = new TreeSet<>();
 
+            // Add elements to the TreeSet
+            treeSet.add(10);
+            treeSet.add(20);
 
+            try {
+                treeSet.add(null); // This will throw NullPointerException
+            } catch (NullPointerException e) {
+                System.out.println("Exception: " + e);
+            }
+
+            System.out.println("TreeSet: " + treeSet); // Output: [10, 20]
+        }
+    }
+
+/*
+HashSet vs. TreeSet:
+	•	HashSet allows a single null element because it does not rely on ordering, but
+	     TreeSet always enforces sorting, which makes null invalid.
+ */
 
 
 
@@ -1248,7 +2019,7 @@ concurrentHashMap.putIfAbsent("A",10);
             return -1; // No unique character found
         }
     }
-    public static class A {
+    public static class A2 {
         public static void main(String[] args) {
 
             Map<Integer, String> map = new TreeMap<>();
