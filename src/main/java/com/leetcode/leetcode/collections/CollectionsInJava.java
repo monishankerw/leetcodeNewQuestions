@@ -1609,6 +1609,29 @@ Q. How do you iterate over a Map in Java?
             System.out.println("First non-repeating in nums2: Index = " + result2[0] + ", Element = " + result2[1]);
         }
     }
+    public static class LongestHarmonicSubsequence{
+        public static void main(String[] args) {
+            int[] arr = {1, 3, 2, 2, 5, 2, 3, 7};
+LongestHarmonicSubsequence output=new LongestHarmonicSubsequence();
+                int result=output.longestHarSubseq(arr);
+            System.out.println("Result "+result);
+        }
+
+        private static int longestHarSubseq(int[] arr) {
+            Map<Integer, Integer> map = new HashMap<>();
+            for (int num:arr){
+                map.put(num,map.getOrDefault(num,0)+1);
+            }
+            int maxLen=0;
+            for (int key:map.keySet()){
+                if (map.containsKey(key + 1)) {
+                   int curLen=map.get(key)+map.get(key+1);
+                    maxLen=Math.max(maxLen,curLen);
+                }
+            }
+            return maxLen;
+        }
+    }
     public static class MostFreq {
         public static void main(String[] args) {
             int[] nums = {1, 2, 3, 2, 2, 3, 4, 1, 5};
