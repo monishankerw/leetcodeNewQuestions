@@ -1,4 +1,82 @@
-Here is a list of SQL query questions for a Java Developer, progressing from basic to advanced level. These will help you prepare for an interview and assess your SQL skills in the context of a Java development role.
+
+USE EMPLOYEE;
+CREATE TABLE EMPLOYEE (
+    EMPLOYEE_ID INT(6),        
+    NAME VARCHAR(20),          
+    SALARY DECIMAL(8, 2)      
+);
+
+INSERT INTO EMPLOYEE(EMPLOYEE_ID, NAME, SALARY) VALUES(100, 'Jennifer', 4400);
+INSERT INTO EMPLOYEE(EMPLOYEE_ID, NAME, SALARY) VALUES(100, 'Jennifer', 4400);
+INSERT INTO EMPLOYEE(EMPLOYEE_ID, NAME, SALARY) VALUES(101, 'Michael', 13000);
+INSERT INTO EMPLOYEE(EMPLOYEE_ID, NAME, SALARY) VALUES(101, 'Michael', 13000);
+INSERT INTO EMPLOYEE(EMPLOYEE_ID, NAME, SALARY) VALUES(101, 'Michael', 13000);
+INSERT INTO EMPLOYEE(EMPLOYEE_ID, NAME, SALARY) VALUES(102, 'Pat', 6000);
+INSERT INTO EMPLOYEE(EMPLOYEE_ID, NAME, SALARY) VALUES(102, 'Pat', 6000);
+INSERT INTO EMPLOYEE(EMPLOYEE_ID, NAME, SALARY) VALUES(103, 'Den', 11000);
+
+select * from EMPLOYEE;
+# 1. How to select UNIQUE records from a table using a SQL Query?
+SELECT EMPLOYEE_ID,NAME,SALARY FROM EMPLOYEE GROUP BY EMPLOYEE_ID,NAME,SALARY;
+DELETE FROM EMPLOYEE WHERE EMPLOYEE_ID NOT IN (SELECT MIN(EMPLOYEE_ID)FROM EMPLOYEE GROUP BY EMPLOYEE_ID, NAME, SALARY);
+CREATE TABLE Departments(
+ Department_ID INT(6),
+ Department_Name varchar(50)
+);
+INSERT INTO DEPARTMENTS VALUES('10','Administration');
+INSERT INTO DEPARTMENTS VALUES('20','Marketing');
+INSERT INTO DEPARTMENTS VALUES('30','Purchasing');
+INSERT INTO DEPARTMENTS VALUES('40','Human Resources');
+INSERT INTO DEPARTMENTS VALUES('50','Shipping');
+INSERT INTO DEPARTMENTS VALUES('60','IT');
+INSERT INTO DEPARTMENTS VALUES('70','Public Relations');
+INSERT INTO DEPARTMENTS VALUES('80','Sales');
+
+# . How to read TOP 5 records from a table using a SQL query?
+USE EMPLOYEE;
+SELECT * FROM EMPLOYEE.DEPARTMENTS;
+SELECT * FROM DEPARTMENTS LIMIT 5;
+
+# 4. How to read LAST 5 records from a table using a SQL query?
+SELECT * FROM EMPLOYEE.DEPARTMENTS ORDER BY DEPARTMENT_ID DESC LIMIT 5;
+
+# JOIN OR INNER JOIN
+# select a.col as A, b.col as B from Table_A a JOIN Table_B b ON a.col=b.col;
+# LEFT JOIN
+# SELECT a.COL as A,b.COL as B FROM TABLE_A a LEFT OUTER JOIN TABLE_B b ON a.COL = b.COL;
+
+# RIGHT JOIN
+# SELECT a.COL as A,b.COL as B FROM TABLE_A a RIGHT OUTER JOIN TABLE_B b ON a.COL = b.COL;
+
+# FULL JOIN
+# SELECT a.COL as A, b.COL as B FROM TABLE_A a FULL OUTER JOIN TABLE_B b ON a.COL = b.COL;
+
+#  How to find the employee with second MAX Salary using a SQL query?
+#How to find the employee with third MAX Salary using a SQL query without using Analytic Functions?
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Basic SQL Queries
 
