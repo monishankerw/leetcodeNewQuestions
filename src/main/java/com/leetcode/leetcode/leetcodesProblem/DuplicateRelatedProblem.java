@@ -412,4 +412,52 @@ public class DuplicateRelatedProblem {
             return result.toString();
         }
     }
+    public static class RemoveDuplicatess {
+        public static void main(String[] args) {
+            // Input array with duplicates
+            String[] strArray = {"abc", "def", "abc", "mno", "xyz", "pqr", "xyz", "pqr"};
+
+            System.out.println("Brute Force Method: Duplicate Elements are:");
+            for (int i = 0; i < strArray.length - 1; i++) {
+                for (int j = i + 1; j < strArray.length; j++) {
+                    if (strArray[i].equals(strArray[j]) && i != j) {
+                        System.out.println(strArray[i]);
+                    }
+                }
+            }
+        }
+    }
+
+    public static class DuplicateCharacters {
+        public static void main(String[] args) {
+            // Input string
+            String str = "apple is fruit";
+
+            // Convert the string to a character array
+            char[] charArray = str.toCharArray();
+
+            // Print the original string
+            System.out.println("The string is: " + str);
+            System.out.print("Duplicate Characters in the string are: ");
+
+            // Using a HashSet to keep track of characters
+            HashSet<Character> seen = new HashSet<>();
+            HashSet<Character> duplicates = new HashSet<>();
+
+            for (char c : charArray) {
+                if (seen.contains(c)) {
+                    duplicates.add(c);
+                } else {
+                    seen.add(c);
+                }
+            }
+
+            // Print duplicate characters
+            for (char c : duplicates) {
+                if (c != ' ') { // Exclude spaces
+                    System.out.print(c + " ");
+                }
+            }
+        }
+    }
 }
