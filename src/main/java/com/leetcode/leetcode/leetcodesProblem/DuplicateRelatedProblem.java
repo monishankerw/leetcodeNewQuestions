@@ -365,7 +365,7 @@ public class DuplicateRelatedProblem {
 
     public static class RemoveDuplicateCharacter {
         public static void main(String[] args) {
-            String st="aabdsddee";
+            String st="hello";
             String result=removeCharacter(st);
             System.out.println("Remove Duplicate Character:"+result);
         }
