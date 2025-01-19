@@ -94,7 +94,6 @@ System.out.println(age > 30 || age == 25); // true
 System.out.println(!(age > 18)); // false
      */
     /*
-    Here’s a list of 100 logical coding problems for practice, ranging from beginner to advanced levels:
 
 Basic Level (1–25)
 	1.	Print “Hello, World!”
@@ -205,15 +204,63 @@ Real-World Application Problems (76–100)
 	100.	Create an algorithm to match job seekers with job postings.
 
      */
+    //Print “Hello, World!
+    public static class HelloWorld{
+        public static void main(String[] args) {
+            System.out.println("Hello, World!");
+        }
+    }
 //Write a program to add two numbers.
     public static class AddNumbers {
         public static void main(String[] args) {
-            int a = 5, b = 7;
+//            int a = 5, b = 7;
+            Scanner sc=new Scanner(System.in);
+            System.out.println("Enter the two number: ");
+            int a=sc.nextInt();
+            int b=sc.nextInt();
             int sum = a + b;
             System.out.println("Sum: " + sum);
         }
     }
+    //Write a program to swap two numbers without using a third variable.
+    public static class SwapNumbers {
+        public static void main(String[] args) {
+//            int a = 5, b = 10;
+            Scanner sc=new Scanner(System.in);
+            System.out.println("Enter the two number: ");
+            int a=sc.nextInt();
+            int b=sc.nextInt();
+            System.out.println("Before: a = " + a + ", b = " + b);
+            a = a + b;
+            b = a - b;
+            a = a - b;
+            /*
+            int c=a;
+            a=b;
+            b=c
+             */
+            System.out.println("After: a = " + a + ", b = " + b);
+        }
+    }
+    //Find the largest of three numbers.
 
+    public static class LargestNumber {
+        public static void main(String[] args) {
+//            int a = 10, b = 20, c = 15;
+            Scanner sc=new Scanner(System.in);
+            System.out.println("Enter the two number: ");
+            int a=sc.nextInt();
+            int b=sc.nextInt();
+            int c=sc.nextInt();
+            if (a > b && a > c) {
+                System.out.println(a + " is the largest.");
+            } else if (b > c) {
+                System.out.println(b + " is the largest.");
+            } else {
+                System.out.println(c + " is the largest.");
+            }
+        }
+    }
     //Check whether a number is positive, negative, or zero.
     public static class CheckNumber {
         public static void main(String[] args) {
@@ -227,17 +274,19 @@ Real-World Application Problems (76–100)
             }
         }
 
-      //Write a program to swap two numbers without using a third variable.
-      public static class SwapNumbers {
-          public static void main(String[] args) {
-              int a = 5, b = 10;
-              System.out.println("Before: a = " + a + ", b = " + b);
-              a = a + b;
-              b = a - b;
-              a = a - b;
-              System.out.println("After: a = " + a + ", b = " + b);
-          }
-      }
+// check even and odd
+        public static class EvenOdd{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter a number::");
+        int num=sc.nextInt();
+        if(num%2==0){
+            System.out.println("Even Number");
+        }else {
+            System.out.println("Odd Number");
+        }
+    }
+}
 
       //Check if a number is divisible by 3 and 5.
       public static class DivisibleCheck {
@@ -263,20 +312,7 @@ Real-World Application Problems (76–100)
           }
       }
     }
-   //Find the largest of three numbers.
 
-    public static class LargestNumber {
-        public static void main(String[] args) {
-            int a = 10, b = 20, c = 15;
-            if (a > b && a > c) {
-                System.out.println(a + " is the largest.");
-            } else if (b > c) {
-                System.out.println(b + " is the largest.");
-            } else {
-                System.out.println(c + " is the largest.");
-            }
-        }
-    }
     //Calculating Simple Interest
     public class SimpleInterest {
         public static void main(String[] args) {
