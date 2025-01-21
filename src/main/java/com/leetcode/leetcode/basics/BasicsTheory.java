@@ -831,6 +831,182 @@ Real-World Application Problems (76–100)
             System.out.println("Largest element present in the given array: " + max);
         }
     }
+    public static class ArraySorter {
+
+        public static void main(String[] args) {
+            // Example array
+            Integer[] array = {5, 2, 8, 7, 1};
+
+            // Sorting in ascending order
+            sortAscending(array);
+
+            // Sorting in descending order
+            sortDescending(array);
+        }
+
+        // Method to sort array in ascending order
+        public static void sortAscending(Integer[] array) {
+            Arrays.sort(array);  // Sort in ascending order
+            System.out.println("Array sorted in ascending order: " + Arrays.toString(array));
+        }
+
+        // Method to sort array in descending order
+        public static void sortDescending(Integer[] array) {
+            Arrays.sort(array, Collections.reverseOrder());  // Sort in descending order
+            System.out.println("Array sorted in descending order: " + Arrays.toString(array));
+        }
+    }
+    public static class GCDAndLCM {
+
+        public static void main(String[] args) {
+            int num1 = 36;
+            int num2 = 60;
+
+            int gcd = findGCD(num1, num2);
+            int lcm = findLCM(num1, num2, gcd);
+
+            System.out.println("GCD of " + num1 + " and " + num2 + " is: " + gcd);
+            System.out.println("LCM of " + num1 + " and " + num2 + " is: " + lcm);
+        }
+
+        // Method to find GCD using the Euclidean Algorithm
+        public static int findGCD(int a, int b) {
+            while (b != 0) {
+                int temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+
+        // Method to find LCM using the formula: LCM(a, b) = (a * b) / GCD(a, b)
+        public static int findLCM(int a, int b, int gcd) {
+            return (a * b) / gcd;
+        }
+    }
+    public static class SquareRootCalculator {
+
+        public static void main(String[] args) {
+            double number = 25; // Example input
+            double precision = 0.00001; // Define the precision level
+
+            double sqrt = findSquareRoot(number, precision);
+            System.out.println("Square root of " + number + " is approximately: " + sqrt);
+        }
+
+        // Method to calculate square root using Newton's method
+        public static double findSquareRoot(double number, double precision) {
+            if (number < 0) {
+                throw new IllegalArgumentException("Square root of a negative number is undefined in real numbers.");
+            }
+            if (number == 0 || number == 1) {
+                return number;
+            }
+
+            double guess = number / 2.0; // Initial guess
+            while (Math.abs(guess * guess - number) > precision) {
+                guess = (guess + number / guess) / 2.0;
+            }
+            return guess;
+        }
+    }
+    public static class Anagram {
+        public static void main(String[] args) {
+            String str1 = "listen";
+            String str2 = "silent";
+            boolean result = anagram(str1, str2);
+
+            if (result) {
+                System.out.println("The strings are anagrams.");
+            } else {
+                System.out.println("The strings are not anagrams.");
+            }
+        }
+
+        private static boolean anagram(String str1, String str2) {
+            // If lengths are not the same, they can't be anagrams
+            if (str1.length() != str2.length()) {
+                return false;
+            }
+
+            // Convert strings to character arrays
+            char[] arr1 = str1.toCharArray();
+            char[] arr2 = str2.toCharArray();
+
+            // Sort the character arrays
+            Arrays.sort(arr1);
+            Arrays.sort(arr2);
+
+            // Compare the sorted arrays
+            return Arrays.equals(arr1, arr2);
+        }
+    }
+    public static class StrongNumber {
+
+        public static void main(String[] args) {
+            int number = 145; // Example input
+            if (isStrongNumber(number)) {
+                System.out.println(number + " is a Strong Number.");
+            } else {
+                System.out.println(number + " is not a Strong Number.");
+            }
+        }
+
+        // Method to check if a number is a strong number
+        public static boolean isStrongNumber(int number) {
+            int originalNumber = number;
+            int sum = 0;
+
+            while (number > 0) {
+                int digit = number % 10;  // Extract the last digit
+                sum += factorial(digit); // Add factorial of the digit to the sum
+                number /= 10;            // Remove the last digit
+            }
+
+            return sum == originalNumber; // Check if the sum equals the original number
+        }
+
+        // Method to calculate the factorial of a digit
+        public static int factorial(int n) {
+            int fact = 1;
+            for (int i = 1; i <= n; i++) {
+                fact *= i;
+            }
+            return fact;
+        }
+    }
+    public static class FirstNonRepeatingCharacter {
+
+        public static void main(String[] args) {
+            String str = "swiss"; // Example input
+            char result = findFirstNonRepeatingCharacter(str);
+
+            if (result != '\0') {
+                System.out.println("The first non-repeating character is: " + result);
+            } else {
+                System.out.println("No non-repeating character found.");
+            }
+        }
+
+        // Method to find the first non-repeating character in a string
+        public static char findFirstNonRepeatingCharacter(String str) {
+            HashMap<Character, Integer> charCount = new HashMap<>();
+
+            // Count the frequency of each character
+            for (char ch : str.toCharArray()) {
+                charCount.put(ch, charCount.getOrDefault(ch, 0) + 1);
+            }
+
+            // Find the first character with a count of 1
+            for (char ch : str.toCharArray()) {
+                if (charCount.get(ch) == 1) {
+                    return ch;
+                }
+            }
+
+            return '\0'; // Return null character if no non-repeating character is found
+        }
+    }
     public static class SplitAlphanumeric {
         public static void main(String[] args) {
             // Input string
@@ -2652,4 +2828,52 @@ Concepts Used:
 	12.	Word Counter Tool
 
      */
+
+
+    public static class Simplecalculator {
+
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Simple Calculator");
+            System.out.print("Enter the first number: ");
+            double num1 = scanner.nextDouble();
+
+            System.out.print("Enter an operator (+, -, *, /): ");
+            char operator = scanner.next().charAt(0);
+
+            System.out.print("Enter the second number: ");
+            double num2 = scanner.nextDouble();
+
+            double result = 0;
+
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 != 0) {
+                        result = num1 / num2;
+                    } else {
+                        System.out.println("Error: Division by zero is not allowed.");
+                        scanner.close();
+                        return;
+                    }
+                    break;
+                default:
+                    System.out.println("Error: Invalid operator. Please use +, -, *, or /.");
+                    scanner.close();
+                    return;
+            }
+
+            System.out.println("Result: " + num1 + " " + operator + " " + num2 + " = " + result);
+            scanner.close();
+        }
+    }
 }
