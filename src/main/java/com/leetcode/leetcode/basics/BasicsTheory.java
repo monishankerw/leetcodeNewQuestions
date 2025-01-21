@@ -312,9 +312,115 @@ Real-World Application Problems (76–100)
           }
       }
     }
+    //Check if a number is a perfect square.
+    public static class PerfectSquareCheck {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
 
+            System.out.print("Enter a number to check if it's a perfect square: ");
+            int number = scanner.nextInt();
+
+            if (isPerfectSquare(number)) {
+                System.out.println(number + " is a perfect square.");
+            } else {
+                System.out.println(number + " is not a perfect square.");
+            }
+        }
+
+        public static boolean isPerfectSquare(int num) {
+            if (num < 0) {
+                return false; // Negative numbers cannot be perfect squares
+            }
+
+            int sqrt = (int) Math.sqrt(num); // Compute the square root
+            return sqrt * sqrt == num; // Check if the square of sqrt equals the number
+        }
+    }
+    //Convert Celsius to Fahrenheit and vice versa.
+    public static class TemperatureConverter {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Temperature Conversion Menu:");
+            System.out.println("1. Celsius to Fahrenheit");
+            System.out.println("2. Fahrenheit to Celsius");
+            System.out.print("Choose an option (1 or 2): ");
+
+            int choice = scanner.nextInt();
+
+            if (choice == 1) {
+                System.out.print("Enter temperature in Celsius: ");
+                double celsius = scanner.nextDouble();
+                double fahrenheit = celsiusToFahrenheit(celsius);
+                System.out.println("Temperature in Fahrenheit: " + fahrenheit);
+            } else if (choice == 2) {
+                System.out.print("Enter temperature in Fahrenheit: ");
+                double fahrenheit = scanner.nextDouble();
+                double celsius = fahrenheitToCelsius(fahrenheit);
+                System.out.println("Temperature in Celsius: " + celsius);
+            } else {
+                System.out.println("Invalid choice! Please select 1 or 2.");
+            }
+
+            scanner.close();
+        }
+
+        public static double celsiusToFahrenheit(double celsius) {
+            return (celsius * 9 / 5) + 32;
+        }
+
+        public static double fahrenheitToCelsius(double fahrenheit) {
+            return (fahrenheit - 32) * 5 / 9;
+        }
+    }
+    //Check if a number is a perfect number.
+    public static class PerfectNumberCheck {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.print("Enter a number to check if it's a perfect number: ");
+            int number = scanner.nextInt();
+
+            if (isPerfectNumber(number)) {
+                System.out.println(number + " is a perfect number.");
+            } else {
+                System.out.println(number + " is not a perfect number.");
+            }
+        }
+
+        public static boolean isPerfectNumber(int num) {
+            if (num <= 1) {
+                return false; // Perfect numbers are greater than 1
+            }
+
+            int sum = 0;
+            // Find divisors and calculate their sum
+            for (int i = 1; i <= num / 2; i++) {
+                if (num % i == 0) {
+                    sum += i;
+                }
+            }
+
+            // Check if the sum of divisors equals the number
+            return sum == num;
+        }
+    }
+//Calculate the sum of all natural numbers up to n.
+    public static class SumOfNaturalNumber{
+    public static void main(String[] args) {
+
+        int sum=0;
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the natural Number:");
+        int n=sc.nextInt();
+        for (int i=1;i<n;i++){
+            sum=sum+i;
+        }
+        System.out.println("Sum of Natural Number: "+sum);
+    }
+    }
     //Calculating Simple Interest
-    public class SimpleInterest {
+    public static class SimpleInterest {
         public static void main(String[] args) {
             // Declare variables
             float principal = 10000f; // Principal amount
@@ -468,6 +574,7 @@ Real-World Application Problems (76–100)
             System.out.println("Using While Loop: " + sum); // Output the sum
         }
     }
+    //	Count the number of digits in a number.
     public static class CountDigits {
         public static void main(String[] args) {
             // Input number
@@ -490,6 +597,7 @@ Real-World Application Problems (76–100)
         }
     }
     // 7. Prime Number
+    //Print all prime numbers up to n.
     public static class PrimeNumber {
         public static void main(String[] args) {
             Scanner sc = new Scanner(System.in);
@@ -510,7 +618,35 @@ Real-World Application Problems (76–100)
             }
         }
     }
+    public static class FindVowel {
+        public static void main(String[] args) {
+            String str="Test Engin";
+            int v=0,c=0;
+            String small  = str.toLowerCase();
+            for (int i=0;i<str.length();i++){
+                char ch=small.charAt(i);
+                if(ch!=' '&& (ch>='a'&&ch<='z')){
+                    if (ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u'){
+                        v++;
+                    }else{
+                        c++;
+                    }
+                }
+            }
+            System.out.println("Vowel::"+v);
+            System.out.println("Con::"+c);
 
+
+        }
+    }
+    public static class PrintASCII {
+        public static void main(String[] args) {
+            System.out.println("ASCII values of characters from A to Z:");
+            for (char ch = 'A'; ch <= 'Z'; ch++) {
+                System.out.println(ch + " -> " + (int) ch);
+            }
+        }
+    }
     // 8. Remove Duplicate Elements
     public static class RemoveDuplicateElements {
         public static void main(String[] args) {
@@ -641,7 +777,23 @@ Real-World Application Problems (76–100)
             System.out.println("Last element is: " + last);
         }
     }
+    public static class FindSmallest {
+        public static void main(String[] args) {
+            int[] numbers = {34, 78, 12, 90, 5, 67};
+            int smallest = findSmallestNumber(numbers);
+            System.out.println("The smallest number in the array is: " + smallest);
+        }
 
+        public static int findSmallestNumber(int[] array) {
+            int smallest = array[0]; // Assume the first element is the smallest
+            for (int num : array) {
+                if (num < smallest) {
+                    smallest = num; // Update smallest if a smaller number is found
+                }
+            }
+            return smallest;
+        }
+    }
     public static class SecondLargestAndSmallest {
         public static void main(String[] args) {
             // Input array
@@ -1171,7 +1323,7 @@ Convert temperature from Celsius to Fahrenheit and vice versa. The formula for c
 	•	Celsius = (Fahrenheit - 32) * 5/9
      */
 
-    public static class TemperatureConverter {
+    public static class TemperatureConverters {
         public static void main(String[] args) {
             Scanner scanner = new Scanner(System.in);
 

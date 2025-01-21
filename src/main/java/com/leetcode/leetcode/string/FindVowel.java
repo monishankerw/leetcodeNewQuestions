@@ -2,7 +2,7 @@ package com.leetcode.leetcode.string;
 
 import java.util.Locale;
 
-public class FindVowelNumber {
+public class FindVowel {
     public static void main(String[] args) {
         String str="Test Engin";
         int v=0,c=0;
