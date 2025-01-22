@@ -1007,6 +1007,102 @@ Real-World Application Problems (76–100)
             return '\0'; // Return null character if no non-repeating character is found
         }
     }
+    //Reverse a string without using extra space.
+    public static class ReverseString {
+
+        public static void reverseString(char[] str) {
+            int left = 0;
+            int right = str.length - 1;
+
+            while (left < right) {
+                // Swap characters
+                char temp = str[left];
+                str[left] = str[right];
+                str[right] = temp;
+
+                // Move pointers
+                left++;
+                right--;
+            }
+        }
+
+        public static void main(String[] args) {
+            String input = "hello";
+            char[] str = input.toCharArray();
+
+            reverseString(str);
+            System.out.println("Reversed String: " + new String(str));
+        }
+    }
+    //Convert a binary number to decimal.
+    public static class BinaryToDecimal {
+
+        public static int binaryToDecimal(String binary) {
+            int decimal = 0;
+            int power = 0;
+
+            // Iterate from the last character to the first
+            for (int i = binary.length() - 1; i >= 0; i--) {
+                char bit = binary.charAt(i);
+
+                // Multiply the bit by 2^power and add to the result
+                if (bit == '1') {
+                    decimal += Math.pow(2, power);
+                }
+                power++;
+            }
+            return decimal;
+        }
+
+        public static void main(String[] args) {
+            String binary = "1011"; // Example binary number
+            int decimal = binaryToDecimal(binary);
+            System.out.println("Binary: " + binary + " -> Decimal: " + decimal);
+        }
+    }
+
+    //Convert a decimal number to binary.
+    public static class DecimalToBinary {
+
+        public static String decimalToBinary(int decimal) {
+            StringBuilder binary = new StringBuilder();
+
+            while (decimal > 0) {
+                int remainder = decimal % 2; // Get the remainder (0 or 1)
+                binary.append(remainder);   // Append the remainder to the binary string
+                decimal = decimal / 2;     // Update decimal to the quotient
+            }
+
+            // Reverse the binary string since remainders are calculated in reverse order
+            return binary.reverse().toString();
+        }
+
+        public static void main(String[] args) {
+            int decimal = 11; // Example decimal number
+            String binary = decimalToBinary(decimal);
+            System.out.println("Decimal: " + decimal + " -> Binary: " + binary);
+        }
+    }
+    //Find the power of a number using recursion.
+    public static class PowerCalculator {
+
+        public static long power(int base, int exponent) {
+            // Base case: any number to the power of 0 is 1
+            if (exponent == 0) {
+                return 1;
+            }
+            // Recursive case: base^exponent = base * base^(exponent-1)
+            return base * power(base, exponent - 1);
+        }
+
+        public static void main(String[] args) {
+            int base = 2;      // Example base
+            int exponent = 5;  // Example exponent
+
+            long result = power(base, exponent);
+            System.out.println(base + " to the power of " + exponent + " is: " + result);
+        }
+    }
     public static class SplitAlphanumeric {
         public static void main(String[] args) {
             // Input string
