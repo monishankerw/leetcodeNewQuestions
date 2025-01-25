@@ -165,7 +165,8 @@ Collectors.partitioningBy	Partitions the stream elements into two groups.
         System.out.println("Count occurrences of each character:::"+countOccurence);
 
         //26.Find duplicate characters with occurrences > 1
-        List<String> duplicateChar = Arrays.stream(input.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+        List<String> duplicateChar = Arrays.stream(input.split("")).
+                collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet().stream()
                 .filter(entry -> entry.getValue() > 1)
                 .map(Map.Entry::getKey)

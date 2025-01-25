@@ -82,12 +82,12 @@ public class A {
                         Function.identity(), // Use the character as the key
                         Collectors.counting() // Count the occurrences
                 ));
-                String input1 = "hello world";
+        String input1 = "hello world";
 
-                Map<String, Long> map = Arrays.stream(input1.split(""))
-                        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        
-                System.out.println("Occurence of each::"+map);
+        Map<String, Long> map = Arrays.stream(input1.split(""))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        System.out.println("Occurence of each::" + map);
 //forEach():Performs an actions on each elements
         System.out.println("Performing an action on each element:");
         num.stream().forEach(System.out::println);         // Print the character counts
