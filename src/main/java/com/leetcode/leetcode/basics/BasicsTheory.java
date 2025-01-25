@@ -6,6 +6,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
@@ -3715,223 +3716,7 @@ int factorial(int n) {
                     ", Grade: " + grades[topIndex]);
         }
     }
-    /*
 
-1. Library Management System
-
-Objective:
-
-A console-based program to manage books in a library, including adding books, searching for a book, and displaying all available books.
-
-Features:
-	•	Add books (title, author, ISBN, availability).
-	•	Search for a book by title or ISBN.
-	•	Display all available books.
-	•	Mark a book as borrowed or returned.
-
-Concepts Used:
-	•	Arrays to store book details.
-	•	Functions for modularity (e.g., addBook(), searchBook(), displayBooks()).
-	•	Loops to iterate over books.
-	•	Conditionals for availability status.
-
-2. Simple Banking System
-
-Objective:
-
-Simulate basic banking operations like creating an account, depositing money, withdrawing money, and checking the balance.
-
-Features:
-	•	Create an account with a unique account number.
-	•	Deposit money and update the balance.
-	•	Withdraw money if the balance is sufficient.
-	•	Check account details.
-
-Concepts Used:
-	•	Variables for account details (name, account number, balance).
-	•	Loops to perform repeated transactions.
-	•	Conditionals for withdrawal checks.
-	•	Functions for operations (createAccount(), deposit(), withdraw(), checkBalance()).
-
-3. Quiz Game
-
-Objective:
-
-Create a simple quiz game with multiple-choice questions.
-
-Features:
-	•	Present 5-10 questions with 4 options each.
-	•	Let the user choose the correct option.
-	•	Keep track of the score and display it at the end.
-
-Concepts Used:
-	•	Arrays to store questions, options, and answers.
-	•	Loops to iterate through questions.
-	•	Conditionals to check answers.
-	•	Variables for score tracking.
-
-4. Expense Tracker
-
-Objective:
-
-Track daily expenses and calculate total expenses for the week or month.
-
-Features:
-	•	Add daily expenses (e.g., food, travel, groceries).
-	•	View total expenses for the week or month.
-	•	Categorize expenses (e.g., Food: ₹500, Travel: ₹300).
-
-Concepts Used:
-	•	Arrays for storing expense categories and amounts.
-	•	Loops to calculate total expenses.
-	•	Conditionals for filtering expenses by category.
-	•	Functions for operations like addExpense(), viewExpenses(), calculateTotal().
-
-5. Number Guessing Game
-
-Objective:
-
-Create a game where the computer generates a random number, and the user has to guess it.
-
-Features:
-	•	Generate a random number between 1 and 100.
-	•	Provide hints like “too high” or “too low.”
-	•	Track the number of attempts.
-	•	Allow restarting the game.
-
-Concepts Used:
-	•	Variables for random number and user input.
-	•	Loops to allow multiple guesses.
-	•	Conditionals for hint generation.
-	•	Random number generation using Math.random() or similar libraries.
-
-6. To-Do List
-
-Objective:
-
-Create a console-based program to manage daily tasks.
-
-Features:
-	•	Add tasks to the list.
-	•	Mark tasks as complete.
-	•	Display all tasks (completed and pending).
-	•	Delete tasks.
-
-Concepts Used:
-	•	Arrays to store tasks.
-	•	Loops for task iteration.
-	•	Conditionals for task status.
-	•	Functions for modularity (e.g., addTask(), markComplete(), deleteTask(), viewTasks()).
-
-7. Temperature Conversion Tool
-
-Objective:
-
-Convert temperatures between Celsius, Fahrenheit, and Kelvin.
-
-Features:
-	•	Take input for temperature and the conversion type.
-	•	Perform conversion based on formulas:
-	•	Celsius to Fahrenheit: ￼
-	•	Fahrenheit to Celsius: ￼
-	•	Celsius to Kelvin: ￼
-	•	Display the converted value.
-
-Concepts Used:
-	•	Variables for temperature and conversion type.
-	•	Conditionals for selecting the conversion type.
-	•	Functions for conversion logic.
-
-8. Inventory Management System
-
-Objective:
-
-Track and manage product inventory.
-
-Features:
-	•	Add products (name, ID, quantity, price).
-	•	Update inventory (add/remove stock).
-	•	Display all products with details.
-	•	Calculate the total inventory value.
-
-Concepts Used:
-	•	Arrays for storing product details.
-	•	Loops for inventory updates and display.
-	•	Conditionals for validation (e.g., sufficient stock).
-	•	Functions for modularity.
-
-9. Restaurant Billing System
-
-Objective:
-
-Create a simple billing system for a restaurant.
-
-Features:
-	•	Display a menu with items and prices.
-	•	Allow users to select items and quantities.
-	•	Calculate the total bill, including tax (e.g., 5% GST).
-	•	Generate a receipt with itemized details.
-
-Concepts Used:
-	•	Arrays to store menu items and prices.
-	•	Loops to handle multiple orders.
-	•	Variables for total calculation.
-	•	Functions for operations like displayMenu(), calculateBill(), generateReceipt().
-
-10. Basic Calendar Application
-
-Objective:
-
-Display a calendar for a given month and year, and allow the user to add reminders.
-
-Features:
-	•	Input: Month and year.
-	•	Display the calendar with days and dates.
-	•	Add reminders for specific dates.
-	•	View all reminders for the month.
-
-Concepts Used:
-	•	Arrays for storing dates and reminders.
-	•	Loops to generate the calendar.
-	•	Conditionals for checking leap years and valid dates.
-	•	Functions for modularity.
-
-11. Digital Clock
-
-Objective:
-
-Display the current time that updates every second.
-
-Features:
-	•	Display time in HH:MM:SS format.
-	•	Allow user to set an alarm for a specific time.
-	•	Alert the user when the alarm time is reached.
-
-Concepts Used:
-	•	Loops for updating the clock.
-	•	Conditionals for alarm check.
-	•	Use Thread.sleep() or equivalent for delays.
-
-12. Word Counter Tool
-
-Objective:
-
-Analyze a paragraph and count the number of words, sentences, and characters.
-
-Features:
-	•	Input: A paragraph from the user.
-	•	Output:
-	•	Total words.
-	•	Total sentences.
-	•	Total characters (including and excluding spaces).
-
-Concepts Used:
-	•	Strings for storing the paragraph.
-	•	Loops for iteration.
-	•	Functions for counting logic.
-	•	Conditionals for checking sentence boundaries.
-
-     */
     /*
     	1.	Library Management System
 	2.	Simple Banking System
@@ -3949,6 +3734,307 @@ Concepts Used:
      */
 
 
+
+    public static class UtilityProgramsss {
+
+        // 1. Library Management System
+        public static class Library {
+            private Map<String, Boolean> books = new HashMap<>();
+
+            public void addBook(String bookName) {
+                books.put(bookName, true); // true means available
+            }
+
+            public void borrowBook(String bookName) {
+                if (books.getOrDefault(bookName, false)) {
+                    books.put(bookName, false); // borrowed
+                    System.out.println("You have borrowed: " + bookName);
+                } else {
+                    System.out.println("Book is not available.");
+                }
+            }
+
+            public void returnBook(String bookName) {
+                if (!books.getOrDefault(bookName, true)) {
+                    books.put(bookName, true); // returned
+                    System.out.println("You have returned: " + bookName);
+                } else {
+                    System.out.println("Book was not borrowed.");
+                }
+            }
+
+            public void viewBooks() {
+                System.out.println("Library Books:");
+                for (Map.Entry<String, Boolean> entry : books.entrySet()) {
+                    System.out.println(entry.getKey() + ": " + (entry.getValue() ? "Available" : "Not Available"));
+                }
+            }
+        }
+
+        // 2. Simple Banking System
+        public static class BankAccount {
+            private double balance = 0.0;
+
+            public void deposit(double amount) {
+                balance += amount;
+                System.out.println("Deposited: $" + amount);
+            }
+
+            public void withdraw(double amount) {
+                if (balance >= amount) {
+                    balance -= amount;
+                    System.out.println("Withdrew: $" + amount);
+                } else {
+                    System.out.println("Insufficient funds.");
+                }
+            }
+
+            public void checkBalance() {
+                System.out.println("Balance: $" + balance);
+            }
+        }
+
+        // 3. Quiz Game
+        public static class QuizGame {
+            private Map<String, String> questionsAndAnswers = new HashMap<>();
+            private int score = 0;
+
+            public void addQuestion(String question, String answer) {
+                questionsAndAnswers.put(question, answer);
+            }
+
+            public void startGame() {
+                Scanner scanner = new Scanner(System.in);
+                for (Map.Entry<String, String> entry : questionsAndAnswers.entrySet()) {
+                    System.out.print(entry.getKey() + ": ");
+                    String userAnswer = scanner.nextLine();
+                    if (userAnswer.equalsIgnoreCase(entry.getValue())) {
+                        score++;
+                    }
+                }
+                System.out.println("Your score: " + score + "/" + questionsAndAnswers.size());
+            }
+        }
+
+        // 4. Expense Tracker
+        public static class ExpenseTracker {
+            private double totalExpenses = 0.0;
+
+            public void addExpense(double amount) {
+                totalExpenses += amount;
+                System.out.println("Expense added: $" + amount);
+            }
+
+            public void viewExpenses() {
+                System.out.println("Total Expenses: $" + totalExpenses);
+            }
+        }
+
+        // 5. Number Guessing Game
+        public static class NumberGuessingGame {
+            private int numberToGuess;
+
+            public void startGame() {
+                Random rand = new Random();
+                numberToGuess = rand.nextInt(100) + 1;
+                Scanner scanner = new Scanner(System.in);
+                int guess;
+                System.out.println("Guess a number between 1 and 100:");
+                while (true) {
+                    guess = scanner.nextInt();
+                    if (guess < numberToGuess) {
+                        System.out.println("Too low! Try again.");
+                    } else if (guess > numberToGuess) {
+                        System.out.println("Too high! Try again.");
+                    } else {
+                        System.out.println("Correct! The number was " + numberToGuess);
+                        break;
+                    }
+                }
+            }
+        }
+
+        // 6. To-Do List
+        public static class ToDoList {
+            private List<String> tasks = new ArrayList<>();
+
+            public void addTask(String task) {
+                tasks.add(task);
+                System.out.println("Task added: " + task);
+            }
+
+            public void removeTask(String task) {
+                tasks.remove(task);
+                System.out.println("Task removed: " + task);
+            }
+
+            public void viewTasks() {
+                System.out.println("To-Do List:");
+                for (String task : tasks) {
+                    System.out.println(task);
+                }
+            }
+        }
+
+        // 7. Temperature Conversion Tool
+        public static class TemperatureConverter {
+            public static double celsiusToFahrenheit(double celsius) {
+                return (celsius * 9/5) + 32;
+            }
+
+            public static double fahrenheitToCelsius(double fahrenheit) {
+                return (fahrenheit - 32) * 5/9;
+            }
+        }
+
+        // 8. Inventory Management System
+        public static class Inventory {
+            private Map<String, Integer> items = new HashMap<>();
+
+            public void addItem(String item, int quantity) {
+                items.put(item, items.getOrDefault(item, 0) + quantity);
+                System.out.println(quantity + " " + item + "(s) added.");
+            }
+
+            public void removeItem(String item, int quantity) {
+                if (items.containsKey(item) && items.get(item) >= quantity) {
+                    items.put(item, items.get(item) - quantity);
+                    System.out.println(quantity + " " + item + "(s) removed.");
+                } else {
+                    System.out.println("Insufficient stock.");
+                }
+            }
+
+            public void viewInventory() {
+                System.out.println("Inventory:");
+                for (Map.Entry<String, Integer> entry : items.entrySet()) {
+                    System.out.println(entry.getKey() + ": " + entry.getValue());
+                }
+            }
+        }
+
+        // 9. Restaurant Billing System
+        public static class RestaurantBilling {
+            private Map<String, Double> menu = new HashMap<>();
+            private Map<String, Integer> order = new HashMap<>();
+
+            public void addToMenu(String item, double price) {
+                menu.put(item, price);
+            }
+
+            public void placeOrder(String item, int quantity) {
+                if (menu.containsKey(item)) {
+                    order.put(item, order.getOrDefault(item, 0) + quantity);
+                } else {
+                    System.out.println("Item not on menu.");
+                }
+            }
+
+            public void viewBill() {
+                double total = 0.0;
+                System.out.println("Bill:");
+                for (Map.Entry<String, Integer> entry : order.entrySet()) {
+                    double itemPrice = menu.get(entry.getKey());
+                    total += itemPrice * entry.getValue();
+                    System.out.println(entry.getKey() + ": " + entry.getValue() + " x $" + itemPrice);
+                }
+                System.out.println("Total: $" + total);
+            }
+        }
+
+        // 10. Basic Calendar Application
+        public static class BasicCalendar {
+            public void showCurrentDate() {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                System.out.println("Current Date: " + sdf.format(new Date()));
+            }
+        }
+
+        // 11. Digital Clock
+        public static class DigitalClock {
+            public void startClock() {
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                Timer timer = new Timer();
+                timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        System.out.println(sdf.format(new Date()));
+                    }
+                }, 0, 1000);
+            }
+        }
+
+        // 12. Word Counter Tool
+        public static class WordCounter {
+            public void countWords(String text) {
+                String[] words = text.split("\\s+");
+                System.out.println("Word Count: " + words.length);
+            }
+        }
+
+        public static void main(String[] args) {
+            // Example Usage:
+
+            // Library Management System
+            Library library = new Library();
+            library.addBook("Harry Potter");
+            library.borrowBook("Harry Potter");
+            library.viewBooks();
+
+            // Simple Banking System
+            BankAccount bank = new BankAccount();
+            bank.deposit(1000);
+            bank.withdraw(500);
+            bank.checkBalance();
+
+            // Quiz Game
+            QuizGame quiz = new QuizGame();
+            quiz.addQuestion("What is 2 + 2?", "4");
+            quiz.startGame();
+
+            // Expense Tracker
+            ExpenseTracker expenseTracker = new ExpenseTracker();
+            expenseTracker.addExpense(50.0);
+            expenseTracker.viewExpenses();
+
+            // Number Guessing Game
+            NumberGuessingGame guessingGame = new NumberGuessingGame();
+            guessingGame.startGame();
+
+            // To-Do List
+            ToDoList todoList = new ToDoList();
+            todoList.addTask("Buy groceries");
+            todoList.viewTasks();
+
+            // Temperature Conversion Tool
+            double celsius = 25;
+            double fahrenheit = TemperatureConverter.celsiusToFahrenheit(celsius);
+            System.out.println(celsius + "°C = " + fahrenheit + "°F");
+
+            // Inventory Management System
+            Inventory inventory = new Inventory();
+            inventory.addItem("Apple", 10);
+            inventory.viewInventory();
+
+            // Restaurant Billing System
+            RestaurantBilling billing = new RestaurantBilling();
+            billing.addToMenu("Burger", 5.99);
+            billing.placeOrder("Burger", 2);
+            billing.viewBill();
+
+            // Basic Calendar Application
+            BasicCalendar calendar = new BasicCalendar();
+            calendar.showCurrentDate();
+
+            // Digital Clock
+            DigitalClock clock = new DigitalClock();
+            clock.startClock();
+
+            // Word Counter Tool
+            WordCounter wordCounter = new WordCounter();
+            wordCounter.countWords("This is a sample sentence.");
+        }
+    }
     public static class Simplecalculator {
 
         public static void main(String[] args) {
