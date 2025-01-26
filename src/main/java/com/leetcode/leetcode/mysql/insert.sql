@@ -81,4 +81,3 @@ This will display all the data in the `employees` table.
 
 ---
 
-Let me know if you'd like further assistance with this or if you're facing any issues!
