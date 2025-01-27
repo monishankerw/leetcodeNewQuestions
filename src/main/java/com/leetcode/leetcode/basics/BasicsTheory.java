@@ -557,6 +557,19 @@ Real-World Application Problems (76–100)
             }
         }
     }
+    //Remove space form given string
+    public static class RemoveSpace {
+        public static void main(String[] args) {
+            String str = "hello java Learning";
+            System.out.println("Input: " + str);
+            /*
+            \\s: Matches any whitespace character (spaces, tabs, etc.).
+	•	replaceAll("\\s", ""): Replaces all occurrences of whitespace with an empty string, effectively removing them.
+             */
+            String output = str.replaceAll("\\s","");
+            System.out.println("Output: " + output);
+        }
+    }
 
     public static class LargestNumberFinder {
         public static void main(String[] args) {
@@ -736,7 +749,7 @@ Real-World Application Problems (76–100)
             }
         }
     }
-
+//Finding Common Elements in Arrays
     public static class CommonElementsInArrays {
         public static void main(String[] args) {
             // 1. By using nested for loop
@@ -746,6 +759,7 @@ Real-World Application Problems (76–100)
 
             for (int i = 0; i < array1.length; i++) {
                 for (int j = 0; j < array2.length; j++) {
+                    //	•	Before adding an element to commonElements, the code checks if it already exists in the list using commonElements.contains(array1[i]).
                     if (array1[i].equals(array2[j])) {
                         if (!commonElements.contains(array1[i])) { // Avoid duplicates
                             commonElements.add(array1[i]);
@@ -771,9 +785,27 @@ Real-World Application Problems (76–100)
                     .filter(list4::contains)
                     .collect(Collectors.toList());
             System.out.println("Common Elements using Streams: " + commonElementsStream);
+
         }
     }
 
+    public static class CommonElementsInArray {
+        public static void main(String[] args) {
+            Integer[] array1 = {4, 2, 3, 1, 6};
+            Integer[] array2 = {6, 7, 8, 4};
+
+            Set<Integer> set1 = new HashSet<>(List.of(array1));
+            Set<Integer> commonElements = new HashSet<>();
+
+            for (Integer num : array2) {
+                if (set1.contains(num)) {
+                    commonElements.add(num); // No need to check for duplicates
+                }
+            }
+
+            System.out.println("Common Elements using HashSet: " + commonElements);
+        }
+    }
     // 9. Maximum and Minimum Elements in Array
     public static class MaxMinElements {
         public static void main(String[] args) {
@@ -1074,7 +1106,21 @@ Real-World Application Problems (76–100)
             System.out.println("Reversed String: " + new String(str));
         }
     }
+//Reverse the entire sentence
+public static class ReverseWordsInString {
+    public static void main(String[] args) {
+        String str = "India is My country";
+        String[] words = str.split(" ");
+        String ans = "";
 
+        for (int i = words.length - 1; i >= 0; i--) {
+            ans = ans + words[i] + " ";
+        }
+
+        // Remove the trailing space and print the result
+        System.out.println(ans.trim());
+    }
+}
     //Convert a binary number to decimal.
     public static class BinaryToDecimal {
 
@@ -1175,7 +1221,7 @@ Real-World Application Problems (76–100)
             System.out.println("Special Characters: " + special);
         }
     }
-
+// sort an Array without using inbuilt method?
     public static class SortArrayWithoutInbuilt {
         public static void main(String[] args) {
             // Input array
@@ -1260,7 +1306,7 @@ Real-World Application Problems (76–100)
             System.out.println(freqMap);
         }
     }
-
+//Counting number of occurrences of given word in a string using Java?
     public static class WordOccurrences {
         public static void main(String[] args) {
             // Input string and word to search for
