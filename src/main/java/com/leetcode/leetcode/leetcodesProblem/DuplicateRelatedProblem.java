@@ -197,6 +197,80 @@ public class DuplicateRelatedProblem {
         }
 
     }
+    // Remove Duplicates from Sorted Array
+    public static class RemoveDuplicates{
+        public static void main(String[] args) {
+            int nums[] = {1, 1, 2};
+            int output = removeDuplicates(nums);
+            System.out.println("Output: " + output);
+
+            // To print the unique elements
+            for (int i = 0; i < output; i++) {
+                System.out.print(nums[i] + " ");
+            }
+        }
+
+        private static int removeDuplicates(int[] nums) {
+            if (nums.length == 0) {
+                return 0; // Handle empty array
+            }
+
+            int j = 1; // Pointer for the next unique position
+            for (int i = 1; i < nums.length; i++) {
+                if (nums[i] != nums[j - 1]) { // Compare with the previous unique element
+                    nums[j] = nums[i];
+                    j++;
+                }
+            }
+            return j; // `j` represents the count of unique elements
+        }
+    }
+
+
+    //Remove Duplicates from Sorted Array II
+
+    public static class RemoveDuplicatesSolution {
+        public static void main(String[] args) {
+            Solution solution = new Solution();
+
+            // Example 1
+            int[] nums1 = {1, 1, 1, 2, 2, 3};
+            int length1 = solution.removeDuplicates(nums1);
+            System.out.println("Output length: " + length1);
+            System.out.print("Modified array: ");
+            for (int i = 0; i < length1; i++) {
+                System.out.print(nums1[i] + " ");
+            }
+            System.out.println();
+
+            // Example 2
+            int[] nums2 = {0, 0, 1, 1, 1, 1, 2, 3, 3};
+            int length2 = solution.removeDuplicates(nums2);
+            System.out.println("Output length: " + length2);
+            System.out.print("Modified array: ");
+            for (int i = 0; i < length2; i++) {
+                System.out.print(nums2[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+   public static class Solution {
+        public int removeDuplicates(int[] nums) {
+            int j = 0; // Pointer for the next position to write a valid number
+
+            for (int i = 0; i < nums.length; i++) {
+                // Check if the current element is valid to be written
+                if (j < 2 || nums[i] != nums[j - 2]) {
+                    nums[j] = nums[i];
+                    j++;
+                }
+            }
+
+            return j; // Return the length of the modified array
+        }
+    }
+
     //9 Move Zero
 
 
@@ -396,22 +470,22 @@ public class DuplicateRelatedProblem {
         }
     }
 
-    public static class RemoveDuplicates {
-        public static void main(String[] args) {
-            String str = "aabbccdef";
-            System.out.println("String without duplicates: " + removeDuplicates(str));
-        }
-
-        private static String removeDuplicates(String str) {
-            StringBuilder result = new StringBuilder();
-            for (char ch : str.toCharArray()) {
-                if (result.indexOf(String.valueOf(ch)) == -1) {
-                    result.append(ch);
-                }
-            }
-            return result.toString();
-        }
-    }
+//    public static class RemoveString {
+//        public static void main(String[] args) {
+//            String str = "aabbccdef";
+//            System.out.println("String without duplicates: " + removeDuplicates(str));
+//        }
+//
+//        private static String removeDuplicates(String str) {
+//            StringBuilder result = new StringBuilder();
+//            for (char ch : str.toCharArray()) {
+//                if (result.indexOf(String.valueOf(ch)) == -1) {
+//                    result.append(ch);
+//                }
+//            }
+//            return result.toString();
+//        }
+//    }
     public static class RemoveDuplicatess {
         public static void main(String[] args) {
             // Input array with duplicates
@@ -460,4 +534,6 @@ public class DuplicateRelatedProblem {
             }
         }
     }
+
+
 }
