@@ -213,5 +213,4 @@ Answer: b)
 Integer method: 10  
 Double method: 10.5  
 
-Would you like additional questions or deeper explanations? 😊
 

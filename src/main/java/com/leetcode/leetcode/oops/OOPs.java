@@ -1,6 +1,7 @@
 package com.leetcode.leetcode.oops;
 
 import com.leetcode.leetcode.oops.encapsulation.A;
+import com.leetcode.leetcode.oops.polymorphism.compileTimePolymorphism.StaticMethodOverloading;
 
 import java.io.*;
 
@@ -921,4 +922,106 @@ Encapsulation:
             }
         }
     }
+    /*
+    Polymorphism in Java
+    -> Developing a feature such that it can take more than one form depending on situation is called Polymorphism.
+     -> In java polymorphism is mainly divided into two types:
+        1. Compile time polymorphism
+        2. Run time polymorphism
+
+          1. Compile time polymorphism
+          Compile-time polymorphism in Java, also known as static polymorphism or early binding,
+          is achieved through **method overloading**.
+         Method overloading allows multiple methods in the same class to have the same name but different parameter lists.
+
+        1. **Method Overloading**: Creating multiple methods in the same class with the same name but different parameters.
+        2. **Static Methods**: Method overloading can be applied to static methods as well.
+
+        Method overloading allows a class to have more than one method with the same name, provided their parameter lists are different. The differences can be in the:
+       1. **Number of Parameters**: The methods can have different numbers of parameters.
+       2. **Type of Parameters**: The methods can accept parameters of different types.
+       3. **Order of Parameters**: The order of parameters in the method signature can be different.
+
+- **Overloading Static Methods**: Yes, static methods can be overloaded.
+- **Overloading with Different Return Types**: Method overloading cannot be done by changing the return type alone. The parameter list must differ.
+
+### 1. **Can we overload methods that differ only by the static keyword?**
+- **Answer**: No, overloading methods that differ only by the `static` keyword is not possible. The parameter list must differ.
+
+
+### 2. **Can we overload methods with different return types?**
+- **Answer**: No, overloading based only on return types is not allowed in Java. The parameter list must be different for method overloading.
+
+### 3. **Can we overload a method by changing only the order of parameters?**
+- **Answer**: Yes, you can overload a method by changing the order of parameters.
+
+### 4. **Can we overload the main method in Java?**
+- **Answer**: Yes, the `main` method can be overloaded, but the JVM will only call the standard `main(String[] args)` method when starting the application.
+
+### 5. **What happens if we overload methods with different parameter lists and same return type?**
+- **Answer**: The correct method is determined at compile-time based on the method signature used when calling the method.
+
+     */
+
+    public static class A1{
+        public int a(int x){
+            return x;
+        }
+        public int sum(int x,int y){
+            return x+y;
+        }
+        public int multiple(int x,int y){
+            return x*y;
+        }
+
+        public static void main(String[] args) {
+            A1 a=new A1();
+            System.out.println(a.a(1));
+            System.out.println(a.sum(2,4));
+            System.out.println(a.multiple(3,2));
+        }
+    }
+
+    public static class StaticMethodOverloading {
+        /*
+        static methods can be overloaded,
+        but you cannot overload a method by changing only the return type
+         */
+        // Static method with an integer parameter
+        public static void display(int a) {
+            System.out.println("Static method with integer: " + a);
+        }
+
+        // Static method with a double parameter
+        public static void display(double a) {
+            System.out.println("Static method with double: " + a);
+        }
+
+        // Overloaded static method with the same name, but different number of parameters
+        public static void display(int a, double b) {
+            System.out.println("Static method with integer and double: " + a + ", " + b);
+        }
+
+        // Uncommenting the following method will result in a compilation error because
+        // method overloading cannot be achieved just by changing the return type.
+        // public static int display(int a) {
+        //     return a * 2;  // Compilation Error: Method display(int) is already defined
+        // }
+
+        public static void main(String[] args) {
+            // Calling overloaded static methods
+            StaticMethodOverloading.display(10);           // Calls display(int)
+            StaticMethodOverloading.display(10.5);         // Calls display(double)
+           StaticMethodOverloading.display(10, 20.5);     // Calls display(int, double)
+
+            // If you uncomment the above return type change, it will cause a compilation error.
+        }
+    }
+/*
+
+	•	Static methods can be overloaded by changing the number of parameters or types of parameters.
+	•	Overloading based only on return type is not allowed in Java. The display(int) method is already defined, so trying to change its return type will lead to a compilation error.
+	•	The method signatures must differ by the parameter list (number, type, or order of parameters).
+
+ */
 }
