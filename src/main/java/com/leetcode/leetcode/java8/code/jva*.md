@@ -229,3 +229,212 @@ Suggested Questions:
 6.	How to debug streams using peek()?
 7.	Can you explain when to use findFirst() vs findAny()?
 
+````
+````
+# Stream API Frequently Asked Questions
+
+### 1. **How does `collect(Collectors.toList())` work?**
+The `collect(Collectors.toList())` method is a terminal operation in the Stream API that collects elements from a stream into a `List`. It works by internally creating a `Collector` that accumulates the stream's elements into a `List`.
+
+**Key Points**:
+- Iterates through the stream and adds each element to a `List`.
+- The resulting `List` is mutable and preserves the order of elements in the stream.
+
+**Example**:
+```java
+List<String> names = List.of("Alice", "Bob", "Charlie");
+List<String> collectedNames = names.stream()
+                                   .filter(name -> name.startsWith("A"))
+                                   .collect(Collectors.toList());
+System.out.println(collectedNames); // Output: [Alice]
+```
+
+---
+
+### 2. **Compare `Stream` and `parallelStream()`**
+
+| Feature                | `Stream`                              | `parallelStream()`                      |
+|------------------------|----------------------------------------|-----------------------------------------|
+| Execution              | Sequential execution (single-threaded). | Parallel execution (multi-threaded).   |
+| Performance            | Suitable for small or simple datasets. | Better for large datasets with CPU-intensive tasks. |
+| Thread Utilization     | Uses a single core.                   | Utilizes multiple CPU cores.           |
+| Order Preservation     | Preserves order unless explicitly modified. | Order may not always be preserved.    |
+| Use Case               | When order is critical or data is small. | When performance gains are required on large datasets. |
+
+**Example**:
+```java
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+// Stream
+numbers.stream()
+       .forEach(System.out::println);
+
+// Parallel Stream
+numbers.parallelStream()
+       .forEach(System.out::println);
+```
+
+---
+
+### 3. **Difference between `limit()` and `skip()`**
+
+| Feature           | `limit(long n)`                        | `skip(long n)`                           |
+|-------------------|----------------------------------------|------------------------------------------|
+| Purpose           | Extracts the first `n` elements.       | Skips the first `n` elements and processes the rest. |
+| Use Case          | Restrict the size of the stream.       | Ignore a specific number of elements.    |
+| Example           | `stream.limit(3)` produces `[1, 2, 3]` | `stream.skip(2)` produces `[3, 4, 5]`    |
+
+**Example**:
+```java
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+// limit()
+List<Integer> limited = numbers.stream()
+                               .limit(3)
+                               .collect(Collectors.toList());
+System.out.println(limited); // Output: [1, 2, 3]
+
+// skip()
+List<Integer> skipped = numbers.stream()
+                               .skip(2)
+                               .collect(Collectors.toList());
+System.out.println(skipped); // Output: [3, 4, 5]
+```
+
+---
+
+### 4. **How `reduce()` works with examples**
+
+The `reduce()` method is used to perform a reduction on the elements of the stream using an accumulator. It combines elements into a single result.
+
+**Key Variants**:
+1. **Without an Identity**:
+   - Returns an `Optional`.
+   - Example:
+     ```java
+     List<Integer> numbers = List.of(1, 2, 3, 4);
+     Optional<Integer> sum = numbers.stream()
+                                    .reduce((a, b) -> a + b);
+     System.out.println(sum.orElse(0)); // Output: 10
+     ```
+
+2. **With an Identity**:
+   - Provides an initial value for the accumulator.
+   - Example:
+     ```java
+     List<Integer> numbers = List.of(1, 2, 3, 4);
+     int sum = numbers.stream()
+                      .reduce(0, (a, b) -> a + b);
+     System.out.println(sum); // Output: 10
+     ```
+
+3. **With an Identity and a Combiner** (for parallel streams):
+   - Combines results from multiple threads.
+   - Example:
+     ```java
+     List<Integer> numbers = List.of(1, 2, 3, 4);
+     int product = numbers.stream()
+                          .reduce(1, (a, b) -> a * b, (a, b) -> a * b);
+     System.out.println(product); // Output: 24
+     ```
+
+---
+
+### 5. **How to handle exceptions in the Stream API**
+
+Exceptions can be tricky in streams due to the lambda-based functional approach. Common strategies include:
+
+1. **Using a Wrapper Method**:
+   - Example:
+     ```java
+     List<String> data = List.of("10", "20", "invalid", "30");
+     List<Integer> numbers = data.stream()
+                                 .map(StreamAPIExamples::safeParseInt)
+                                 .collect(Collectors.toList());
+
+     static Integer safeParseInt(String s) {
+         try {
+             return Integer.parseInt(s);
+         } catch (NumberFormatException e) {
+             return 0; // Default value
+         }
+     }
+     ```
+
+2. **Using `Try-Catch` Inside Lambdas**:
+   - Example:
+     ```java
+     List<String> data = List.of("10", "20", "invalid", "30");
+     List<Integer> numbers = data.stream()
+                                 .map(s -> {
+                                     try {
+                                         return Integer.parseInt(s);
+                                     } catch (NumberFormatException e) {
+                                         return 0;
+                                     }
+                                 })
+                                 .collect(Collectors.toList());
+     ```
+
+3. **Using a Custom Functional Interface**:
+   Create a functional interface to handle exceptions cleanly.
+
+---
+
+### 6. **Limitations of Streams**
+
+1. **One-Time Use**:
+   A stream cannot be reused once its terminal operation is called.
+
+2. **Debugging Challenges**:
+   Debugging streams can be complex due to lambda expressions and lazy evaluation.
+
+3. **Performance Overhead**:
+   - Streams introduce overhead for small datasets compared to traditional loops.
+   - Parallel streams may not always be efficient due to thread-management costs.
+
+4. **Order Sensitivity**:
+   Parallel streams might not maintain the order of elements unless explicitly specified.
+
+5. **Not Suitable for Stateful Operations**:
+   Operations like incrementing a counter or maintaining external state are discouraged.
+
+---
+
+### 7. **Stream Performance in Large Datasets**
+
+1. **Sequential Streams**:
+   - Work well for smaller datasets or when order matters.
+   - Single-threaded execution might become a bottleneck for large datasets.
+
+2. **Parallel Streams**:
+   - Utilize multiple cores, reducing execution time for large datasets.
+   - Performance improvement depends on the size of the data, the complexity of operations, and the number of available CPU cores.
+
+3. **Key Considerations**:
+   - Ensure the data source supports parallel processing (e.g., `ArrayList`, not `LinkedList`).
+   - Avoid using parallel streams if thread safety is a concern.
+   - Test performance before switching to parallel streams as it may degrade performance for simple tasks or small data.
+
+**Example**:
+```java
+List<Integer> largeDataset = IntStream.range(1, 1_000_000)
+                                      .boxed()
+                                      .collect(Collectors.toList());
+
+// Sequential Stream
+long start = System.currentTimeMillis();
+long sum1 = largeDataset.stream()
+                        .reduce(0L, Long::sum);
+long end = System.currentTimeMillis();
+System.out.println("Sequential Time: " + (end - start) + "ms");
+
+// Parallel Stream
+start = System.currentTimeMillis();
+long sum2 = largeDataset.parallelStream()
+                        .reduce(0L, Long::sum);
+end = System.currentTimeMillis();
+System.out.println("Parallel Time: " + (end - start) + "ms");
+
+
+```

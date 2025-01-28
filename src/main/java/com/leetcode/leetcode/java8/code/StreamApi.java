@@ -4,39 +4,148 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+
 /*
+     STREAMAPI JAVA8FEATURES
+->WHICH HELPS US TO MANIPULATE COLLECTION
+->A STREAM IS A SEQUENCE OF OBJECTS THAT SUPPORTS VARIOUS METHODS.
+->PRESENT IN java.util.package
+-> A STREAM IS NOT PRESENT IN JAVA.UTIL PACKAGE
 
-What is the Stream API?
+....INTERMEDIATE OPERATION
+                            THREE METHODS:
+                            1.FILTER():->FILTER IS USED FOR FILTERING THE DATA. IT ALWAYS RETURNS THE BOOLEAN VALUE.
+                            2.MAP():->TRANSFER THE OBJECT VALUE.
+                            Here are additional examples of intermediate operations in Java 8 Stream API:
 
-The Stream API in Java is a functional programming tool introduced in Java 8.
+Intermediate Operations Examples
+	1.	filter(Predicate)
+Filters elements based on a condition.
+Example:
 
-Key Concepts
-	1.	Stream:
-	•	A sequence of elements that supports aggregate operations.
-	•	It does not store elements; it processes them on demand.
-	2.	Pipeline:
-	•	A stream pipeline consists of:
-	•	A Source (e.g., Collection, Array).
-	•	Intermediate Operations (e.g., filter, map).
-	•	A Terminal Operation (e.g., collect, forEach).
+List<String> names = List.of("Alice", "Bob", "Charlie", "David");
+List<String> filteredNames = names.stream()
+                                  .filter(name -> name.length() > 3)
+                                  .collect(Collectors.toList());
+System.out.println(filteredNames); // Output: [Alice, Charlie, David]
 
-Why Use the Stream API?
-	•	Declarative Code: Write what you want, not how to do it.
-	•	Lazy Evaluation: Intermediate operations are only executed when a terminal operation is invoked.
-	•	Parallel Processing: Improves performance on multi-core systems using parallelStream().
-	•	Reduced Boilerplate: Minimizes loops and improves code readability.
+	2.	map(Function)
+Transforms each element into another form.
+Example:
 
-Types of Operations
-	1.	Intermediate Operations (lazy, return a stream):
-	•	filter(Predicate): Filters elements based on a condition.
-	•	map(Function): Transforms each element.
-	•	sorted(): Sorts elements.
-	•	distinct(): Removes duplicates.
+List<Integer> numbers = List.of(1, 2, 3, 4);
+List<Integer> squaredNumbers = numbers.stream()
+                                      .map(n -> n * n)
+                                      .collect(Collectors.toList());
+System.out.println(squaredNumbers); // Output: [1, 4, 9, 16]
 
-	2.	Terminal Operations (trigger processing, close the stream):
-	•	forEach(Consumer): Performs an action for each element.
-	•	collect(Collector): Gathers results into a collection.
-	•	reduce(BinaryOperator): Reduces elements to a single value.
+	3.	flatMap(Function)
+Flattens nested structures (e.g., a list of lists).
+Example:
+
+List<List<Integer>> numberLists = List.of(
+    List.of(1, 2, 3),
+    List.of(4, 5),
+    List.of(6, 7, 8)
+);
+List<Integer> flatList = numberLists.stream()
+                                    .flatMap(List::stream)
+                                    .collect(Collectors.toList());
+System.out.println(flatList); // Output: [1, 2, 3, 4, 5, 6, 7, 8]
+
+	4.	sorted()
+Sorts the elements in natural order or based on a comparator.
+Example 1 (Natural Order):
+
+List<Integer> numbers = List.of(4, 2, 3, 1);
+List<Integer> sortedNumbers = numbers.stream()
+                                     .sorted()
+                                     .collect(Collectors.toList());
+System.out.println(sortedNumbers); // Output: [1, 2, 3, 4]
+
+Example 2 (Custom Comparator):
+
+List<String> names = List.of("Charlie", "Bob", "Alice");
+List<String> sortedNames = names.stream()
+                                .sorted((a, b) -> b.compareTo(a)) // Reverse order
+                                .collect(Collectors.toList());
+System.out.println(sortedNames); // Output: [Charlie, Bob, Alice]
+
+	5.	distinct()
+Removes duplicate elements.
+Example:
+
+List<Integer> numbers = List.of(1, 2, 2, 3, 4, 4, 5);
+List<Integer> distinctNumbers = numbers.stream()
+                                       .distinct()
+                                       .collect(Collectors.toList());
+System.out.println(distinctNumbers); // Output: [1, 2, 3, 4, 5]
+
+	6.	limit(long n)
+Limits the stream to the first n elements.
+Example:
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+List<Integer> limitedNumbers = numbers.stream()
+                                      .limit(3)
+                                      .collect(Collectors.toList());
+System.out.println(limitedNumbers); // Output: [1, 2, 3]
+
+	7.	skip(long n)
+Skips the first n elements.
+Example:
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+List<Integer> skippedNumbers = numbers.stream()
+                                      .skip(2)
+                                      .collect(Collectors.toList());
+System.out.println(skippedNumbers); // Output: [3, 4, 5]
+
+	8.	peek(Consumer)
+Performs an action on each element as it is processed (used for debugging).
+Example:
+
+List<Integer> numbers = List.of(1, 2, 3, 4);
+List<Integer> doubledNumbers = numbers.stream()
+                                      .peek(n -> System.out.println("Processing: " + n))
+                                      .map(n -> n * 2)
+                                      .collect(Collectors.toList());
+System.out.println(doubledNumbers);
+// Output:
+// Processing: 1
+// Processing: 2
+// Processing: 3
+// Processing: 4
+// [2, 4, 6, 8]
+
+	9.	takeWhile(Predicate) (Java 9 and later)
+Takes elements while the condition is true.
+Example:
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+List<Integer> result = numbers.stream()
+                              .takeWhile(n -> n < 4)
+                              .collect(Collectors.toList());
+System.out.println(result); // Output: [1, 2, 3]
+
+	10.	dropWhile(Predicate) (Java 9 and later)
+Drops elements while the condition is true, and processes the remaining.
+Example:
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+List<Integer> result = numbers.stream()
+                              .dropWhile(n -> n < 4)
+                              .collect(Collectors.toList());
+System.out.println(result); // Output: [4, 5]
+
+.....TERMINAL OPERATIONS
+                            1.COLLECT()->THE COLLECT METHOD IS USED TO RETURN THE RESULT OF THE INTERMEDIATE OPERATIONS PERFORMED ON THE STREAM.
+                            2.FOREACH()->THE FOREACH METHOD IS USED TO ITERATE THROUGH EVERY ELEMENTS OF THE STREAM.
+                            3.REDUCE()->THE REDUCE METHOD IS USED TO REDUCE THE ELEMENTS OF A STREAM TO A SINGLE VALUE.
+                            STREAM(): STREAM IS A SEQUENCE OF OBJECT WE CAN TRAVELS THROUGH SEQUENCE OF OBJECT THROUGH JAVA8.
+                            1.SEQUENTIAL STREAM: sequential stream is where you current stream execute in one core in one thread.
+                            2.PARALLEL STREAM:Parallel stream is applicable for multiple core sequential stream execute single core.
+
 
 Common Interview Questions
 	1.	How is a Stream different from a Collection?
