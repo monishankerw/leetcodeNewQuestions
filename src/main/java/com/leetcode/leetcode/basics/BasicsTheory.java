@@ -214,14 +214,14 @@ Real-World Application Problems (76–100)
 	100.	Create an algorithm to match job seekers with job postings.
 
      */
-    //Print “Hello, World!
+    // 1. Print “Hello, World!
     public static class HelloWorld {
         public static void main(String[] args) {
             System.out.println("Hello, World!");
         }
     }
 
-    //Write a program to add two numbers.
+    //2.Write a program to add two numbers.
     public static class AddNumbers {
         public static void main(String[] args) {
 //            int a = 5, b = 7;

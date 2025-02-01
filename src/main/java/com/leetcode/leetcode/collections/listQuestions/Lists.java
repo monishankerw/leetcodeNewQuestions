@@ -5,7 +5,7 @@ import java.util.*;
 public class Lists {
 
      //1. WAP to traverse(ot iterate) ArrayList.
-    public class A {
+    public static class A {
         public static void main(String[] args) {
             ArrayList<Integer> a=new ArrayList<>();
             a.add(3);
@@ -34,7 +34,7 @@ public class Lists {
                 System.out.print(" "+num);
             }
         }//o/p  3 17 6 9 7
-// ArrayList<Integer> a = new ArrayList<>(Arrays.asList(3, 17, 6, 9, 7));
+//        ArrayList<Integer> a = new ArrayList<>(Arrays.asList(3, 17, 6, 9, 7));
 //
 //        a.forEach(num -> System.out.print(" " + num)); // Using lambda expression
     }

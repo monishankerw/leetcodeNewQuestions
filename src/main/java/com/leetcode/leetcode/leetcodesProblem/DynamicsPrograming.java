@@ -23,6 +23,55 @@ public class DynamicsPrograming {
             }
             return c;
         }
+        public static class FibonacciSeries {
+            public static void main(String[] args) {
+                int n1 = 2;
+                int output1 = fibonacciSeries(n1);
+                System.out.println("Fibonacci Series: " + output1);
+                int n2 = 3;
+                int output2 = fibonacciSeries(n2);
+                System.out.println("Fibonacci Series: " + output2);
+            }
+            private static int fibonacciSeries(int n) {
+                int res[] = new int[n + 1];
+                if (n == 0) {
+                    return 0;
+                }
+                if (n == 1) {
+                    return 1;
+                }
+                res[0] = 0;
+                res[1] = 1;
+                for (int i = 2; i <= n; i++) {
+                    res[i] = res[i - 1] + res[i - 2];
+                }
+                return res[n];
+            }
+        }
+
+        /*
+        similarQuestion
+        Min Cost Climbing Stairs
+Easy
+Fibonacci Number
+Easy
+N-th Tribonacci Number
+Easy
+Minimum Rounds to Complete All Tasks
+Medium
+Count Number of Ways to Place Houses
+Medium
+Number of Ways to Reach a Position After Exactly k Steps
+Medium
+Count Ways To Build Good Strings
+Medium
+Frog Jump II
+Medium
+Find Number of Ways to Reach the K-th Stair
+Hard
+The Number of Ways to Make the Sum
+
+         */
     }
 
     public static class HouseRobber {
@@ -70,6 +119,7 @@ public class DynamicsPrograming {
             return Math.min(first, second);
         }
     }
+
 
     public static class HouseRobberII {
         public static void main(String[] args) {
@@ -265,35 +315,36 @@ public class DynamicsPrograming {
             System.out.println("Minimum Path Sum: " + result);
         }
     }
-    public static class JumpGameII{
+
+    public static class JumpGameII {
         public static void main(String[] args) {
 
-        int input[]={2,3,1,1,4};
-        JumpGameII jumpGameII=new JumpGameII();
-     int output;
+            int input[] = {2, 3, 1, 1, 4};
+            JumpGameII jumpGameII = new JumpGameII();
+            int output;
             output = jumpGameII.jumpGamesII(input);
-            System.out.println("Output::"+output);
-    }
+            System.out.println("Output::" + output);
+        }
 
         private int jumpGamesII(int[] input) {
-            int n=input.length;
-            if(n==1)
+            int n = input.length;
+            if (n == 1)
                 return 0;
 
-            int jumps=0;
-            int farthest=0;
-            int currentEnd=0;
-            for (int i=0;i<n-1;i++){
-                farthest=Math.max(farthest,i+input[i]);
-                if(i==currentEnd){
+            int jumps = 0;
+            int farthest = 0;
+            int currentEnd = 0;
+            for (int i = 0; i < n - 1; i++) {
+                farthest = Math.max(farthest, i + input[i]);
+                if (i == currentEnd) {
                     jumps++;
-                    currentEnd=farthest;
-                    if(currentEnd>=n-1)
+                    currentEnd = farthest;
+                    if (currentEnd >= n - 1)
                         break;
                 }
             }
             return jumps;
         }
-        }
     }
+}
 
