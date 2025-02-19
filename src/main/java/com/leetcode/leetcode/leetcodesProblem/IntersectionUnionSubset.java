@@ -187,7 +187,7 @@ public class IntersectionUnionSubset {
 
             Set<Integer> unionss = Stream.concat(a1.stream(), b1.stream())
                     .collect(Collectors.toSet());
-            System.out.println("Union using Stream API::"+unionss);
+            System.out.println("Union using Stream API::" + unionss);
 
         /*
         // Union using flatMap
@@ -200,9 +200,9 @@ public class IntersectionUnionSubset {
 
 
             //intersection
-            Set<Integer>intersections=new HashSet<>(a);
+            Set<Integer> intersections = new HashSet<>(a);
             intersections.retainAll(b);
-            System.out.println("Intersections:"+intersections);
+            System.out.println("Intersections:" + intersections);
 
             // Intersection using Java 8 Streams
         /*
@@ -220,11 +220,48 @@ public class IntersectionUnionSubset {
             System.out.println("Intersections:: " + intersectionss);
 
             //SYMMETRIC DIFFERENCE
-            Set<Integer>symmetricDifference=new HashSet<>(unions);
+            Set<Integer> symmetricDifference = new HashSet<>(unions);
             symmetricDifference.removeAll(intersections);
-            System.out.println("symmetricDifference:"+symmetricDifference);
+            System.out.println("symmetricDifference:" + symmetricDifference);
 
         }
-    }
 
+        public static class FindCommonChars {
+            public static void main(String[] args) {
+                String[] words = {"bella", "label", "roller" };
+                List<String> commonChars = commonChars(words);
+                System.out.println("Common Chars: " + commonChars);
+            }
+
+            public static List<String> commonChars(String[] words) {
+                int[] minFreq = new int[26]; // To store minimum frequency of each character
+                Arrays.fill(minFreq, Integer.MAX_VALUE);
+
+                // Iterate over each word and count the frequency of each character
+                for (String word : words) {
+                    int[] charCount = new int[26];
+
+                    for (char c : word.toCharArray()) {
+                        charCount[c - 'a']++;
+                    }
+
+                    // Update the minimum frequency
+                    for (int i = 0; i < 26; i++) {
+                        minFreq[i] = Math.min(minFreq[i], charCount[i]);
+                    }
+                }
+
+                List<String> result = new ArrayList<>();
+
+                // Extract common characters based on their minimum frequency
+                for (int i = 0; i < 26; i++) {
+                    while (minFreq[i]-- > 0) {
+                        result.add(String.valueOf((char) (i + 'a')));
+                    }
+                }
+
+                return result;
+            }
+        }
+    }
 }
