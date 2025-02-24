@@ -582,9 +582,17 @@ no
 Encapsulation is the concept of wrapping data (attributes) and methods (functions) that operate on the data into a single unit,
 typically a class. This helps to restrict direct access to some of the object's components, which is a means of preventing unintended interference and misuse.
 
+restricting direct access to internal state.
+   public class BankAccount {
+    private double balance;  // Internal state is hidden
+}
 - **Key Points:**
   - Data is made private to prevent direct access.
   - Public methods, known as **getters** and **setters**, are provided to operate on the data.
+  public double getBalance() { return balance; }  // Controlled read access
+public void deposit(double amount) {           // Controlled write access
+    if (amount > 0) balance += amount;
+}
 
 ## 2. Advantages of Encapsulation
 - **Control Access to Data:** It allows for validation of values before they are set, ensuring that the object maintains a valid state.
@@ -599,6 +607,12 @@ To achieve encapsulation in Java, follow these steps:
 1. Declare the variables of a class as private.
 2. Provide public setter and getter methods to modify and view the variable values.
 
+Why Encapsulation?
+Data Protection: Prevent unintended state corruption.
+
+Flexibility: Change internal implementation without breaking clients.
+
+Maintainability: Centralize validation/business rules.
 ### Example
 ```java
 public class Employee {
@@ -632,6 +646,9 @@ String empName = emp.getName(); // Using getter
 - **Increased Flexibility:** You can change the internal implementation without affecting other parts of the code.
 - **Reusability:** Encapsulated code is easier to reuse in other programs or projects.
 
+
+
+
      */
     public static class ANC {
         private int i;
@@ -657,8 +674,36 @@ String empName = emp.getName(); // Using getter
             System.out.println(a.GetName());
         }
     }
+//2. Intermediate: Immutability
+//    Leverage final for Robust Encapsulation:
 
-    /*
+
+    public static final class ImmutablePerson {
+        private final String name;  // Cannot be modified after construction
+        private final int age;
+
+        public ImmutablePerson(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        // No setters; only getters
+        public String getName() { return name; }
+        public int getAge() { return age; }
+    }
+//    Key Points:
+//
+//    Immutable objects are thread-safe and avoid temporal coupling.
+//
+//            Use final for fields and classes to enforce immutability.
+//
+
+ /*
+
+  */
+
+  /*
+
     INTERFACE
 
 INTERFACE
@@ -1024,4 +1069,8 @@ Encapsulation:
 	•	The method signatures must differ by the parameter list (number, type, or order of parameters).
 
  */
+
+    /*
+    SOLID Principles
+     */
 }

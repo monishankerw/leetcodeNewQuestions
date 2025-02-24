@@ -23,4 +23,8 @@ public class A {
         System.out.println(a.GetI());
         System.out.println(a.GetName());
     }
+
 }
+/*
+
+ */
