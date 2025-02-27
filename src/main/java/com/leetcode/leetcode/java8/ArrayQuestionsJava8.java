@@ -1,11 +1,9 @@
 package com.leetcode.leetcode.java8;
 
-import java.util.Arrays;
+import java.util.*;
 import java.util.stream.IntStream;
-import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.Map;
+import java.util.stream.Stream;
 
 public class ArrayQuestionsJava8 {
 
@@ -172,5 +170,178 @@ public class ArrayQuestionsJava8 {
                 .flatMapToInt(Arrays::stream)
                 .toArray();
         System.out.println("21. Flattened 2D array: " + Arrays.toString(flattened));
+        //22. First Non-Repeated Element
+        //Find the first non-repeated element in an array using streams.
+        int[] repeatArr = {1, 2, 3, 2, 1, 4};
+        Map<Integer, Long> frequencyMap = Arrays.stream(repeatArr)
+                .boxed()
+                .collect(Collectors.groupingBy(x -> x, LinkedHashMap::new, Collectors.counting()));
+
+        int firstUnique = frequencyMap.entrySet().stream()
+                .filter(e -> e.getValue() == 1)
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElse(-1);
+        System.out.println("22. First non-repeated: " + firstUnique);
+
+        //23. Partition Even and Odd Numbers
+        //Split an array into even and odd numbers using partitioning.
+        Map<Boolean, List<Integer>> partitioned = Arrays.stream(arr1)
+                .boxed()
+                .collect(Collectors.partitioningBy(n1 -> n1 % 2 == 0));
+        System.out.println("23. Partitioned (even, odd): " + partitioned);
+
+        //24. Validate All Positive Numbers
+        //Check if all elements in the array are positive.
+        boolean allPositive = Arrays.stream(arr1).allMatch(n2 -> n2 > 0);
+        System.out.println("24. All elements positive: " + allPositive);
+
+        //25. Convert String Array to Uppercase
+        //Convert a string array to uppercase using streams.
+        String[] words = {"java", "streams", "interview"};
+        String[] upperWords = Arrays.stream(words)
+                .map(String::toUpperCase)
+                .toArray(String[]::new);
+        System.out.println("25. Uppercase strings: " + Arrays.toString(upperWords));
+
+        //26. Find Kth Smallest Element
+        //Find the kth smallest element in an unsorted array using streams.
+        int k1 = 3;
+        int[] unsorted = {9, 3, 5, 1, 7};
+        int kthSmallest = Arrays.stream(unsorted)
+                .sorted()
+                .skip(k1 - 1)
+                .findFirst()
+                .orElse(-1);
+        System.out.println("26. 3rd smallest element: " + kthSmallest);
+
+        //27. Sum of Squares of Even Numbers
+        //Calculate the sum of squares of all even numbers in an array.
+
+        int sumOfSquares = Arrays.stream(arr1)
+                .filter(n3 -> n3 % 2 == 0)
+                .map(n3 -> n3 * n3)
+                .sum();
+        System.out.println("27. Sum of squares of evens: " + sumOfSquares);
+
+        //28. Count Occurrences of a Specific Element
+        //Count how many times a specific element appears in an array.
+
+        int target = 2;
+        long count = Arrays.stream(arr1)
+                .filter(n4 -> n4 == target)
+                .count();
+        System.out.println("28. Count of " + target + ": " + count);
+
+        //29. Longest String in an Array
+        //Find the longest string in a string array using streams.
+        String[] strings = {"apple", "banana", "kiwi"};
+        String longest1 = Arrays.stream(strings)
+                .reduce((a, b) -> a.length() > b.length() ? a : b)
+                .orElse("");
+        System.out.println("29. Longest string: " + longest1);
+
+        //30. Merge and Deduplicate Two Arrays
+        //Merge two arrays and remove duplicates using streams.
+
+        int[] mergeArr1 = {1, 2, 3};
+        int[] mergeArr2 = {3, 4, 5};
+        int[] mergedUnique = IntStream.concat(Arrays.stream(mergeArr1), Arrays.stream(mergeArr2))
+                .distinct()
+                .toArray();
+        System.out.println("30. Merged unique: " + Arrays.toString(mergedUnique));
+
+        //31. Check if Array is Sorted
+        //Verify if an array is sorted in ascending order using streams.
+        boolean isSorted = IntStream.range(0, arr1.length - 1)
+                .allMatch(i -> arr1[i] <= arr1[i + 1]);
+        System.out.println("31. Is sorted: " + isSorted);
+
+        //32. Convert Primitive Array to List
+        //Convert an int array to a List<Integer> using streams.
+
+        List<Integer> list = Arrays.stream(arr1)
+                .boxed()
+                .collect(Collectors.toList());
+        System.out.println("32. Array as list: " + list);
+
+        //33. Most Frequent Element
+        //Find the element that appears most frequently in an array.
+        Map<Integer, Long> freqMap = Arrays.stream(arr1)
+                .boxed()
+                .collect(Collectors.groupingBy(x -> x, Collectors.counting()));
+
+        int mostFrequent = freqMap.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse(-1);
+        System.out.println("33. Most frequent element: " + mostFrequent);
+
+        //34. Square Every Element
+        //Replace every element in an array with its square.
+        int[] squared = Arrays.stream(arr1)
+                .map(n5 -> n5 * n5)
+                .toArray();
+        System.out.println("34. Squared array: " + Arrays.toString(squared));
+
+   //35. Find All Pairs with Given Sum
+        //Find all pairs in an array that sum to a target value.
+        int targetSum = 5;
+        Set<Integer> seen = new HashSet<>();
+        List<String> pairs = Arrays.stream(arr1)
+                .boxed()
+                .flatMap(x -> {
+                    if (seen.contains(targetSum - x)) {
+                        return Stream.of("(" + x + ", " + (targetSum - x) + ")");
+                    } else {
+                        seen.add(x);
+                        return Stream.empty();
+                    }
+                })
+                .collect(Collectors.toList());
+        System.out.println("35. Pairs summing to " + targetSum + ": " + pairs);
+
+
+        //
+      //   36. Convert List to Primitive Array
+     //   Convert a List<Integer> to an int[] using streams.
+
+        List<Integer> integerList = Arrays.asList(1, 2, 3);
+        int[] primitiveArray = integerList.stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
+        System.out.println("36. List to array: " + Arrays.toString(primitiveArray));
+
+        //37. Check If Any Element Satisfies Condition
+        //Check if any element in the array is greater than 10.
+
+        boolean anyGreaterThan10 = Arrays.stream(arr1).anyMatch(n6 -> n6 > 10);
+        System.out.println("37. Any element > 10: " + anyGreaterThan10);
+
+        //38. Sum of Elements Greater Than Threshold
+        //Calculate the sum of elements greater than a given threshold.
+        int threshold = 2;
+        int sumAboveThreshold = Arrays.stream(arr1)
+                .filter(n7 -> n7 > threshold)
+                .sum();
+        System.out.println("38. Sum above " + threshold + ": " + sumAboveThreshold);
+
+        //39. Find Index of an Element
+        //Find the index of a specific element in an array using streams.
+        int searchElement = 3;
+        int index = IntStream.range(0, arr1.length)
+                .filter(i -> arr1[i] == searchElement)
+                .findFirst()
+                .orElse(-1);
+        System.out.println("39. Index of " + searchElement + ": " + index);
+
+        //40. Split Array into Two Based on Condition
+        //Split an array into two lists: elements ≤ 5 and >5.
+        Map<Boolean, List<Integer>> split = Arrays.stream(arr1)
+                .boxed()
+                .collect(Collectors.partitioningBy(n8 -> n8 <= 5));
+        System.out.println("40. Split (≤5, >5): " + split);
+
+
     }
 }
