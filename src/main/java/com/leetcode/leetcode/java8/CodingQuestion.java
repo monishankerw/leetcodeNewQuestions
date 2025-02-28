@@ -1,4 +1,4 @@
-package com.demo;
+package com.leetcode.leetcode.java8;
 
 import java.util.*;
 import java.util.stream.Collectors;
