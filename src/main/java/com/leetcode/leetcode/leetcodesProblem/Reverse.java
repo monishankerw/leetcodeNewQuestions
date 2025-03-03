@@ -1,6 +1,8 @@
 package com.leetcode.leetcode.leetcodesProblem;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Reverse {
     public static class A {
@@ -26,22 +28,40 @@ public static class B{
 }
 public static class C{
     public static void main(String[] args) {
-        int[] arr={1,2,3,4,5};
-        System.out.println("Original Arrays:"+ Arrays.toString(arr));
-        reverseArrays(arr);
-        System.out.println("Reverse Arrays:"+Arrays.toString(arr));
+        int[] arr1 = {1, 2, 3, 4, 5};
+        System.out.println("Original Arrays: " + Arrays.toString(arr1));
+
+        // Traditional Approach (Without Java 8)
+        reverseArrays(arr1);
+        System.out.println("Reverse Arrays (Without Java 8): " + Arrays.toString(arr1));
+
+        Integer[] arr2 = {1, 2, 3, 4, 5};
+        System.out.println("\nOriginal Arrays (Java 8): " + Arrays.toString(arr2));
+
+        // Java 8 Streams Approach
+        arr2 = reverseUsingStreams(arr2);
+        System.out.println("Reverse Arrays (Java 8): " + Arrays.toString(arr2));
     }
 
+    // Traditional Approach (Without Java 8)
     private static void reverseArrays(int[] arr) {
-        int left=0,right=arr.length-1;
-        while (left<right){
-            int temp=arr[left];
-            arr[left]=arr[right];
-            arr[right]=temp;
+        int left = 0, right = arr.length - 1;
+        while (left < right) {
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
             left++;
             right--;
         }
     }
+
+    // Java 8 Streams Approach
+    private static Integer[] reverseUsingStreams(Integer[] arr) {
+        List<Integer> list = Arrays.asList(arr);
+        Collections.reverse(list);
+        return list.toArray(new Integer[0]);
+    }
+
 }
 public static class D {
     public static void main(String[] args) {

@@ -3,6 +3,7 @@
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
         public class Basics {
@@ -10,12 +11,33 @@ import java.util.stream.Collectors;
     // 1. Reverse Number
     public static class ReverseNumber {
         public static void main(String[] args) {
-            int rev = 0, num = 12345;
+            int num = 12345;
+
+            // Traditional approach (Without Java 8)
+            System.out.println("Reversed Number (Traditional): " + reverseNumberTraditional(num));
+
+            // Java 8 approach (Using Streams)
+            System.out.println("Reversed Number (Java 8): " + reverseNumberStreams(num));
+        }
+
+        // Traditional approach (Without Java 8)
+        public static int reverseNumberTraditional(int num) {
+            int rev = 0;
             while (num != 0) {
                 rev = rev * 10 + num % 10;
-                num = num / 10;
+                num /= 10;
             }
-            System.out.println("Reversed Number: " + rev);
+            return rev;
+        }
+
+        // Java 8 approach (Using Streams)
+        public static int reverseNumberStreams(int num) {
+            //Converts num to a String, reverses it using StringBuilder, and then parses it back to an int.
+            return Integer.parseInt(
+                    new StringBuilder(String.valueOf(num))
+                            .reverse()
+                            .toString()
+            );
         }
     }
 
@@ -25,56 +47,129 @@ import java.util.stream.Collectors;
             Scanner sc = new Scanner(System.in);
             System.out.println("Enter a Number:");
             int num = sc.nextInt();
+
+            // Traditional approach (Without Java 8)
+            if (isPalindromeTraditional(num)) {
+                System.out.println("Palindrome Number (Traditional)");
+            } else {
+                System.out.println("Not a Palindrome Number (Traditional)");
+            }
+
+            // Java 8 approach (Using Streams)
+            if (isPalindromeJava8(num)) {
+                System.out.println("Palindrome Number (Java 8)");
+            } else {
+                System.out.println("Not a Palindrome Number (Java 8)");
+            }
+
+            sc.close();
+        }
+
+        // Traditional approach (Without Java 8)
+        public static boolean isPalindromeTraditional(int num) {
             int orgNum = num, rev = 0;
             while (num != 0) {
                 rev = rev * 10 + num % 10;
-                num = num / 10;
+                num /= 10;
             }
-            if (orgNum == rev) {
-                System.out.println("Palindrome Number");
-            } else {
-                System.out.println("Not a Palindrome Number");
+            return orgNum == rev;
+        }
+
+        // Java 8 approach (Using Streams)
+        public static boolean isPalindromeJava8(int num) {
+            String original = String.valueOf(num);
+            String reversed = new StringBuilder(original).reverse().toString();
+            return original.equals(reversed);
+        }
+    }
+            public static class Swapping {
+                public static void main(String[] args) {
+                    int a = 10, b = 20;
+
+                    // Swapping with Third Variable
+                    System.out.println("Before Swapping (With Third Variable): " + a + " " + b);
+                    int[] swappedWithVar = swapWithThirdVariable(a, b);
+                    System.out.println("After Swapping (With Third Variable): " + swappedWithVar[0] + " " + swappedWithVar[1]);
+
+                    // Swapping without Third Variable
+                    System.out.println("Before Swapping (Without Third Variable): " + a + " " + b);
+                    int[] swappedWithoutVar = swapWithoutThirdVariable(a, b);
+                    System.out.println("After Swapping (Without Third Variable): " + swappedWithoutVar[0] + " " + swappedWithoutVar[1]);
+
+                    // Java 8 Approach using Streams
+                    System.out.println("Before Swapping (Java 8 Stream): " + a + " " + b);
+                    int[] swappedUsingStream = swapUsingJava8(a, b);
+                    System.out.println("After Swapping (Java 8 Stream): " + swappedUsingStream[0] + " " + swappedUsingStream[1]);
+                }
+
+                // 1. Swapping with Third Variable (Traditional)
+                public static int[] swapWithThirdVariable(int a, int b) {
+                    int temp = a;
+                    a = b;
+                    b = temp;
+                    return new int[]{a, b};
+                }
+
+                // 2. Swapping without Third Variable (Traditional)
+                public static int[] swapWithoutThirdVariable(int a, int b) {
+                    a = a + b;
+                    b = a - b;
+                    a = a - b;
+                    return new int[]{a, b};
+                }
+
+                // 3. Swapping using Java 8 (Streams & Array Manipulation)
+                public static int[] swapUsingJava8(int a, int b) {
+                    return Arrays.stream(new int[]{b, a}).toArray();
+                }
             }
-        }
-    }
-
-    // 3. Swapping with Third Variable
-    public static class Swapping {
-        public static void main(String[] args) {
-            int a = 10, b = 20;
-            System.out.println("Before Swapping: " + a + " " + b);
-            int temp = a;
-            a = b;
-            b = temp;
-            System.out.println("After Swapping: " + a + " " + b);
-        }
-    }
-
-    // 4. Swapping without Third Variable
-    public static class SwappingWithoutThirdVariable {
-        public static void main(String[] args) {
-            int a = 10, b = 20;
-            System.out.println("Before Swapping: " + a + " " + b);
-            a = a + b;
-            b = a - b;
-            a = a - b;
-            System.out.println("After Swapping: " + a + " " + b);
-        }
-    }
-
     // 5. Fibonacci Series
-    public static class FibonacciSeries {
-        public static void main(String[] args) {
-            int a = 0, b = 1, c;
-            System.out.print(a + " " + b);
-            for (int i = 1; i <= 6; i++) {
-                c = a + b;
-                System.out.print(" " + c);
-                a = b;
-                b = c;
+
+            public static class FibonacciSeries {
+                public static void main(String[] args) {
+                    Scanner sc = new Scanner(System.in);
+                    System.out.print("Enter the number of terms: ");
+                    int n = sc.nextInt();
+
+                    System.out.println("\nFibonacci Series (Iterative):");
+                    printFibonacciIterative(n);
+
+                    System.out.println("\nFibonacci Series (Recursive):");
+                    for (int i = 0; i < n; i++) {
+                        System.out.print(fibonacciRecursive(i) + " ");
+                    }
+
+                    System.out.println("\n\nFibonacci Series (Java 8 Stream):");
+//                    printFibonacciStream(n);
+                }
+
+                // **1. Iterative Approach (Traditional)**
+                public static void printFibonacciIterative(int n) {
+                    int a = 0, b = 1, c;
+                    System.out.print(a + " " + b);
+                    for (int i = 2; i < n; i++) {
+                        c = a + b;
+                        System.out.print(" " + c);
+                        a = b;
+                        b = c;
+                    }
+                    System.out.println();
+                }
+
+                // **2. Recursive Approach**
+                public static int fibonacciRecursive(int n) {
+                    if (n <= 1) return n;
+                    return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+                }
+
+                // **3. Java 8 Stream Approach**
+//                public static void printFibonacciStream(int n) {
+//                    IntStream.iterate(0, new int[]{0, 1}, arr -> new int[]{arr[1], arr[0] + arr[1]})
+//                            .limit(n)
+//                            .map(arr -> arr[0])
+//                            .forEach(num -> System.out.print(num + " "));
+//                }
             }
-        }
-    }
 
     // 6. Armstrong Number
     public static class ArmstrongNumber {

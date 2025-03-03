@@ -5,11 +5,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class IntersectionUnionSubset {
+
+
     public static class Intersection {
         public static void main(String[] args) {
             int arr1[] = {1, 2, 3, 4};
             int arr2[] = {1, 2};
             intersection(arr1, arr2);
+            findIntersection(arr1, arr2);
         }
 
         private static void intersection(int[] arr1, int[] arr2) {
@@ -19,69 +22,19 @@ public class IntersectionUnionSubset {
             }
             for (int i = 0; i < arr2.length; i++) {
                 if (s.contains(arr2[i])) {
-                    System.out.println(arr2[i]);
+                    System.out.println("INTERSECTION :"+arr2[i]);
                 }
             }
         }
-    }
-
-    public static class SubSet {
-        public static void main(String[] args) {
-            int arr1[] = {1, 2, 3, 4, 5}; // Main array
-            int arr2[] = {3, 4, 12};      // Array to check as subset
-            int m = arr1.length;
-            int n = arr2.length;
-
-            if (isSubset(arr1, arr2, m, n)) {
-                System.out.println("arr2[] is a subset of arr1[]");
-            } else {
-                System.out.println("arr2[] is not a subset of arr1[]");
-            }
-        }
-
-        private static boolean isSubset(int[] arr1, int[] arr2, int m, int n) {
-            for (int i = 0; i < n; i++) {
-                boolean found = false; // Flag to check if arr2[i] exists in arr1
-                for (int j = 0; j < m; j++) {
-                    if (arr2[i] == arr1[j]) {
-                        found = true;
-                        break; // Exit the inner loop if a match is found
-                    }
-                }
-                if (!found) {
-                    return false; // If arr2[i] is not found in arr1, return false
-                }
-            }
-            return true; // All elements of arr2[] are found in arr1[]
-        }
-    }
-
-    public static class Intersections {
-        public static void main(String[] args) {
-            int[] arr1 = {1, 2, 3, 4};
-            int[] arr2 = {1, 2};
-
-        /*
-        usind java 8 stream api
-         */
-            System.out.println("Intersection with java 8 stream api::");
+        private static void findIntersection(int[] arr1, int[] arr2) {
             Set<Integer> set = Arrays.stream(arr1).boxed().collect(Collectors.toSet());
-            Arrays.stream(arr2).filter(set::contains).distinct().forEach(System.out::println);
-            intersections(arr1, arr2);
-        }
 
-        private static void intersections(int[] arr1, int[] arr2) {
-            Set<Integer> set = new HashSet<>();
-            for (int i = 0; i < arr1.length; i++) {
-                set.add(arr1[i]);
-            }
-            for (int i = 0; i < arr2.length; i++) {
-                if (set.contains(arr2[i])) {
-                    System.out.println(arr2[i]);
-                }
-            }
+            Arrays.stream(arr2)
+                    .filter(set::contains)
+                    .forEach(System.out::println);
         }
     }
+
 
 
    public static class IntersectionI {
@@ -106,7 +59,7 @@ public class IntersectionUnionSubset {
         }
     }
 
-    public class Main {
+    public static class Main {
         public static void main(String[] args) {
             IntersectionI solution = new IntersectionI();
 
@@ -123,31 +76,29 @@ public class IntersectionUnionSubset {
             System.out.println("Intersection of [4, 9, 5] and [9, 4, 9, 8, 4]: " + Arrays.toString(result2));
         }
     }
+
+
     public static class SubSets {
         public static void main(String[] args) {
             int[] arr1 = {1, 2, 3, 4, 5};
             int[] arr2 = {3, 4};
 
-            // Find matching subset values
+            System.out.println("Using Traditional Approach:");
             List<Integer> subsetValues = new ArrayList<>();
-            boolean isSubset = isSubset(arr1, arr2, subsetValues);
+            boolean isSubset1 = isSubsetTraditional(arr1, arr2, subsetValues);
+            printResult(isSubset1, subsetValues);
 
-            if (isSubset) {
-                System.out.println("arr2[] is a subset of arr1[]");
-            } else {
-                System.out.println("arr2[] is not a subset of arr1[]");
-            }
-            System.out.println("Matching subset values: " + subsetValues);
+            System.out.println("\nUsing Java 8 Streams:");
+            boolean isSubset2 = isSubsetStreams(arr1, arr2);
         }
 
-        private static boolean isSubset(int[] arr1, int[] arr2, List<Integer> subsetValues) {
-            // Add all elements of arr1 to a Set for fast lookup
+        // Traditional approach (without Java 8)
+        private static boolean isSubsetTraditional(int[] arr1, int[] arr2, List<Integer> subsetValues) {
             Set<Integer> set1 = new HashSet<>();
             for (int num : arr1) {
                 set1.add(num);
             }
 
-            // Check elements of arr2 in the Set
             for (int num : arr2) {
                 if (set1.contains(num)) {
                     subsetValues.add(num);
@@ -157,14 +108,33 @@ public class IntersectionUnionSubset {
             }
             return true;
         }
-    /*
-     Set<Integer> set1 = Arrays.stream(x).boxed().collect(Collectors.toSet());
-     List<Integer> subset = Arrays.stream(y)
-     .boxed().filter(set1::contains).collect(Collectors.toList());
-     boolean isSubset=subset.size()==y.length;
-     System.out.println(subset);
-     */
+
+        // Java 8 Streams approach
+        private static boolean isSubsetStreams(int[] arr1, int[] arr2) {
+            Set<Integer> set1 = Arrays.stream(arr1).boxed().collect(Collectors.toSet());
+
+            List<Integer> subset = Arrays.stream(arr2)
+                    .boxed()
+                    .filter(set1::contains)
+                    .collect(Collectors.toList());
+
+            boolean isSubset = subset.size() == arr2.length;
+            printResult(isSubset, subset);
+            return isSubset;
+        }
+
+        // Common method to print results
+        private static void printResult(boolean isSubset, List<Integer> subsetValues) {
+            if (isSubset) {
+                System.out.println("arr2[] is a subset of arr1[]");
+            } else {
+                System.out.println("arr2[] is not a subset of arr1[]");
+            }
+            System.out.println("Matching subset values: " + subsetValues);
+        }
     }
+
+
     public class UnionIntersection {
         public static void main(String[] args) {
             Set<Integer> a = new HashSet<>(Arrays.asList(1, 2, 5, 4, 6));
@@ -225,6 +195,8 @@ public class IntersectionUnionSubset {
             System.out.println("symmetricDifference:" + symmetricDifference);
 
         }
+
+
 
         public static class FindCommonChars {
             public static void main(String[] args) {

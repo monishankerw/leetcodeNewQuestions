@@ -8,13 +8,39 @@ public class DuplicateRelatedProblem {
     public static class ShowDuplicate {
         public static void main(String[] args) {
             int[] arr = {1, 2, 1, 3, 4, 2, 5, 3, 5};
-            for (int i = 0; i < arr.length; i++) {
-                for (int j = i + 1; j < arr.length; j++) {
-                    if (arr[i] == arr[j]) {
-                        System.out.println(arr[j]);
-                    }
+
+            System.out.println("Without Java 8 (Traditional Approach):");
+            findDuplicatesTraditional(arr);
+
+            System.out.println("\nWith Java 8 (Using Streams):");
+            findDuplicatesWithStreams(arr);
+        }
+
+        // Method without Java 8 (Traditional Approach)
+        private static void findDuplicatesTraditional(int[] arr) {
+            Set<Integer> seen = new HashSet<>();
+            Set<Integer> duplicates = new HashSet<>();
+
+            for (int num : arr) {
+                if (!seen.add(num)) { // If add() returns false, it's a duplicate
+                    duplicates.add(num);
                 }
             }
+
+            for (int duplicate : duplicates) {
+                System.out.println(duplicate);
+            }
+        }
+
+        // Method with Java 8 (Using Streams)
+        private static void findDuplicatesWithStreams(int[] arr) {
+            Set<Integer> seen = new HashSet<>();
+            Set<Integer> duplicates = Arrays.stream(arr)
+                    .filter(n -> !seen.add(n)) // Keep elements that are already in the set
+                    .boxed()
+                    .collect(Collectors.toSet());
+
+            duplicates.forEach(System.out::println);
         }
     }
 
@@ -22,20 +48,31 @@ public class DuplicateRelatedProblem {
     public static class CheckDuplicate {
         public static void main(String[] args) {
             int[] arr = {1, 2, 3, 2, 1};
-            boolean checkDuplicate = checkDuplicate(arr);
-            System.out.println("Check Duplicate::" + checkDuplicate);
+
+            // Without Java 8 (Traditional Approach)
+            boolean checkDuplicateTraditional = checkDuplicateTraditional(arr);
+            System.out.println("Check Duplicate (Traditional): " + checkDuplicateTraditional);
+
+            // With Java 8 (Using Streams)
+            boolean checkDuplicateWithStreams = checkDuplicateWithStreams(arr);
+            System.out.println("Check Duplicate (Java 8 Streams): " + checkDuplicateWithStreams);
         }
 
-        private static boolean checkDuplicate(int[] arr) {
+        // Method without Java 8 (Traditional Approach)
+        private static boolean checkDuplicateTraditional(int[] arr) {
             Set<Integer> set = new HashSet<>();
-            for (Integer num : arr) {
-                if (set.contains(num)) {
+            for (int num : arr) {
+                if (!set.add(num)) { // If add() returns false, it's a duplicate
                     return true;
                 }
-                set.add(num);
             }
             return false;
+        }
 
+        // Method with Java 8 (Using Streams)
+        private static boolean checkDuplicateWithStreams(int[] arr) {
+            Set<Integer> set = new HashSet<>();
+            return Arrays.stream(arr).anyMatch(n -> !set.add(n)); // Returns true if any duplicate is found
         }
     }
 //3. contain DuplicateII
