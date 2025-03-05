@@ -1,12 +1,12 @@
 
-        package com.leetcode.leetcode.basics;
+package com.leetcode.leetcode.basics;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
-        public class Basics {
+public class Basics {
 
     // 1. Reverse Number
     public static class ReverseNumber {
@@ -82,96 +82,100 @@ import java.util.stream.IntStream;
             return original.equals(reversed);
         }
     }
-            public static class Swapping {
-                public static void main(String[] args) {
-                    int a = 10, b = 20;
 
-                    // Swapping with Third Variable
-                    System.out.println("Before Swapping (With Third Variable): " + a + " " + b);
-                    int[] swappedWithVar = swapWithThirdVariable(a, b);
-                    System.out.println("After Swapping (With Third Variable): " + swappedWithVar[0] + " " + swappedWithVar[1]);
+    //3. swapping number
+    public static class Swapping {
+        public static void main(String[] args) {
+            int a = 10, b = 20;
 
-                    // Swapping without Third Variable
-                    System.out.println("Before Swapping (Without Third Variable): " + a + " " + b);
-                    int[] swappedWithoutVar = swapWithoutThirdVariable(a, b);
-                    System.out.println("After Swapping (Without Third Variable): " + swappedWithoutVar[0] + " " + swappedWithoutVar[1]);
+            // Swapping with Third Variable
+            System.out.println("Before Swapping (With Third Variable): " + a + " " + b);
+            int[] swappedWithVar = swapWithThirdVariable(a, b);
+            System.out.println("After Swapping (With Third Variable): " + swappedWithVar[0] + " " + swappedWithVar[1]);
 
-                    // Java 8 Approach using Streams
-                    System.out.println("Before Swapping (Java 8 Stream): " + a + " " + b);
-                    int[] swappedUsingStream = swapUsingJava8(a, b);
-                    System.out.println("After Swapping (Java 8 Stream): " + swappedUsingStream[0] + " " + swappedUsingStream[1]);
-                }
+            // Swapping without Third Variable
+            System.out.println("Before Swapping (Without Third Variable): " + a + " " + b);
+            int[] swappedWithoutVar = swapWithoutThirdVariable(a, b);
+            System.out.println("After Swapping (Without Third Variable): " + swappedWithoutVar[0] + " " + swappedWithoutVar[1]);
 
-                // 1. Swapping with Third Variable (Traditional)
-                public static int[] swapWithThirdVariable(int a, int b) {
-                    int temp = a;
-                    a = b;
-                    b = temp;
-                    return new int[]{a, b};
-                }
+            // Java 8 Approach using Streams
+            System.out.println("Before Swapping (Java 8 Stream): " + a + " " + b);
+            int[] swappedUsingStream = swapUsingJava8(a, b);
+            System.out.println("After Swapping (Java 8 Stream): " + swappedUsingStream[0] + " " + swappedUsingStream[1]);
+        }
 
-                // 2. Swapping without Third Variable (Traditional)
-                public static int[] swapWithoutThirdVariable(int a, int b) {
-                    a = a + b;
-                    b = a - b;
-                    a = a - b;
-                    return new int[]{a, b};
-                }
+        // 1. Swapping with Third Variable (Traditional)
+        public static int[] swapWithThirdVariable(int a, int b) {
+            int temp = a;
+            a = b;
+            b = temp;
+            return new int[]{a, b};
+        }
 
-                // 3. Swapping using Java 8 (Streams & Array Manipulation)
-                public static int[] swapUsingJava8(int a, int b) {
-                    return Arrays.stream(new int[]{b, a}).toArray();
-                }
+        // 2. Swapping without Third Variable (Traditional)
+        public static int[] swapWithoutThirdVariable(int a, int b) {
+            a = a + b;
+            b = a - b;
+            a = a - b;
+            return new int[]{a, b};
+        }
+
+        // 3. Swapping using Java 8 (Streams & Array Manipulation)
+        public static int[] swapUsingJava8(int a, int b) {
+            return Arrays.stream(new int[]{b, a}).toArray();
+        }
+    }
+
+
+    // 4. Fibonacci Series
+
+    public static class FibonacciSeries {
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter the number of terms: ");
+            int n = sc.nextInt();
+
+            System.out.println("\nFibonacci Series (Iterative):");
+            printFibonacciIterative(n);
+
+            System.out.println("\nFibonacci Series (Recursive):");
+            for (int i = 0; i < n; i++) {
+                System.out.print(fibonacciRecursive(i) + " ");
             }
-    // 5. Fibonacci Series
 
-            public static class FibonacciSeries {
-                public static void main(String[] args) {
-                    Scanner sc = new Scanner(System.in);
-                    System.out.print("Enter the number of terms: ");
-                    int n = sc.nextInt();
-
-                    System.out.println("\nFibonacci Series (Iterative):");
-                    printFibonacciIterative(n);
-
-                    System.out.println("\nFibonacci Series (Recursive):");
-                    for (int i = 0; i < n; i++) {
-                        System.out.print(fibonacciRecursive(i) + " ");
-                    }
-
-                    System.out.println("\n\nFibonacci Series (Java 8 Stream):");
+            System.out.println("\n\nFibonacci Series (Java 8 Stream):");
 //                    printFibonacciStream(n);
-                }
+        }
 
-                // **1. Iterative Approach (Traditional)**
-                public static void printFibonacciIterative(int n) {
-                    int a = 0, b = 1, c;
-                    System.out.print(a + " " + b);
-                    for (int i = 2; i < n; i++) {
-                        c = a + b;
-                        System.out.print(" " + c);
-                        a = b;
-                        b = c;
-                    }
-                    System.out.println();
-                }
+        // **1. Iterative Approach (Traditional)**
+        public static void printFibonacciIterative(int n) {
+            int a = 0, b = 1, c;
+            System.out.print(a + " " + b);
+            for (int i = 2; i < n; i++) {
+                c = a + b;
+                System.out.print(" " + c);
+                a = b;
+                b = c;
+            }
+            System.out.println();
+        }
 
-                // **2. Recursive Approach**
-                public static int fibonacciRecursive(int n) {
-                    if (n <= 1) return n;
-                    return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
-                }
+        // **2. Recursive Approach**
+        public static int fibonacciRecursive(int n) {
+            if (n <= 1) return n;
+            return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+        }
 
-                // **3. Java 8 Stream Approach**
+        // **3. Java 8 Stream Approach**
 //                public static void printFibonacciStream(int n) {
 //                    IntStream.iterate(0, new int[]{0, 1}, arr -> new int[]{arr[1], arr[0] + arr[1]})
 //                            .limit(n)
 //                            .map(arr -> arr[0])
 //                            .forEach(num -> System.out.print(num + " "));
 //                }
-            }
+    }
 
-    // 6. Armstrong Number
+    // 5. Armstrong Number
     public static class ArmstrongNumber {
         public static void main(String[] args) {
             Scanner sc = new Scanner(System.in);
@@ -191,20 +195,22 @@ import java.util.stream.IntStream;
         }
     }
 
-//    Factorial Program in Java: Factorial of n is the product of all positive
+//    6.Factorial Program in Java: Factorial of n is the product of all positive
 
     public static class Factorial {
-    public static void main(String [] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter number which you want for Factorial: ");
-        int num = sc.nextInt();
-        int fact = 1;
-        for (int i = 1; i <= num; i++) {
-            fact = fact * i;
-            System.out.println("Factorial of" + num + "is" + fact);
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Enter number which you want for Factorial: ");
+            int num = sc.nextInt();
+            int fact = 1;
+            for (int i = 1; i <= num; i++) {
+                fact = fact * i;
+                System.out.println("Factorial of" + num + "is" + fact);
+            }
         }
     }
-}
+
+    //7. LargestNumberFinder
     public static class LargestNumberFinder {
         public static void main(String[] args) {
             // 1. Using if-else condition
@@ -228,60 +234,111 @@ import java.util.stream.IntStream;
         }
     }
 
+    //8 SumOfDigits
+
     public static class SumOfDigits {
         public static void main(String[] args) {
             int n = 987; // Input number
+
+            // Without Java 8 (Using While Loop)
+            System.out.println("Sum using While Loop: " + sumUsingWhileLoop(n));
+
+            // With Java 8 (Using Streams)
+            System.out.println("Sum using Java 8 Streams: " + sumUsingJava8Streams(n));
+        }
+
+        // Method 1: Without Java 8 (Using While Loop)
+        public static int sumUsingWhileLoop(int n) {
             int sum = 0;
-
-            // Calculate sum of digits using while loop
             while (n != 0) {
-                sum = sum + n % 10; // Add the last digit to the sum
-                n = n / 10; // Remove the last digit
+                sum += n % 10; // Extract last digit and add to sum
+                n /= 10; // Remove last digit
             }
+            return sum;
+        }
 
-            System.out.println("Using While Loop: " + sum); // Output the sum
+        // Method 2: With Java 8 (Using Streams)
+        public static int sumUsingJava8Streams(int n) {
+            return String.valueOf(n) // Convert number to String
+                    .chars() // Convert to IntStream of characters
+                    .map(Character::getNumericValue) // Convert char to int
+                    .sum(); // Sum up the digits
         }
     }
+    //9 CountDigits
+
+
     public static class CountDigits {
         public static void main(String[] args) {
             // Input number
             long num = 29845315;
 
             // 1. Count digits using a while loop
-            int count = 0;
-            long temp = num; // Temporary variable to preserve original number
-
-            while (temp != 0) {
-                temp = temp / 10; // Remove the last digit
-                count++; // Increment count
-            }
-
-            System.out.println("Number of digits using While Loop: " + count);
+            System.out.println("Number of digits using While Loop: " + countUsingWhileLoop(num));
 
             // 2. Count digits by converting the number to a string
-            String result = Long.toString(num); // Convert the number to a string
-            System.out.println("Number of digits using String: " + result.length());
+            System.out.println("Number of digits using String: " + countUsingString(num));
+
+            // 3. Count digits using Java 8 Streams
+            System.out.println("Number of digits using Java 8 Streams: " + countUsingJava8Streams(num));
+        }
+
+        // Method 1: Using While Loop
+        public static int countUsingWhileLoop(long num) {
+            int count = 0;
+            long temp = num; // Preserve original number
+            while (temp != 0) {
+                temp /= 10; // Remove last digit
+                count++;
+            }
+            return count;
+        }
+
+        // Method 2: Using String Conversion
+        public static int countUsingString(long num) {
+            return Long.toString(num).length(); // Convert to string and get length
+        }
+
+        // Method 3: Using Java 8 Streams
+        public static int countUsingJava8Streams(long num) {
+            return (int) String.valueOf(num) // Convert number to String
+                    .chars() // Convert to IntStream of characters
+                    .count(); // Count number of characters
         }
     }
-    // 7. Prime Number
+    // 10. Prime Number
+
+
     public static class PrimeNumber {
         public static void main(String[] args) {
             Scanner sc = new Scanner(System.in);
             System.out.println("Enter a Number:");
             int num = sc.nextInt();
-            boolean isPrime = true;
+            sc.close();
 
-            for (int i = 2; i <= num / 2; i++) {
+            // 1. Traditional Method (Loop-based)
+            System.out.println("Using Loop: " + (isPrimeUsingLoop(num) ? "Prime Number" : "Not a Prime Number"));
+
+            // 2. Java 8 Stream-based Approach
+            System.out.println("Using Java 8 Streams: " + (isPrimeUsingStreams(num) ? "Prime Number" : "Not a Prime Number"));
+        }
+
+        // Method 1: Traditional Approach (Using Loop)
+        public static boolean isPrimeUsingLoop(int num) {
+            if (num < 2) return false;
+            for (int i = 2; i <= Math.sqrt(num); i++) { // Optimization: check up to sqrt(num)
                 if (num % i == 0) {
-                    isPrime = false;
-                    break;
+                    return false; // Not a prime number
                 }
             }
-            if (isPrime && num > 1) {
-                System.out.println("Prime Number");
-            } else {
-                System.out.println("Not a Prime Number");
-            }
+            return true; // Prime number
+        }
+
+        // Method 2: Java 8 Streams Approach
+        public static boolean isPrimeUsingStreams(int num) {
+            if (num < 2) return false;
+            return IntStream.rangeClosed(2, (int) Math.sqrt(num)) // Stream of numbers from 2 to sqrt(num)
+                    .noneMatch(i -> num % i == 0); // If any number divides num, it's not prime
         }
     }
 
@@ -299,54 +356,56 @@ import java.util.stream.IntStream;
             }
         }
     }
-            public static class RemoveDuplicates {
-                public static void main(String[] args) {
-                    // Input array with duplicates
-                    String[] strArray = {"abc", "def", "abc", "mno", "xyz", "pqr", "xyz", "pqr"};
 
-                    System.out.println("Brute Force Method: Duplicate Elements are:");
-                    for (int i = 0; i < strArray.length - 1; i++) {
-                        for (int j = i + 1; j < strArray.length; j++) {
-                            if (strArray[i].equals(strArray[j]) && i != j) {
-                                System.out.println(strArray[i]);
-                            }
-                        }
+    public static class RemoveDuplicates {
+        public static void main(String[] args) {
+            // Input array with duplicates
+            String[] strArray = {"abc", "def", "abc", "mno", "xyz", "pqr", "xyz", "pqr"};
+
+            System.out.println("Brute Force Method: Duplicate Elements are:");
+            for (int i = 0; i < strArray.length - 1; i++) {
+                for (int j = i + 1; j < strArray.length; j++) {
+                    if (strArray[i].equals(strArray[j]) && i != j) {
+                        System.out.println(strArray[i]);
                     }
                 }
             }
+        }
+    }
 
-            public static class DuplicateCharacters {
-                public static void main(String[] args) {
-                    // Input string
-                    String str = "apple is fruit";
+    public static class DuplicateCharacters {
+        public static void main(String[] args) {
+            // Input string
+            String str = "apple is fruit";
 
-                    // Convert the string to a character array
-                    char[] charArray = str.toCharArray();
+            // Convert the string to a character array
+            char[] charArray = str.toCharArray();
 
-                    // Print the original string
-                    System.out.println("The string is: " + str);
-                    System.out.print("Duplicate Characters in the string are: ");
+            // Print the original string
+            System.out.println("The string is: " + str);
+            System.out.print("Duplicate Characters in the string are: ");
 
-                    // Using a HashSet to keep track of characters
-                    HashSet<Character> seen = new HashSet<>();
-                    HashSet<Character> duplicates = new HashSet<>();
+            // Using a HashSet to keep track of characters
+            HashSet<Character> seen = new HashSet<>();
+            HashSet<Character> duplicates = new HashSet<>();
 
-                    for (char c : charArray) {
-                        if (seen.contains(c)) {
-                            duplicates.add(c);
-                        } else {
-                            seen.add(c);
-                        }
-                    }
-
-                    // Print duplicate characters
-                    for (char c : duplicates) {
-                        if (c != ' ') { // Exclude spaces
-                            System.out.print(c + " ");
-                        }
-                    }
+            for (char c : charArray) {
+                if (seen.contains(c)) {
+                    duplicates.add(c);
+                } else {
+                    seen.add(c);
                 }
             }
+
+            // Print duplicate characters
+            for (char c : duplicates) {
+                if (c != ' ') { // Exclude spaces
+                    System.out.print(c + " ");
+                }
+            }
+        }
+    }
+
     public static class CommonElementsInArrays {
         public static void main(String[] args) {
             // 1. By using nested for loop
@@ -383,6 +442,7 @@ import java.util.stream.IntStream;
             System.out.println("Common Elements using Streams: " + commonElementsStream);
         }
     }
+
     // 9. Maximum and Minimum Elements in Array
     public static class MaxMinElements {
         public static void main(String[] args) {
@@ -396,119 +456,124 @@ import java.util.stream.IntStream;
             System.out.println("Maximum Element: " + max);
         }
     }
-            public static class FirstAndLastElement {
-                public static void main(String[] args) {
-                    // Input ArrayList
-                    ArrayList<Integer> list = new ArrayList<>();
-                    list.add(4);
-                    list.add(2);
-                    list.add(3);
-                    list.add(1);
-                    list.add(6);
 
-                    // Find the first and last elements
-                    int first = list.get(0); // First element
-                    int last = list.get(list.size() - 1); // Last element
+    public static class FirstAndLastElement {
+        public static void main(String[] args) {
+            // Input ArrayList
+            ArrayList<Integer> list = new ArrayList<>();
+            list.add(4);
+            list.add(2);
+            list.add(3);
+            list.add(1);
+            list.add(6);
 
-                    // Output results
-                    System.out.println("First element is: " + first);
-                    System.out.println("Last element is: " + last);
+            // Find the first and last elements
+            int first = list.get(0); // First element
+            int last = list.get(list.size() - 1); // Last element
+
+            // Output results
+            System.out.println("First element is: " + first);
+            System.out.println("Last element is: " + last);
+        }
+    }
+
+    public static class SecondLargestAndSmallest {
+        public static void main(String[] args) {
+            // Input array
+            int[] array = {4, 2, 3, 1, 0, 6, 12, 15, 20};
+
+            // Sort the array
+            Arrays.sort(array);
+
+            // Second largest and second smallest
+            int secondLargest = array[array.length - 2];
+            int secondSmallest = array[1];
+
+            // Output results
+            System.out.println("Second Largest element is: " + secondLargest);
+            System.out.println("Second Smallest element is: " + secondSmallest);
+        }
+    }
+
+    public static class LargestElement {
+        public static void main(String[] args) {
+            // Initialize array
+            int[] arr = new int[]{25, 11, 7, 75, 56};
+
+            // Initialize max with the first element of the array
+            int max = arr[0];
+
+            // Loop through the array
+            for (int i = 1; i < arr.length; i++) {
+                // Compare each element with max
+                if (arr[i] > max) {
+                    max = arr[i];
                 }
             }
 
-            public static class SecondLargestAndSmallest {
-                public static void main(String[] args) {
-                    // Input array
-                    int[] array = {4, 2, 3, 1, 0, 6, 12, 15, 20};
+            // Print the largest element
+            System.out.println("Largest element present in the given array: " + max);
+        }
+    }
 
-                    // Sort the array
-                    Arrays.sort(array);
+    public static class SplitAlphanumeric {
+        public static void main(String[] args) {
+            // Input string
+            String str = "Welcome234To567Java89Programming0@#!!";
 
-                    // Second largest and second smallest
-                    int secondLargest = array[array.length - 2];
-                    int secondSmallest = array[1];
+            // Buffers to hold different types of characters
+            StringBuffer alpha = new StringBuffer();
+            StringBuffer num = new StringBuffer();
+            StringBuffer special = new StringBuffer();
 
-                    // Output results
-                    System.out.println("Second Largest element is: " + secondLargest);
-                    System.out.println("Second Smallest element is: " + secondSmallest);
+            // Iterate through the string
+            for (int i = 0; i < str.length(); i++) {
+                char c = str.charAt(i);
+
+                if (Character.isDigit(c)) {
+                    num.append(c); // Add to numeric buffer
+                } else if (Character.isAlphabetic(c)) {
+                    alpha.append(c); // Add to alphabetic buffer
+                } else {
+                    special.append(c); // Add to special character buffer
                 }
             }
-            public static class LargestElement {
-                public static void main(String[] args) {
-                    // Initialize array
-                    int[] arr = new int[] {25, 11, 7, 75, 56};
 
-                    // Initialize max with the first element of the array
-                    int max = arr[0];
+            // Print results
+            System.out.println("Alphabets: " + alpha);
+            System.out.println("Numbers: " + num);
+            System.out.println("Special Characters: " + special);
+        }
+    }
 
-                    // Loop through the array
-                    for (int i = 1; i < arr.length; i++) {
-                        // Compare each element with max
-                        if (arr[i] > max) {
-                            max = arr[i];
-                        }
+    public static class SortArrayWithoutInbuilt {
+        public static void main(String[] args) {
+            // Input array
+            int[] array = {10, 5, 20, 63, 12, 57, 88, 60};
+            int temp, size = array.length;
+
+            // Manual sorting using nested loops
+            for (int i = 0; i < size; i++) {
+                for (int j = i + 1; j < size; j++) {
+                    if (array[i] > array[j]) {
+                        temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
                     }
-
-                    // Print the largest element
-                    System.out.println("Largest element present in the given array: " + max);
                 }
             }
-            public static class SplitAlphanumeric {
-                public static void main(String[] args) {
-                    // Input string
-                    String str = "Welcome234To567Java89Programming0@#!!";
 
-                    // Buffers to hold different types of characters
-                    StringBuffer alpha = new StringBuffer();
-                    StringBuffer num = new StringBuffer();
-                    StringBuffer special = new StringBuffer();
-
-                    // Iterate through the string
-                    for (int i = 0; i < str.length(); i++) {
-                        char c = str.charAt(i);
-
-                        if (Character.isDigit(c)) {
-                            num.append(c); // Add to numeric buffer
-                        } else if (Character.isAlphabetic(c)) {
-                            alpha.append(c); // Add to alphabetic buffer
-                        } else {
-                            special.append(c); // Add to special character buffer
-                        }
-                    }
-
-                    // Print results
-                    System.out.println("Alphabets: " + alpha);
-                    System.out.println("Numbers: " + num);
-                    System.out.println("Special Characters: " + special);
-                }
+            // Output sorted array
+            System.out.print("Array sorted: ");
+            for (int i : array) {
+                System.out.print(i + " ");
             }
-            public static class SortArrayWithoutInbuilt {
-                public static void main(String[] args) {
-                    // Input array
-                    int[] array = {10, 5, 20, 63, 12, 57, 88, 60};
-                    int temp, size = array.length;
 
-                    // Manual sorting using nested loops
-                    for (int i = 0; i < size; i++) {
-                        for (int j = i + 1; j < size; j++) {
-                            if (array[i] > array[j]) {
-                                temp = array[i];
-                                array[i] = array[j];
-                                array[j] = temp;
-                            }
-                        }
-                    }
+            // Print the 3rd largest element
+            System.out.println("\nThird largest number is: " + array[size - 3]);
+        }
+    }
 
-                    // Output sorted array
-                    System.out.print("Array sorted: ");
-                    for (int i : array) {
-                        System.out.print(i + " ");
-                    }
-
-                    // Print the 3rd largest element
-                    System.out.println("\nThird largest number is: " + array[size - 3]);
-                }
-            }
     // 10. Sorting Numbers
     public static class SortingNumbers {
         public static void main(String[] args) {
@@ -565,49 +630,52 @@ import java.util.stream.IntStream;
             System.out.println(freqMap);
         }
     }
-            public static class WordOccurrences {
-                public static void main(String[] args) {
-                    // Input string and word to search for
-                    String string = "Java is a programming language. Java is widely used in software Testing";
-                    String word = "Java";
 
-                    // Convert the string to lowercase for case-insensitive comparison
-                    String[] words = string.toLowerCase().split("\\s+"); // Split string by spaces
-                    String targetWord = word.toLowerCase();
+    public static class WordOccurrences {
+        public static void main(String[] args) {
+            // Input string and word to search for
+            String string = "Java is a programming language. Java is widely used in software Testing";
+            String word = "Java";
 
-                    int occurrences = 0;
+            // Convert the string to lowercase for case-insensitive comparison
+            String[] words = string.toLowerCase().split("\\s+"); // Split string by spaces
+            String targetWord = word.toLowerCase();
 
-                    // Count occurrences of the word
-                    for (String w : words) {
-                        if (w.equals(targetWord)) {
-                            occurrences++;
-                        }
-                    }
+            int occurrences = 0;
 
-                    // Output the result
-                    System.out.println("Occurrences of the word '" + word + "': " + occurrences);
+            // Count occurrences of the word
+            for (String w : words) {
+                if (w.equals(targetWord)) {
+                    occurrences++;
                 }
             }
-            public static class WordCount {
-                public static void main(String[] args) {
-                    // Input string
-                    String str = "Alice is girl and Bob is boy";
 
-                    // HashMap to store word counts
-                    Map<String, Integer> hashMap = new HashMap<>();
+            // Output the result
+            System.out.println("Occurrences of the word '" + word + "': " + occurrences);
+        }
+    }
 
-                    // Split the string into words
-                    String[] words = str.split("\\s+");
+    public static class WordCount {
+        public static void main(String[] args) {
+            // Input string
+            String str = "Alice is girl and Bob is boy";
 
-                    // Count occurrences of each word
-                    for (String word : words) {
-                        hashMap.put(word, hashMap.getOrDefault(word, 0) + 1);
-                    }
+            // HashMap to store word counts
+            Map<String, Integer> hashMap = new HashMap<>();
 
-                    // Output the word count
-                    System.out.println("Word occurrences: " + hashMap);
-                }
+            // Split the string into words
+            String[] words = str.split("\\s+");
+
+            // Count occurrences of each word
+            for (String word : words) {
+                hashMap.put(word, hashMap.getOrDefault(word, 0) + 1);
             }
+
+            // Output the word count
+            System.out.println("Word occurrences: " + hashMap);
+        }
+    }
+
     //15. count pair
     public static class CountPair {
         public static void main(String[] args) {
@@ -626,7 +694,8 @@ import java.util.stream.IntStream;
 
         }
     }
-//16.rotates arrays
+
+    //16.rotates arrays
     public static class Roatatearray {
         public static void main(String[] args) {
             int[] arr = new int[]{1, 2, 3, 4, 5};
@@ -665,7 +734,8 @@ import java.util.stream.IntStream;
             }
         }
     }
-//18. singleturn class
+
+    //18. singleturn class
     public static final class A {
         public static A a1 = null;
 
@@ -796,7 +866,7 @@ import java.util.stream.IntStream;
         }
 
         //23. subarrays
-       public static class Subarrays {
+        public static class Subarrays {
             static int arr[] = {1, 2, 3, 4};
 
             // Method to print all subarrays
@@ -821,39 +891,39 @@ import java.util.stream.IntStream;
         }
     }
 
-            public static class PrefixCommonArrayOptimized {
-                public static int[] findPrefixCommonArray(int[] A, int[] B) {
-                    int n = A.length;
-                    Set<Integer> seen = new HashSet<>();
-                    int[] C = new int[n];
-                    int commonCount = 0;
+    public static class PrefixCommonArrayOptimized {
+        public static int[] findPrefixCommonArray(int[] A, int[] B) {
+            int n = A.length;
+            Set<Integer> seen = new HashSet<>();
+            int[] C = new int[n];
+            int commonCount = 0;
 
-                    for (int i = 0; i < n; i++) {
-                        if (seen.contains(A[i])) {
-                            commonCount++;
-                        } else {
-                            seen.add(A[i]);
-                        }
-
-                        if (seen.contains(B[i])) {
-                            commonCount++;
-                        } else {
-                            seen.add(B[i]);
-                        }
-
-                        C[i] = commonCount;
-                    }
-
-                    return C;
+            for (int i = 0; i < n; i++) {
+                if (seen.contains(A[i])) {
+                    commonCount++;
+                } else {
+                    seen.add(A[i]);
                 }
 
-                public static void main(String[] args) {
-                    int[] A = {1, 3, 2, 4};
-                    int[] B = {3, 1, 2, 4};
-
-                    int[] result = findPrefixCommonArray(A, B);
-                    System.out.println(Arrays.toString(result));  // Output: [0, 2, 3, 4]
+                if (seen.contains(B[i])) {
+                    commonCount++;
+                } else {
+                    seen.add(B[i]);
                 }
+
+                C[i] = commonCount;
             }
+
+            return C;
+        }
+
+        public static void main(String[] args) {
+            int[] A = {1, 3, 2, 4};
+            int[] B = {3, 1, 2, 4};
+
+            int[] result = findPrefixCommonArray(A, B);
+            System.out.println(Arrays.toString(result));  // Output: [0, 2, 3, 4]
+        }
+    }
 }
 
