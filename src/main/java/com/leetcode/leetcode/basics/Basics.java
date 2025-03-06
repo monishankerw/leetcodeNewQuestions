@@ -342,18 +342,42 @@ public class Basics {
         }
     }
 
-    // 8. Remove Duplicate Elements
-    public static class RemoveDuplicateElements {
+    public static class ShowDuplicate {
         public static void main(String[] args) {
-            int[] arr = {1, 2, 3, 4, 2, 7, 8, 8, 3};
-            System.out.println("Duplicate Elements in Array:");
-            for (int i = 0; i < arr.length; i++) {
-                for (int j = i + 1; j < arr.length; j++) {
-                    if (arr[i] == arr[j]) {
-                        System.out.println(arr[j]);
-                    }
+            int[] arr = {1, 2, 1, 3, 4, 2, 5, 3, 5};
+
+            System.out.println("Without Java 8 (Traditional Approach):");
+            findDuplicatesTraditional(arr);
+
+            System.out.println("\nWith Java 8 (Using Streams):");
+            findDuplicatesWithStreams(arr);
+        }
+
+        // Method without Java 8 (Traditional Approach)
+        private static void findDuplicatesTraditional(int[] arr) {
+            Set<Integer> seen = new HashSet<>();
+            Set<Integer> duplicates = new HashSet<>();
+
+            for (int num : arr) {
+                if (!seen.add(num)) { // If add() returns false, it's a duplicate
+                    duplicates.add(num);
                 }
             }
+
+            for (int duplicate : duplicates) {
+                System.out.println(duplicate);
+            }
+        }
+
+        // Method with Java 8 (Using Streams)
+        private static void findDuplicatesWithStreams(int[] arr) {
+            Set<Integer> seen = new HashSet<>();
+            Set<Integer> duplicates = Arrays.stream(arr)
+                    .filter(n -> !seen.add(n)) // Keep elements that are already in the set
+                    .boxed()
+                    .collect(Collectors.toSet());
+
+            duplicates.forEach(System.out::println);
         }
     }
 
@@ -362,6 +386,11 @@ public class Basics {
             // Input array with duplicates
             String[] strArray = {"abc", "def", "abc", "mno", "xyz", "pqr", "xyz", "pqr"};
 
+            findDuplicateWithoutJava8(strArray);
+            findDuplicateWithJava8(strArray);
+        }
+
+        private static void findDuplicateWithoutJava8(String[] strArray) {
             System.out.println("Brute Force Method: Duplicate Elements are:");
             for (int i = 0; i < strArray.length - 1; i++) {
                 for (int j = i + 1; j < strArray.length; j++) {
@@ -370,6 +399,17 @@ public class Basics {
                     }
                 }
             }
+        }
+
+        private static void findDuplicateWithJava8(String[] strArray) {
+            System.out.println("Using Java 8 Streams: Duplicate Elements are:");
+
+            Set<String> set = new HashSet<>();
+            Set<String> duplicates = Arrays.stream(strArray)
+                    .filter(e -> !set.add(e)) // If add() returns false, it's a duplicate
+                    .collect(Collectors.toSet());
+
+            System.out.println(duplicates);
         }
     }
 

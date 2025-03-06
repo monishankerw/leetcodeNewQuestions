@@ -39,34 +39,36 @@ which helps in identifying where the error occurred.
 - The **stack trace** provided by `e.printStackTrace()` prints detailed information about
 where the exception occurred. In this case, the error happens at line 5 in the `Test` class (`Test.java:5`).
 
-
+ */
+    /*
 What is the purpose of the assert statement in Java?
 The assert statement is used to create assertions, which are conditions that must be true at a certain point in the program. If the condition is false, the program will throw an AssertionError. Assertions are generally used for testing and debugging purposes.
 
 Example:
+*/
 
-
-public class Test {
+public static class Test {
 public static void main(String[] args) {
 int age = 15;
 assert age >= 18 : "Age must be at least 18";
 System.out.println("Age is " + age);
 }
 }
-Output when assertions are enabled (-ea flag):
+//Output when assertions are enabled (-ea flag):
+//
+//
+//Exception in thread "main" java.lang.AssertionError: Age must be at least 18
+//If assertions are enabled using the -ea flag, this will throw an AssertionError. If assertions are disabled, the program will execute normally.
+//
 
-
-Exception in thread "main" java.lang.AssertionError: Age must be at least 18
-If assertions are enabled using the -ea flag, this will throw an AssertionError. If assertions are disabled, the program will execute normally.
-
-
+    /*
 How are exceptions propagated in Java?
 Exception propagation refers to the process of passing an exception from the method where it occurs to its caller, and this continues until it is caught or until it reaches the main method. If not caught, it causes the program to terminate.
 
 Example:
 
-
-public class Test {
+*/
+public  static class Test4 {
 public static void method1() {
 int data = 10 / 0; // This will cause an ArithmeticException
 }
@@ -83,12 +85,12 @@ int data = 10 / 0; // This will cause an ArithmeticException
         }
     }
 }
-Output:
+//Output:
+//
+//
+//Exception caught in main: / by zero
+//Here, the exception is propagated from method1 to method2 to main where it is finally caught.
 
-
-Exception caught in main: / by zero
-Here, the exception is propagated from method1 to method2 to main where it is finally caught.
-     */
     public static class A1{
         public static void main(String[] args) {
             try {
@@ -404,7 +406,7 @@ finalize():
 When System.exit() is called, the JVM will terminate the program, and no further code (including catch and finally blocks) will be executed.
 
      */
-    public static class Test {
+    public static class Test6 {
         public static void main(String[] args) {
             try {
                 System.out.println("Inside try block");
