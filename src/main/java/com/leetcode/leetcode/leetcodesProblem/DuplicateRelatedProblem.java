@@ -538,58 +538,49 @@ public class DuplicateRelatedProblem {
             }
         }
     }
-    public static class DuplicateCharacters {
+    public static class ShowDuplicateInSentance {
         public static void main(String[] args) {
-            // Input string
             String str = "apple is fruit";
+            System.out.println("Input String: " + str);
+            showDuplicateInSentanceWithoutJava8(str);
+            showDuplicateInSentanceWithJava8(str);
 
-            // Print the original string
-            System.out.println("The string is: " + str);
-
-            // Call methods
-            findDuplicateWithoutJava8(str);
-            findDuplicateWithJava8(str);
         }
 
-        // Without Java 8 (Traditional Approach)
-        private static void findDuplicateWithoutJava8(String str) {
-            System.out.print("Without Java 8: Duplicate Characters are: ");
-
-            // Using HashSet to find duplicate characters
-            Set<Character> seen = new HashSet<>();
+        private static void showDuplicateInSentanceWithoutJava8(String str) {
+            Set<Character> set = new HashSet<>();
             Set<Character> duplicates = new HashSet<>();
 
-            for (char c : str.toCharArray()) {
-                if (c != ' ') { // Exclude spaces
-                    if (!seen.add(c)) { // If already present in `seen`, it's a duplicate
-                        duplicates.add(c);
+            System.out.println("Processing each character:");
+            for (char ch : str.toCharArray()) {
+                System.out.println("Checking character: " + ch);
+                if (ch != ' ') {
+                    if (!set.add(ch)) {
+                        System.out.println("Duplicate found: " + ch);
+                        duplicates.add(ch);
+                    } else {
+                        System.out.println("Adding to set: " + ch);
                     }
+                } else {
+                    System.out.println("Skipping space character");
                 }
             }
 
-            // Print duplicate characters
+            System.out.println("\nDuplicate characters:");
             for (char c : duplicates) {
-                System.out.print(c + " ");
+                System.out.println(c + " ");
             }
-            System.out.println();
         }
-
-        // With Java 8 (Stream API)
-        private static void findDuplicateWithJava8(String str) {
-            System.out.print("With Java 8: Duplicate Characters are: ");
-
-            // Java 8 Stream approach
-            Set<Character> seen = new HashSet<>();
-            Set<Character> duplicates = str.chars()
-                    .mapToObj(c -> (char) c) // Convert int to Character
-                    .filter(c -> c != ' ' && !seen.add(c)) // Exclude spaces and track duplicates
+        private static void showDuplicateInSentanceWithJava8(String str) {
+            Set<Character>set=new HashSet<>();
+//•	str.chars() converts the string into an IntStream of character codes.
+//filter() method, which determines whether a character should be included in the resulting collection.
+            Set<Character>duplicates=str.chars().mapToObj(c->(char)c)
+                    .filter(c->c!=' '&&!set.add(c))
                     .collect(Collectors.toSet());
-
-            // Print duplicate characters
-            duplicates.forEach(c -> System.out.print(c + " "));
+            duplicates.forEach(c->System.out.println(c+" "));
             System.out.println();
         }
     }
-
 
 }
