@@ -1,57 +1,53 @@
 package com.leetcode.leetcode.string;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Anagram {
     public static void main(String[] args) {
         String str1 = "listen";
         String str2 = "silent";
-        boolean result = anagram(str1, str2);
 
-        if (result) {
-            System.out.println("The strings are anagrams.");
-        } else {
-            System.out.println("The strings are not anagrams.");
-        }
+        // Without Java 8
+        boolean resultWithoutJava8 = isAnagramWithoutJava8(str1, str2);
+        System.out.println("Without Java 8: " + (resultWithoutJava8 ? "Anagrams" : "Not Anagrams"));
+
+        // With Java 8 Streams
+        boolean resultWithJava8 = isAnagramWithJava8(str1, str2);
+        System.out.println("With Java 8: " + (resultWithJava8 ? "Anagrams" : "Not Anagrams"));
     }
 
-    private static boolean anagram(String str1, String str2) {
-        // If lengths are not the same, they can't be anagrams
+    // ✅ Without Java 8 (Using Sorting)
+    private static boolean isAnagramWithoutJava8(String str1, String str2) {
         if (str1.length() != str2.length()) {
             return false;
         }
 
-        // Convert strings to character arrays
         char[] arr1 = str1.toCharArray();
         char[] arr2 = str2.toCharArray();
 
-        // Sort the character arrays
         Arrays.sort(arr1);
         Arrays.sort(arr2);
 
-        // Compare the sorted arrays
         return Arrays.equals(arr1, arr2);
     }
-}
-/*
-  private static boolean anagram(String str1, String str2) {
-        // If lengths are not the same, they can't be anagrams
+
+    // ✅ With Java 8 Streams (Using Sorted Character Sequences)
+    private static boolean isAnagramWithJava8(String str1, String str2) {
         if (str1.length() != str2.length()) {
             return false;
         }
 
-        // Convert strings to sorted character sequences and compare
         String sortedStr1 = str1.chars()
-                               .sorted()
-                               .mapToObj(c -> String.valueOf((char) c))
-                               .collect(Collectors.joining());
+                .sorted()
+                .mapToObj(c -> String.valueOf((char) c))
+                .collect(Collectors.joining());
 
         String sortedStr2 = str2.chars()
-                               .sorted()
-                               .mapToObj(c -> String.valueOf((char) c))
-                               .collect(Collectors.joining());
+                .sorted()
+                .mapToObj(c -> String.valueOf((char) c))
+                .collect(Collectors.joining());
 
-        // Compare sorted strings
         return sortedStr1.equals(sortedStr2);
     }
- */
+}
