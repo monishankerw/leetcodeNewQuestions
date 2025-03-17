@@ -38,7 +38,7 @@ public class SlidingWindow {
     }
 
 
-    public static class Solution {
+    public static class Anagrams {
         public List<Integer> findAnagrams(String s, String p) {
             List<Integer> result = new ArrayList<>();
             int sLen = s.length(), pLen = p.length();
@@ -80,7 +80,7 @@ public class SlidingWindow {
 
         // Main method to test the function
         public static void main(String[] args) {
-            Solution solution = new Solution();
+            Anagrams solution = new Anagrams();
 
             // Test case 1
             String s1 = "cbaebabacd";
@@ -106,6 +106,58 @@ public class SlidingWindow {
             String s5 = "a";
             String p5 = "a";
             System.out.println("Anagram indices in '" + s5 + "' for '" + p5 + "': " + solution.findAnagrams(s5, p5));
+        }
+    }
+
+
+
+    public static class Permutation {
+        public boolean checkInclusion(String s1, String s2) {
+            int n = s2.length(), m = s1.length();
+            if (m > n) return false;
+
+            int[] s1Freq = new int[26];
+            int[] windowFreq = new int[26];
+
+            // Fill frequency array for s1
+            for (char c : s1.toCharArray()) {
+                s1Freq[c - 'a']++;
+            }
+
+            // Process the first window of size m in s2
+            for (int i = 0; i < m; i++) {
+                windowFreq[s2.charAt(i) - 'a']++;
+            }
+
+            // Check if first window is a permutation
+            if (Arrays.equals(s1Freq, windowFreq)) return true;
+
+            // Slide the window across s2
+            for (int i = m; i < n; i++) {
+                // Add new character to window
+                windowFreq[s2.charAt(i) - 'a']++;
+
+                // Remove old character from window
+                windowFreq[s2.charAt(i - m) - 'a']--;
+
+                // Compare updated window with s1's frequency
+                if (Arrays.equals(s1Freq, windowFreq)) return true;
+            }
+
+            return false;
+        }
+
+        public static void main(String[] args) {
+            /*
+            	1.	Use a frequency array to track character counts for s1.
+	2.	Create a sliding window of size s1.length() over s2 and compare its frequency with s1.
+	3.	Slide the window across s2, updating character counts dynamically.
+	4.	If at any point the window’s frequency matches s1, return true.
+	5.	Return false if no match is found.
+             */
+            Permutation solution = new Permutation();
+            System.out.println(solution.checkInclusion("ab", "eidbaooo")); // Output: true
+            System.out.println(solution.checkInclusion("ab", "eidboaoo")); // Output: false
         }
     }
 }
