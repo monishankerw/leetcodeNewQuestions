@@ -284,6 +284,12 @@ public class StreamApi {
             System.out.println("Second Highest Number: " + secondHighest.orElse(null));
         }
     }
+    /*
+    1.	distinct() – Removes duplicate elements from the stream.
+	2.	sorted(Comparator.reverseOrder()) – Sorts the stream in descending order.
+	3.	skip(1) – Skips the first element (i.e., the largest element).
+	4.	findFirst() – Retrieves the second-largest distinct element (if present).
+     */
 
     public static class MergeLists {
         public static void main(String[] args) {
@@ -416,6 +422,41 @@ public class StreamApi {
                 System.out.println("First Non-Repeating Character: " + firstNonRepeating.orElse("None"));
             }
         }
+//    remove null and empty value from the list
+
+    public static class RemoveNullEmpty {
+        public static void main(String[] args) {
+            List<String> list = Arrays.asList("hello", "", "world", null, "java", " ", "stream", null);
+
+            List<String> filteredList = list.stream()
+                    .filter(s -> s != null && !s.trim().isEmpty()) // Remove null and empty (including spaces)
+                    .collect(Collectors.toList());
+
+            System.out.println(filteredList);
+        }
+    }
+
+
+    public static class LongestWordFinder {
+        public static void main(String[] args) {
+            List<String> words = Arrays.asList("apple", "banana", "strawberry", "kiwi", "pineapple");
+
+            Optional<String> longestWord = words.stream()
+                    .max((s1, s2) -> Integer.compare(s1.length(), s2.length())); // Find max by length
+
+            longestWord.ifPresent(word -> System.out.println("Longest Word: " + word));
+        }
+    }
+/*
+	1.	words.stream() → Converts the list into a Stream.
+	2.	max((s1, s2) -> Integer.compare(s1.length(), s2.length()))
+	•	Compares words based on their length.
+	•	Returns the longest word wrapped in Optional<String>.
+	3.	ifPresent() → Prints the word if found.
+
+⸻
+
+ */
     }
 
 

@@ -285,6 +285,17 @@ Collectors.partitioningBy	Partitions the stream elements into two groups.
         //25. Count occurrences of each character
         Map<String, Long> countOccurence = Arrays.stream(input.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         System.out.println("Count occurrences of each character:::"+countOccurence);
+        /*
+        	input.split("")
+	•	Splits the string into an array of individual characters (since an empty string "" as a delimiter splits each character).
+	•	Example: If input = "hello", then input.split("") results in ["h", "e", "l", "l", "o"].
+	2.	Arrays.stream(input.split(""))
+	•	Converts the character array into a Stream for processing.
+	3.	collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+	•	groupingBy(Function.identity()) → Groups elements (characters) based on their identity (i.e., themselves).
+	•	Collectors.counting() → Counts occurrences of each character in the group.
+
+         */
 
         //26.Find duplicate characters with occurrences > 1
         List<String> duplicateChar = Arrays.stream(input.split("")).

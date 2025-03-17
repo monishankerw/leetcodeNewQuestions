@@ -1,5 +1,6 @@
 package com.leetcode.leetcode.leetcodesProblem;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -59,13 +60,10 @@ This line of code updates the map as follows:
         public static void main(String[] args) {
             String str = "anbadbeaaa";
 
-            // Count the frequency of each character
-            Map<Character, Long> charFrequency = str.chars()
-                    .mapToObj(c -> (char) c) // Convert each int (ASCII) to a Character
-                    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting())); // Group and count
 
+            Map<String, Long> map = Arrays.stream(str.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
             // Print the frequency map
-            System.out.println(charFrequency);
+            System.out.println(map);
         }
     }
     public static class CountOccursChar{
