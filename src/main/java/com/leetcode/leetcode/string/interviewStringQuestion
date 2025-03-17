@@ -1,0 +1,61 @@
+Here are **five years' worth of string-based interview questions** related to **Data Structures and Algorithms (DSA) and Java 8**:  
+
+---
+
+### **Year 1**: Basic String Manipulation  
+1. **Reverse a String** – Write a Java program to reverse a string without using the built-in `reverse()` method.  
+2. **Check for Palindrome** – Determine if a given string is a palindrome.  
+3. **Remove Duplicates** – Remove duplicate characters from a string.  
+4. **Count Character Frequency** – Count occurrences of each character in a string.  
+5. **Find First Non-Repeating Character** – Find the first unique character in a string.  
+
+---
+
+### **Year 2**: Intermediate String Operations  
+1. **String Compression** – Implement basic string compression using character counts (e.g., "aabcccccaaa" → "a2b1c5a3").  
+2. **Anagram Check** – Determine if two strings are anagrams of each other.  
+3. **Substring Search (Brute Force & Efficient)** – Implement substring search algorithms like KMP or Rabin-Karp.  
+4. **Longest Substring Without Repeating Characters** – Find the length of the longest substring without repeating characters.  
+5. **Check for Rotation** – Check if one string is a rotation of another (e.g., "waterbottle" and "erbottlewat").  
+
+---
+
+### **Year 3**: Advanced String Problems  
+1. **Longest Palindromic Substring** – Find the longest palindromic substring in a given string.  
+2. **Z-Algorithm for Pattern Matching** – Implement the Z-algorithm for string pattern searching.  
+3. **Edit Distance (Levenshtein Distance)** – Find the minimum number of operations to convert one string into another.  
+4. **Balanced Parentheses** – Check if a string containing only `{, }, (, ), [, ]` is balanced.  
+5. **Generate All Permutations** – Print all permutations of a given string.  
+
+---
+
+### **Year 4**: Java 8 Functional Programming & DSA  
+1. **Count Words Using Streams** – Given a string, count the number of words using Java 8 Streams.  
+2. **Find First Non-Repeating Character Using Streams** – Solve the problem using Java 8 Streams.  
+3. **Group Anagrams Using Streams** – Given a list of words, group all anagrams together.  
+4. **Find the Most Frequent Character Using Collectors** – Use Java 8 Streams to determine the most frequent character in a string.  
+5. **Reversing Words in a Sentence** – Reverse words in a sentence using Java 8 functional programming.  
+
+---
+
+### **Year 5**: Mixed DSA + Java 8  
+1. **Convert String to Integer (Custom Implementation)** – Implement `atoi()` without using built-in parsing methods.  
+2. **Find Common Prefix** – Find the longest common prefix among a list of strings.  
+3. **Remove Vowels from a String Using Streams** – Filter out vowels from a string using Java 8 Streams.  
+4. **Check If a String Contains Only Digits** – Use functional programming to check if a string consists only of digits.  
+5. **Find Duplicate Words in a Paragraph Using Streams** – Identify repeated words in a given paragraph using Java 8.  
+
+---
+
+Would you like me to provide **solutions** for any of these questions?  
+
+### **Potential Follow-up Questions:**  
+1. How do I optimize substring search algorithms?  
+2. Can you explain functional programming in Java 8 with examples?  
+3. How does the KMP algorithm work?  
+4. What are some common mistakes in string handling in Java?  
+5. Can you explain trie data structure for string problems?  
+6. How do I improve my coding speed for interviews?  
+7. Can you provide Java 8-based solutions for string problems?  
+
+#### **💡 Tip**: In Java 8, use **Streams and Collectors** to simplify string manipulation tasks like counting characters, grouping anagrams, or filtering data efficiently. 🚀
