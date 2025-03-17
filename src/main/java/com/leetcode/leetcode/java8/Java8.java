@@ -247,30 +247,30 @@ ofNullable(T value)->Returns an optional describing the specified value, if non-
     }
 }
 
-
-What happens if we add another abstract method to the functional interface?
-Can a functional interface extend another interface?
-How can a functional interface extend another interface?
-How do default methods work in multiple interfaces?
-Can a functional interface have static methods?
-What is the difference between default and abstract methods?
-Can we override default methods in implementing classes?
-What are method references, and how do they relate to functional interfaces?
-How does a lambda expression differ from an anonymous class?
-Can default methods be overridden in implementing classes?
-What is the use of @FunctionalInterface annotation?
-
-How does a lambda expression differ from an anonymous class?
-What are method references, and how do they relate to functional interfaces?
-What is the significance of @FunctionalInterface, and is it mandatory?
-
-Can a functional interface have static methods?
-What is the difference between default and abstract methods?
-Can we override default methods in implementing classes?
-How does a lambda expression differ from an anonymous class?
-What are method references, and how do they relate to functional interfaces?
-How can a functional interface be used in method chaining?
-What is the significance of @FunctionalInterface, and is it mandatory?
+//
+//What happens if we add another abstract method to the functional interface?
+//Can a functional interface extend another interface?
+//How can a functional interface extend another interface?
+//How do default methods work in multiple interfaces?
+//Can a functional interface have static methods?
+//What is the difference between default and abstract methods?
+//Can we override default methods in implementing classes?
+//What are method references, and how do they relate to functional interfaces?
+//How does a lambda expression differ from an anonymous class?
+//Can default methods be overridden in implementing classes?
+//What is the use of @FunctionalInterface annotation?
+//
+//How does a lambda expression differ from an anonymous class?
+//What are method references, and how do they relate to functional interfaces?
+//What is the significance of @FunctionalInterface, and is it mandatory?
+//
+//Can a functional interface have static methods?
+//What is the difference between default and abstract methods?
+//Can we override default methods in implementing classes?
+//How does a lambda expression differ from an anonymous class?
+//What are method references, and how do they relate to functional interfaces?
+//How can a functional interface be used in method chaining?
+//What is the significance of @FunctionalInterface, and is it mandatory?
 
 
 
