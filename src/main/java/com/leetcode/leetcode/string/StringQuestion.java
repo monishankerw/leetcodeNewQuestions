@@ -581,6 +581,45 @@ public class StringQuestion{
             return nonRepeatedChars;
         }
     }
+    public static class FirstNonRepeatedWord {
+        public static void main(String[] args) {
+            String input = "Java is fun and Java is popular";
+
+            System.out.println("Traditional Approach: " + firstNonRepeatedWordTraditional(input));
+            System.out.println("Java 8 Streams Approach: " + firstNonRepeatedWordJava8(input));
+        }
+
+        // ✅ Traditional Approach (Using LinkedHashMap)
+        public static String firstNonRepeatedWordTraditional(String input) {
+            String[] words = input.split("\\s+");
+            Map<String, Integer> wordCount = new LinkedHashMap<>();
+
+            // Count occurrences of each word
+            for (String word : words) {
+                wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+            }
+
+            // Find the first word with count == 1
+            for (String word : words) {
+                if (wordCount.get(word) == 1) {
+                    return word;
+                }
+            }
+            return ""; // No non-repeated word found
+        }
+
+        // ✅ Java 8 Streams Approach
+        public static String firstNonRepeatedWordJava8(String input) {
+            return Arrays.stream(input.split("\\s+"))
+                    .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+                    .entrySet()
+                    .stream()
+                    .filter(entry -> entry.getValue() == 1)
+                    .map(Map.Entry::getKey)
+                    .findFirst()
+                    .orElse("");
+        }
+    }
     public static class StringCompression {
         public static void main(String[] args) {
             String str = "aabcccccaaa";
