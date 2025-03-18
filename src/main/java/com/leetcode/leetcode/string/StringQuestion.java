@@ -541,7 +541,46 @@ public class StringQuestion{
             return '\0'; // Return null character if no unique char found
         }
     }
+    public static class NonRepeatedCharacters {
+        public static void main(String[] args) {
+            String str = "hello world java";
 
+            System.out.println("Using Java 8 Streams: " + findNonRepeatedUsingStreams(str));
+            System.out.println("Without Using Java 8 Streams: " + findNonRepeatedWithoutStreams(str));
+        }
+
+        // Method using Java 8 Streams
+        private static List<Character> findNonRepeatedUsingStreams(String str) {
+            return str.replaceAll("\\s+", "").chars()
+                    .mapToObj(c -> (char) c)
+                    .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+                    .entrySet().stream()
+                    .filter(entry -> entry.getValue() == 1)
+                    .map(Map.Entry::getKey)
+                    .collect(Collectors.toList());
+        }
+
+        // Method without using Java 8 Streams
+        private static List<Character> findNonRepeatedWithoutStreams(String str) {
+            str = str.replaceAll("\\s+", ""); // Remove spaces
+            Map<Character, Integer> frequencyMap = new LinkedHashMap<>();
+            List<Character> nonRepeatedChars = new ArrayList<>();
+
+            // Count occurrences of each character
+            for (char c : str.toCharArray()) {
+                frequencyMap.put(c, frequencyMap.getOrDefault(c, 0) + 1);
+            }
+
+            // Find non-repeated characters
+            for (Map.Entry<Character, Integer> entry : frequencyMap.entrySet()) {
+                if (entry.getValue() == 1) {
+                    nonRepeatedChars.add(entry.getKey());
+                }
+            }
+
+            return nonRepeatedChars;
+        }
+    }
     public static class StringCompression {
         public static void main(String[] args) {
             String str = "aabcccccaaa";
