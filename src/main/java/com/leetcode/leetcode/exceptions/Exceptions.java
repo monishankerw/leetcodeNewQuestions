@@ -65,6 +65,8 @@ System.out.println("Age is " + age);
 How are exceptions propagated in Java?
 Exception propagation refers to the process of passing an exception from the method where it occurs to its caller, and this continues until it is caught or until it reaches the main method. If not caught, it causes the program to terminate.
 
+
+Rethrowing????
 Example:
 
 */

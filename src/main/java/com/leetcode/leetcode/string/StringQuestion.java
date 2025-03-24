@@ -120,17 +120,30 @@ public class StringQuestion{
         }
 
         // 3️⃣ Count Words in a Sentence
+        // Method to count words in a string without using Java 8 features
         private static int countWordsWithoutJava8(String str) {
+            // Trim leading and trailing spaces to remove unnecessary whitespace
             str = str.trim();
+
+            // If the string is empty after trimming, return 0 as there are no words
             if (str.isEmpty()) return 0;
+
+            // Initialize word count to 1 (assuming the string has at least one word)
             int count = 1;
+
+            // Loop through each character in the string except the last one
             for (int i = 0; i < str.length() - 1; i++) {
+                // Check if the current character is a space
+                // AND the next character is NOT a space (i.e., start of a new word)
                 if (str.charAt(i) == ' ' && str.charAt(i + 1) != ' ') {
-                    count++;
+                    count++;  // Increment the word count
                 }
             }
+
+            // Return the total number of words counted
             return count;
         }
+
 
         private static long countWordsWithJava8(String str) {
             return Arrays.stream(str.trim().split("\\s+")).count();
@@ -453,7 +466,7 @@ public class StringQuestion{
         }
     }
 
-    public class FindVowel {
+    public static class FindVowel {
         public static void main(String[] args) {
             String str = "Test Engin";
 
@@ -625,6 +638,8 @@ public class StringQuestion{
             String str = "aabcccccaaa";
             String compressed = compressString(str);
             System.out.println("Compressed String: " + compressed);
+            System.out.println("Compressed String: " + compressStringjava8(str));
+
         }
 
         private static String compressString(String str) {
@@ -646,6 +661,19 @@ public class StringQuestion{
 
             // Return the original string if compression is not smaller
             return compressed.length() < str.length() ? compressed.toString() : str;
+        }
+        private static String compressStringjava8(String str) {
+            if (str == null || str.isEmpty()) return str;
+
+            Map<Character, Long> groupedChars = IntStream.range(0, str.length())
+                    .mapToObj(str::charAt)
+                    .collect(Collectors.groupingBy(c -> c, LinkedHashMap::new, Collectors.counting()));
+
+            String compressed = groupedChars.entrySet().stream()
+                    .map(entry -> entry.getKey() + String.valueOf(entry.getValue()))
+                    .collect(Collectors.joining());
+
+            return compressed.length() < str.length() ? compressed : str;
         }
     }
 
@@ -1360,7 +1388,7 @@ public class StringQuestion{
             int n = str.length();
             String prefixSuffix = "";
             for (int i = 0; i < n / 2; i++) {
-                if (str.substring(0, i + 1).equals(str.substring(n - i - 1))) {
+                if (str.substring(0, i + 1).equals(str.substring(n - i - 1, n))) {
                     prefixSuffix = str.substring(0, i + 1);
                 }
             }
