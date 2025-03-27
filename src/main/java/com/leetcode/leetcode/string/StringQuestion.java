@@ -123,13 +123,18 @@ public class StringQuestion {
 
         // 3️⃣ Count Words in a Sentence
         private static int countWordsWithoutJava8(String str) {
-            str = str.trim();
+            str = str.trim(); // Remove leading and trailing spaces
             if (str.isEmpty()) return 0;
-            int count = 1;
+
+            int count = 1; // Start with 1 assuming there's at least one word
+
             for (int i = 0; i < str.length() - 1; i++) {
+                // If current character is space and next character is not space, count a new word
                 if (str.charAt(i) == ' ' && str.charAt(i + 1) != ' ') {
+                    count++;
                 }
             }
+
             return count;
         }
 
