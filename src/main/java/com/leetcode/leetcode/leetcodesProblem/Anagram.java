@@ -110,4 +110,54 @@ public class Anagram {
                 s2.chars().sorted().toArray()
         );
     }
+    public static class GroupAnagramsExample {
+
+        public static void main(String[] args) {
+            String[] strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
+
+            // Traditional method
+            List<List<String>> resultTraditional = groupAnagramsTraditional(strs);
+            System.out.println("Traditional Grouping:");
+            System.out.println(resultTraditional);
+
+            // Java 8 Stream method
+            List<List<String>> resultStream = groupAnagramsJava8(strs);
+            System.out.println("Java 8 Stream Grouping:");
+            System.out.println(resultStream);
+        }
+
+        // ✅ Traditional Way
+        public static List<List<String>> groupAnagramsTraditional(String[] strs) {
+            Map<String, List<String>> anagramMap = new HashMap<>();
+
+            for (String str : strs) {
+                char[] charArray = str.toCharArray();        // Convert to char array
+                Arrays.sort(charArray);                      // Sort characters
+                String sortedStr = new String(charArray);    // Use sorted string as key
+
+                if (!anagramMap.containsKey(sortedStr)) {
+                    anagramMap.put(sortedStr, new ArrayList<>());
+                }
+
+                anagramMap.get(sortedStr).add(str);          // Group word
+            }
+
+            return new ArrayList<>(anagramMap.values());     // Return result
+        }
+
+        // ✅ Java 8 Stream Way
+        public static List<List<String>> groupAnagramsJava8(String[] strs) {
+            return Arrays.stream(strs)
+                    .collect(Collectors.groupingBy(
+                            str -> {
+                                char[] chars = str.toCharArray();
+                                Arrays.sort(chars);
+                                return new String(chars); // key = sorted version
+                            }
+                    ))
+                    .values()
+                    .stream()
+                    .collect(Collectors.toList()); // get only grouped values
+        }
+    }
 }
