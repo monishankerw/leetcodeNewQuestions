@@ -925,15 +925,69 @@ Conclusion
 	•	Set is a fundamental part of the Java Collections Framework and ensures that elements are unique.
 	•	Choose the specific implementation (HashSet, LinkedHashSet, or TreeSet) based on requirements like ordering, performance, and sorting.
  */
+
+
 /*
 Difference between alist and a set in java?
-List allows duplicate elements where set does not
-List maintain the order of elements while the set implementations (Hashset,Treeset)may or not maintain the order
-ex:
-HashSet does not maintain any order
-LinkedHashSet maintain insertion order
-Tree set maintain nature or custom sorted order
 
+/*
+ * ===========================
+ *     List vs Set in Java
+ * ===========================
+ *
+ * 1. Duplicates:
+ *    - List: ✅ Allows duplicates
+ *    - Set:  ❌ Does not allow duplicates
+ *
+ * 2. Order:
+ *    - List: ✅ Maintains insertion order
+ *    - Set:
+ *        - HashSet: ❌ No guaranteed order
+ *        - LinkedHashSet: ✅ Maintains insertion order
+ *        - TreeSet: ✅ Maintains sorted (natural) order
+ *
+ * 3. Indexing:
+ *    - List: ✅ Supports indexing (get/set using index)
+ *    - Set:  ❌ No indexing support
+ *
+ * 4. Null Elements:
+ *    - List: ✅ Allows multiple nulls (e.g., ArrayList)
+ *    - Set:
+ *        - HashSet/LinkedHashSet: ✅ Allows one null
+ *        - TreeSet: ❌ Null not allowed (throws exception)
+ *
+ * 5. Performance:
+ *    - List: Faster for indexed access (e.g., ArrayList.get(i))
+ *    - Set: Faster for search and uniqueness check (e.g., HashSet.contains())
+ *
+ * 6. Common Implementations:
+ *    - List:
+ *        • ArrayList
+ *        • LinkedList
+ *
+ *    - Set:
+ *        • HashSet
+ *        • LinkedHashSet
+ *        • TreeSet
+ *
+ * ===========================
+ *         Example:
+ * ===========================
+ *
+ * List<String> list = new ArrayList<>();
+ * list.add("apple");
+ * list.add("banana");
+ * list.add("apple"); // ✅ Duplicates allowed
+ * System.out.println(list); // [apple, banana, apple]
+ *
+ * Set<String> set = new HashSet<>();
+ * set.add("apple");
+ * set.add("banana");
+ * set.add("apple"); // ❌ Duplicate ignored
+ * System.out.println(set); // [banana, apple] (unordered)
+ *
+ */
+/*
 can a null elements be add to a set?
 Hashset and linkedHashset allow a single null elements
 Treeset does not allow null elements because it tries to sort elements.
@@ -944,13 +998,56 @@ What happens if you try to add a duplicate elements to a set?
 If you try to add a duplicate element the set will simple ignore the new elements and retain the existing one. no error will be throw.
 
 HashSet set vs LinkedHashSet
-HashSet
-HashSet does not maintain insertion order
-Hashset internally used HashMap
-LinkeHashMap
-LinkedHashMap maintain insertion order
-LinkedHashMap internally used LinkedHashMap
 
+ */
+/*
+ * =========================================
+ *        HashSet vs LinkedHashSet in Java
+ * =========================================
+ *
+ * 1. Ordering:
+ *    - HashSet: ❌ Does NOT maintain insertion order.
+ *    - LinkedHashSet: ✅ Maintains insertion order.
+ *
+ * 2. Performance:
+ *    - HashSet: Slightly faster (no overhead of maintaining order).
+ *    - LinkedHashSet: Slightly slower (maintains a doubly linked list).
+ *
+ * 3. Duplicate Elements:
+ *    - Both do NOT allow duplicates.
+ *
+ * 4. Null Elements:
+ *    - Both allow only ONE null element.
+ *
+ * 5. Internal Structure:
+ *    - HashSet: Uses HashMap internally.
+ *    - LinkedHashSet: Uses LinkedHashMap internally (maintains insertion order).
+ *
+ * 6. Use Case:
+ *    - HashSet: When you don't care about the order of elements.
+ *    - LinkedHashSet: When you want to preserve the order in which elements were added.
+ *
+ * ================================
+ *         Example Code
+ * ================================
+ *
+ * Set<String> hashSet = new HashSet<>();
+ * hashSet.add("Apple");
+ * hashSet.add("Banana");
+ * hashSet.add("Apple"); // Duplicate ignored
+ * System.out.println("HashSet: " + hashSet);
+ * // Output might be unordered: [Banana, Apple]
+ *
+ * Set<String> linkedHashSet = new LinkedHashSet<>();
+ * linkedHashSet.add("Apple");
+ * linkedHashSet.add("Banana");
+ * linkedHashSet.add("Apple"); // Duplicate ignored
+ * System.out.println("LinkedHashSet: " + linkedHashSet);
+ * // Output: [Apple, Banana]
+ *
+ */
+
+    /*
 How to HashSet internally work.
 Internally it used a HAshMap to store its elements
 1. The Hashset used a HashMap internally where each elements it stored as a key with a constant dummay value.
