@@ -1,6 +1,8 @@
 package com.leetcode.leetcode.leetcodesProblem;
 
-import java.util.Arrays;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class QuestionPracts {
     public static class LoopArrayBasics {
@@ -8,48 +10,48 @@ public class QuestionPracts {
 
             // 1. Print all elements of an array using for loop
             int[] arr = {1, 2, 3, 4, 5};
-            for(int i = 0; i < arr.length; i++) {
+            for (int i = 0; i < arr.length; i++) {
                 System.out.println(arr[i]);
             }
 
             // 2. Find the sum of array elements
             int sum = 0;
-            for(int i = 0; i < arr.length; i++) {
+            for (int i = 0; i < arr.length; i++) {
                 sum += arr[i];
             }
             System.out.println("Sum: " + sum);
 
             // 3. Find the largest element
             int max = arr[0];
-            for(int i = 1; i < arr.length; i++) {
-                if(arr[i] > max) max = arr[i];
+            for (int i = 1; i < arr.length; i++) {
+                if (arr[i] > max) max = arr[i];
             }
             System.out.println("Max: " + max);
 
             // 4. Find the smallest element
             int min = arr[0];
-            for(int i = 1; i < arr.length; i++) {
-                if(arr[i] < min) min = arr[i];
+            for (int i = 1; i < arr.length; i++) {
+                if (arr[i] < min) min = arr[i];
             }
             System.out.println("Min: " + min);
 
             // 5. Reverse the array
-            for(int i = arr.length - 1; i >= 0; i--) {
+            for (int i = arr.length - 1; i >= 0; i--) {
                 System.out.print(arr[i] + " ");
             }
             System.out.println();
 
             // 6. Count even and odd numbers
             int even = 0, odd = 0;
-            for(int i : arr) {
-                if(i % 2 == 0) even++;
+            for (int i : arr) {
+                if (i % 2 == 0) even++;
                 else odd++;
             }
             System.out.println("Even: " + even + ", Odd: " + odd);
 
             // 7. Print array elements using while loop
             int i = 0;
-            while(i < arr.length) {
+            while (i < arr.length) {
                 System.out.println(arr[i]);
                 i++;
             }
@@ -59,11 +61,11 @@ public class QuestionPracts {
             do {
                 System.out.println(arr[i]);
                 i++;
-            } while(i < arr.length);
+            } while (i < arr.length);
 
             // 9. Find index of element 3
-            for(i = 0; i < arr.length; i++) {
-                if(arr[i] == 3) {
+            for (i = 0; i < arr.length; i++) {
+                if (arr[i] == 3) {
                     System.out.println("Index of 3: " + i);
                     break;
                 }
@@ -71,22 +73,22 @@ public class QuestionPracts {
 
             // 10. Copy array
             int[] copy = new int[arr.length];
-            for(i = 0; i < arr.length; i++) {
+            for (i = 0; i < arr.length; i++) {
                 copy[i] = arr[i];
             }
 
             // 11. Count occurrences of 2
             int count = 0;
-            for(i = 0; i < arr.length; i++) {
-                if(arr[i] == 2) count++;
+            for (i = 0; i < arr.length; i++) {
+                if (arr[i] == 2) count++;
             }
             System.out.println("2 appears: " + count + " times");
 
             // 12. Sort array (basic bubble sort)
             int[] a = {5, 3, 1, 4, 2};
-            for(i = 0; i < a.length; i++) {
-                for(int j = i + 1; j < a.length; j++) {
-                    if(a[i] > a[j]) {
+            for (i = 0; i < a.length; i++) {
+                for (int j = i + 1; j < a.length; j++) {
+                    if (a[i] > a[j]) {
                         int temp = a[i];
                         a[i] = a[j];
                         a[j] = temp;
@@ -95,22 +97,22 @@ public class QuestionPracts {
             }
 
             // 13. Print only even elements
-            for(int num : arr) {
-                if(num % 2 == 0) System.out.println(num);
+            for (int num : arr) {
+                if (num % 2 == 0) System.out.println(num);
             }
 
             // 14. Print alternate elements
-            for(i = 0; i < arr.length; i += 2) {
+            for (i = 0; i < arr.length; i += 2) {
                 System.out.println(arr[i]);
             }
 
             // 15. Find second largest
             int first = Integer.MIN_VALUE, second = Integer.MIN_VALUE;
-            for(int num : arr) {
-                if(num > first) {
+            for (int num : arr) {
+                if (num > first) {
                     second = first;
                     first = num;
-                } else if(num > second && num != first) {
+                } else if (num > second && num != first) {
                     second = num;
                 }
             }
@@ -118,13 +120,13 @@ public class QuestionPracts {
 
             // 16. Calculate average
             sum = 0;
-            for(int num : arr) sum += num;
-            System.out.println("Average: " + (double)sum / arr.length);
+            for (int num : arr) sum += num;
+            System.out.println("Average: " + (double) sum / arr.length);
 
             // 17. Check if array is sorted
             boolean isSorted = true;
-            for(i = 1; i < arr.length; i++) {
-                if(arr[i] < arr[i - 1]) {
+            for (i = 1; i < arr.length; i++) {
+                if (arr[i] < arr[i - 1]) {
                     isSorted = false;
                     break;
                 }
@@ -133,21 +135,21 @@ public class QuestionPracts {
 
             // 18. Shift array left by 1
             int firstElem = arr[0];
-            for(i = 0; i < arr.length - 1; i++) {
+            for (i = 0; i < arr.length - 1; i++) {
                 arr[i] = arr[i + 1];
             }
             arr[arr.length - 1] = firstElem;
 
             // 19. Count prime numbers in array
             int primeCount = 0;
-            for(int num : arr) {
-                if(isPrime(num)) primeCount++;
+            for (int num : arr) {
+                if (isPrime(num)) primeCount++;
             }
             System.out.println("Prime count: " + primeCount);
 
             // 20. Print all pairs in array
-            for(i = 0; i < arr.length; i++) {
-                for(int j = i + 1; j < arr.length; j++) {
+            for (i = 0; i < arr.length; i++) {
+                for (int j = i + 1; j < arr.length; j++) {
                     System.out.println("(" + arr[i] + ", " + arr[j] + ")");
                 }
             }
@@ -155,13 +157,14 @@ public class QuestionPracts {
 
         // Helper method for checking prime
         public static boolean isPrime(int n) {
-            if(n < 2) return false;
-            for(int i = 2; i <= Math.sqrt(n); i++) {
-                if(n % i == 0) return false;
+            if (n < 2) return false;
+            for (int i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i == 0) return false;
             }
             return true;
         }
     }
+
     public static class Swapping {
         public static void main(String[] args) {
             int a = 10, b = 20;
@@ -454,24 +457,25 @@ public class QuestionPracts {
     }
 
     //Sorting with inbuilt method
-    public static class SortingWithInbuildMethod{
+    public static class SortingWithInbuildMethod {
         public static void main(String[] args) {
-            int[] arr={1,7,5,87,4,3};
+            int[] arr = {1, 7, 5, 87, 4, 3};
             Arrays.sort(arr);
-            System.out.println("Sorted Arrays:"+Arrays.toString(arr));
+            System.out.println("Sorted Arrays:" + Arrays.toString(arr));
             //second largest elements
-            System.out.println("Second largest Elements:"+arr[arr.length-2]);
+            System.out.println("Second largest Elements:" + arr[arr.length - 2]);
         }
     }
 
     //Move Negative Number
-    public static class MoveNegative{
+    public static class MoveNegative {
         public static void main(String[] args) {
-            int[] arr={1,-2,3,-5,4,-7};
+            int[] arr = {1, -2, 3, -5, 4, -7};
             Arrays.sort(arr);
             System.out.println(Arrays.toString(arr));
         }
     }
+
     //Move zero to one side
     public static class MoveZero {
         public static void main(String[] args) {
@@ -514,9 +518,10 @@ public class QuestionPracts {
             }
         }
     }
+
     public static class TrappingRainWater {
         public static void main(String[] args) {
-            int[] height = {0,1,0,2,1,0,1,3,2,1,2,1};
+            int[] height = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
             System.out.println("Trapped water: " + trap(height));
         }
 
@@ -576,6 +581,146 @@ public class QuestionPracts {
         }
     }
 
+    // duplicate Show in the arrays
+    public static class DuplicateShows {
+        public static void main(String[] args) {
+            int[] arr = {1, 2, 3, 1, 2, 4, 5};
+            duplicateShow(arr);
+            duplicateShowJava8(arr);
+            boolean duplicateCheck = isDuplicateCheck(arr);
+            System.out.println(duplicateCheck);
+            boolean duplicateCheckJava8 = isDuplicateCheckJava8(arr);
+            System.out.println(duplicateCheckJava8);
+            // Remove Duplicate From List
+            List<Integer> list = Arrays.asList(1, 2, 1, 3, 3, 2, 4, 5);
+            removeDuplicateShowList(list);
+            //Show Duplicate Value of character
+            String str = "javaDeveloper";
+            showDuplicateChact(str);
+            showDuplicateChactJava8(str);
+            removeDups(str);
+            removeDupsJava8(str);
+            String strs= "apple is fruit";
+            duplicateShowWordSentences(strs);
+            showDuplicateInSentanceWithJava8(strs);
+
+        }
+
+        private static void duplicateShow(int[] arr) {
+            HashSet<Integer> seen = new HashSet<>();
+            HashSet<Integer> duplicates = new HashSet<>();
+/*
+	•	set: Tracks elements seen for the first time.
+	•	duplicates: Stores values that appeared more than once.
+	•	set.add(num):
+	•	Returns true if it’s the first time seeing num.
+	•	Returns false if num was already seen → it’s a duplicate.
+	•	So if add() returns false, we add it to duplicates.
+ */
+            for (int num : arr) {
+                if (!seen.add(num)) {
+                    duplicates.add(num);
+                }
+            }
+            for (int duplicate : duplicates) {
+                System.out.println(duplicate);
+            }
+        }
+    }
+
+    private static void duplicateShowJava8(int[] arr) {
+        HashSet<Integer> seen = new HashSet<>();
+        Set<Integer> duplicates =
+                Arrays.stream(arr).filter(n -> !seen.add(n)).boxed().collect(Collectors.toSet());
+        duplicates.forEach(System.out::println);
+    }
+
+    private static boolean isDuplicateCheck(int[] arr) {
+        HashSet<Integer> seen = new HashSet<>();
+        for (int num : arr) {
+            if (!seen.add(num)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isDuplicateCheckJava8(int[] arr) {
+        HashSet<Integer> seen = new HashSet<>();
+        return Arrays.stream(arr).anyMatch(n -> !seen.add(n));
+        //Return true if at least one elements matches the predicate.
+        //Return false if no elements match.
+    }
+
+    private static void removeDuplicateShowList(List<Integer> list) {
+        List<Integer> rremoveDuplicateShowList = list.stream().distinct().toList();
+        System.out.println(rremoveDuplicateShowList);
+    }
+
+    private static void showDuplicateChact(String str) {
+        Set<Character> seen = new HashSet<>();
+        Set<Character> duplicates = new HashSet<>();
+        for (char ch : str.toCharArray()) {
+            if (!seen.add(ch)) {
+                duplicates.add(ch);
+            }
+        }
+        System.out.println(duplicates);
+    }
+
+    private static void showDuplicateChactJava8(String str) {
+        str.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream().filter(entry -> entry.getValue() > 1)
+                .forEach(entry -> System.out.println(entry.getKey() + " "));
+    }
+
+    private static void removeDups(String str) {
+        Set<Character> set = new LinkedHashSet<>();
+        for (char c : str.toCharArray()) {
+            set.add(c);
+            System.out.println("Remove Duplicates From word:" + set);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (char ch : set) {
+            sb.append(ch);
+        }
+
+        System.out.println(sb);
+    }
+    private static void removeDupsJava8(String str) {
+        String removeDupsJava8 = str.chars().mapToObj(c -> (char) c).distinct().map(String::valueOf).collect(Collectors.joining());
+        System.out.println(removeDupsJava8);
+    }
+
+
+    private static void duplicateShowWordSentences(String strs) {
+        Set<Character>seen=new HashSet<>();
+        Set<Character>duplicates=new HashSet<>();
+        for (char ch:strs.toCharArray()){
+            if(ch!=' '){
+                if(!seen.add(ch)){
+                    duplicates.add(ch);
+                }
+            }
+        }
+            for (char dup:duplicates){
+                System.out.println("duplicateShowWordSentences::"+dup);
+
+
+        }
+    }
+    private static void showDuplicateInSentanceWithJava8(String str) {
+        Set<Character>set=new HashSet<>();
+//•	str.chars() converts the string into an IntStream of character codes.
+//filter() method, which determines whether a character should be included in the resulting collection.
+        Set<Character>duplicates=str.chars().mapToObj(c->(char)c)
+                .filter(c->c!=' '&&!set.add(c))
+                .collect(Collectors.toSet());
+        duplicates.forEach(c->System.out.println(c+" "));
+        System.out.println();
+    }
 
 }
+
 

@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class DuplicateRelatedProblem {
-    //1. Remove duplicate and show
+    //1. Pick duplicate and show
     public static class ShowDuplicate {
         public static void main(String[] args) {
             int[] arr = {1, 2, 1, 3, 4, 2, 5, 3, 5};
@@ -161,7 +161,7 @@ public class DuplicateRelatedProblem {
     //6. Remove duplicate from shorted arrays I
     public static class RemoveDuplicateFromShortedArrays {
         public static void main(String[] args) {
-            int arr[] = {1, 1, 2};
+            int arr[] = {1, 1, 2,6,3,3,7};
             int output = removeDuplicateFromShortedArrays(arr);
             System.out.println("RemoveDuplicateFromShortedArrays:::" + output);
         }
