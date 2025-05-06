@@ -205,6 +205,20 @@ public class QuestionPracts {
         }
     }
 
+    //Array Partition
+
+    public static class ArrayPartition {
+        public static void main(String[] args) {
+            int[] arr = {1, 4, 2, 3};
+            Arrays.sort(arr);
+            int sum = 0;
+            for (int i = 0; i < arr.length; i += 2) {
+                sum += arr[i];
+            }
+            System.out.println(sum);
+        }
+    }
+
     // Largest Number Finder
     public static class LargestNumber {
         public static void main(String[] args) {
@@ -600,7 +614,7 @@ public class QuestionPracts {
             showDuplicateChactJava8(str);
             removeDups(str);
             removeDupsJava8(str);
-            String strs= "apple is fruit";
+            String strs = "apple is fruit";
             duplicateShowWordSentences(strs);
             showDuplicateInSentanceWithJava8(strs);
 
@@ -688,6 +702,7 @@ public class QuestionPracts {
 
         System.out.println(sb);
     }
+
     private static void removeDupsJava8(String str) {
         String removeDupsJava8 = str.chars().mapToObj(c -> (char) c).distinct().map(String::valueOf).collect(Collectors.joining());
         System.out.println(removeDupsJava8);
@@ -695,32 +710,92 @@ public class QuestionPracts {
 
 
     private static void duplicateShowWordSentences(String strs) {
-        Set<Character>seen=new HashSet<>();
-        Set<Character>duplicates=new HashSet<>();
-        for (char ch:strs.toCharArray()){
-            if(ch!=' '){
-                if(!seen.add(ch)){
+        Set<Character> seen = new HashSet<>();
+        Set<Character> duplicates = new HashSet<>();
+        for (char ch : strs.toCharArray()) {
+            if (ch != ' ') {
+                if (!seen.add(ch)) {
                     duplicates.add(ch);
                 }
             }
         }
-            for (char dup:duplicates){
-                System.out.println("duplicateShowWordSentences::"+dup);
+        for (char dup : duplicates) {
+            System.out.println("duplicateShowWordSentences::" + dup);
 
 
         }
     }
+
     private static void showDuplicateInSentanceWithJava8(String str) {
-        Set<Character>set=new HashSet<>();
+        Set<Character> set = new HashSet<>();
 //•	str.chars() converts the string into an IntStream of character codes.
 //filter() method, which determines whether a character should be included in the resulting collection.
-        Set<Character>duplicates=str.chars().mapToObj(c->(char)c)
-                .filter(c->c!=' '&&!set.add(c))
+        Set<Character> duplicates = str.chars().mapToObj(c -> (char) c)
+                .filter(c -> c != ' ' && !set.add(c))
                 .collect(Collectors.toSet());
-        duplicates.forEach(c->System.out.println(c+" "));
+        duplicates.forEach(c -> System.out.println(c + " "));
         System.out.println();
     }
 
+    public static class RemoveDuplicates {
+        public static void main(String[] args) {
+            // Input array with duplicates
+            String[] strArray = {"abc", "def", "abc", "mno", "xyz", "pqr", "xyz", "pqr"};
+
+            findDuplicateWithoutJava8(strArray);
+            findDuplicateWithJava8(strArray);
+        }
+
+        private static void findDuplicateWithoutJava8(String[] strArray) {
+            System.out.println("Brute Force Method: Duplicate Elements are:");
+            for (int i = 0; i < strArray.length - 1; i++) {
+                for (int j = i + 1; j < strArray.length; j++) {
+                    if (strArray[i].equals(strArray[j]) && i != j) {
+                        System.out.println(strArray[i]);
+                    }
+                }
+            }
+        }
+
+        private static void findDuplicateWithJava8(String[] strArray) {
+            System.out.println("Using Java 8 Streams: Duplicate Elements are:");
+
+            Set<String> set = new HashSet<>();
+            Set<String> duplicates = Arrays.stream(strArray)
+                    .filter(e -> !set.add(e)) // If add() returns false, it's a duplicate
+                    .collect(Collectors.toSet());
+
+            System.out.println(duplicates);
+        }
+    }
+    //common elements
+    public static class CommonElements {
+        public static void main(String[] args) {
+            int[] arr1 = {4, 2, 3, 1, 6};
+            int[] arr2 = {6, 7, 8, 4};
+            commonElementJava8(arr1,arr2);
+            List<Integer> commElets = new ArrayList<>();
+            for (int i = 0; i < arr1.length; i++) {
+                for (int j = 0; j < arr2.length; j++) {
+                    if (arr1[i]==arr2[j]){
+                        if (!commElets.contains(arr1[i])){
+                            commElets.add(arr1[i]);
+                        }
+                    }
+                }
+            }
+            System.out.println(commElets);
+        }
+
+        private static void commonElementJava8(int[] arr1, int[] arr2) {
+            List<Integer> list1 = Arrays.stream(arr1).boxed().collect(Collectors.toList());
+            List<Integer> list2 = Arrays.stream(arr2).boxed().collect(Collectors.toList());
+            List<Integer> compEles = list1.stream().filter(list2::contains).distinct().toList();
+            System.out.println("commonElementJava8::"+compEles);
+
+        }
+
+    }
 }
 
 
