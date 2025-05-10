@@ -3,6 +3,7 @@ package com.leetcode.leetcode.leetcodesProblem;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class QuestionPracts {
     public static class LoopArrayBasics {
@@ -768,17 +769,18 @@ public class QuestionPracts {
             System.out.println(duplicates);
         }
     }
+
     //common elements
     public static class CommonElements {
         public static void main(String[] args) {
             int[] arr1 = {4, 2, 3, 1, 6};
             int[] arr2 = {6, 7, 8, 4};
-            commonElementJava8(arr1,arr2);
+            commonElementJava8(arr1, arr2);
             List<Integer> commElets = new ArrayList<>();
             for (int i = 0; i < arr1.length; i++) {
                 for (int j = 0; j < arr2.length; j++) {
-                    if (arr1[i]==arr2[j]){
-                        if (!commElets.contains(arr1[i])){
+                    if (arr1[i] == arr2[j]) {
+                        if (!commElets.contains(arr1[i])) {
                             commElets.add(arr1[i]);
                         }
                     }
@@ -791,8 +793,657 @@ public class QuestionPracts {
             List<Integer> list1 = Arrays.stream(arr1).boxed().collect(Collectors.toList());
             List<Integer> list2 = Arrays.stream(arr2).boxed().collect(Collectors.toList());
             List<Integer> compEles = list1.stream().filter(list2::contains).distinct().toList();
-            System.out.println("commonElementJava8::"+compEles);
+            System.out.println("commonElementJava8::" + compEles);
 
+        }
+
+    }
+
+    public static class RotateArray {
+        public static void main(String[] args) {
+            int[] arr = {1, 2, 3, 4, 5};
+            int n = 3;
+            n = n % arr.length;
+            reverses(arr, 0, n - 1);
+            reverses(arr, n, arr.length - 1);
+            reverses(arr, 0, arr.length - 1);
+
+            for (int var : arr) {
+                System.out.print(var + " ");
+            }
+
+        }
+
+        private static void reverses(int[] arr, int start, int end) {
+            while (start < end) {
+                int temp = arr[start];
+                arr[start] = arr[end];
+                arr[end--] = temp;
+            }
+        }
+    }
+
+    //intersection
+    public static class Intersection {
+        public static void main(String[] args) {
+            int[] arr1 = {1, 2, 3, 4};
+            int[] arr2 = {1, 2};
+            intersectionss(arr1, arr2);
+            intersectionssJava8(arr1, arr2);
+            subSet(arr1, arr2);
+            subSetJava8(arr1, arr2);
+        }
+
+
+        private static void intersectionss(int[] arr1, int[] arr2) {
+            Set<Integer> set = new HashSet<>();
+            for (int i = 0; i < arr1.length; i++) {
+                set.add(arr1[i]);
+            }
+            for (int i = 0; i < arr2.length; i++) {
+                if (set.contains(arr2[i])) {
+
+                    System.out.println(arr2[i]);
+                }
+            }
+        }
+    }
+
+    private static void intersectionssJava8(int[] arr1, int[] arr2) {
+        Set<Integer> intersection = Arrays.stream(arr1).boxed().filter(nums -> Arrays.stream(arr2).anyMatch(x -> x == nums)).collect(Collectors.toSet());
+        System.out.println(intersection);
+    }
+
+
+    private static void subSet(int[] arr1, int[] arr2) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : arr1) {
+            set.add(num);
+        }
+        boolean isSubset = true;
+        for (int num : arr2) {
+            if (!set.contains(num)) {
+                isSubset = false;
+                break;
+            }
+        }
+        System.out.println(isSubset ? "arr2 is a subset" : "arr2 is not a subset");
+    }
+
+    private static void subSetJava8(int[] arr1, int[] arr2) {
+        Set<Integer> set = Arrays.stream(arr1).boxed().collect(Collectors.toSet());
+        boolean isSubSet = Arrays.stream(arr2).allMatch(set::contains);
+        System.out.println(isSubSet ? "arr2 is a subset" : "arr2 is not a subset");
+    }
+
+    public static class PrefixCommonArrayAlternative {
+        public static int[] findPrefixCommonArray(int[] A, int[] B) {
+            int n = A.length;
+            Set<Integer> seenA = new HashSet<>();
+            Set<Integer> seenB = new HashSet<>();
+            Set<Integer> common = new HashSet<>();
+            int[] result = new int[n];
+            int count = 0;
+
+            for (int i = 0; i < n; i++) {
+                seenA.add(A[i]);
+                seenB.add(B[i]);
+
+                // Check A[i] in seenB
+                if (seenB.contains(A[i]) && !common.contains(A[i])) {
+                    count++;
+                    common.add(A[i]);
+                }
+
+                // Check B[i] in seenA
+                if (seenA.contains(B[i]) && !common.contains(B[i])) {
+                    count++;
+                    common.add(B[i]);
+                }
+
+                result[i] = count;
+            }
+
+            return result;
+        }
+
+        public static void main(String[] args) {
+            int[] A = {1, 3, 2, 4};
+            int[] B = {3, 1, 2, 4};
+
+            int[] result = findPrefixCommonArray(A, B);
+            System.out.println("Prefix Common Array: " + Arrays.toString(result)); // [0, 2, 3, 4]
+        }
+    }
+
+    public static class ArraysPartition {
+        public static void main(String[] args) {
+            int[] arr = {1, 4, 3, 2};
+            int sum = 0;
+            Arrays.stream(arr);
+            for (int i = 0; i < arr.length; i += 2) {
+                sum += arr[i];
+            }
+            System.out.println(sum);
+        }
+    }
+
+    public static class Anagram {
+        public static void main(String[] args) {
+            int arr1[] = {1, 2, 3};
+            int arr2[] = {3, 2, 1};
+            Arrays.sort(arr1);
+            Arrays.sort(arr2);
+            boolean isAnagram = Arrays.equals(arr1, arr2);
+            System.out.println("isAnagram:" + isAnagram);
+            boolean checkAnagram = isAnagramJava8(arr1, arr2);
+            System.out.println("Anagram java 8:" + checkAnagram);
+        }
+
+        private static boolean isAnagramJava8(int[] arr1, int[] arr2) {
+            return Arrays.equals(Arrays.stream(arr1).sorted().toArray(),
+                    Arrays.stream(arr2).sorted().toArray());
+        }
+    }
+
+    public static class MaxFreq {
+        public static void main(String[] args) {
+            int[] arr = {1, 3, 2, 4, 3, 3, 2, 1, 4, 3, 1, 1, 2, 3, 4};
+
+            Map<Integer, Integer> map = freqOccus(arr);
+            System.out.println("Freq Occ (Traditional): " + map);
+
+            Map<Integer, Long> mapJava8 = freqOccusJava8(arr);
+            System.out.println("Freq Occ (Java 8): " + mapJava8);
+        }
+
+        // Traditional approach
+        private static Map<Integer, Integer> freqOccus(int[] arr) {
+            Map<Integer, Integer> map = new HashMap<>();
+            for (int num : arr) {
+                map.put(num, map.getOrDefault(num, 0) + 1);
+            }
+            return map;
+        }
+
+        // Java 8 stream-based approach
+        private static Map<Integer, Long> freqOccusJava8(int[] arr) {
+            return Arrays.stream(arr)
+                    .boxed()
+                    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        }
+    }
+
+    public static class FreqOccur {
+        public static void main(String[] args) {
+            String str = "anbabsbddad";
+            Map<Character, Integer> map = freqOccs(str);
+            System.out.println("Fre occ:" + map);
+            Map<Character, Long> mapJava8 = freqOccsJava8(str);
+            System.out.println("Fre occ mapJava8:" + mapJava8);
+        }
+
+
+        private static Map<Character, Integer> freqOccs(String str) {
+            Map<Character, Integer> map = new HashMap<>();
+            for (char c : str.toCharArray()) {
+                map.put(c, map.getOrDefault(c, 0) + 1);
+            }
+            return map;
+        }
+
+        private static Map<Character, Long> freqOccsJava8(String str) {
+            return str.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(Function.identity(),
+                    Collectors.counting()));
+        }
+
+    }
+
+    public static class AnagramString {
+        public static void main(String[] args) {
+            String s1 = "anagram";
+            String s2 = "nagrama";
+
+            boolean isAnagram = areAnagrams(s1, s2);
+            System.out.println("Are Anagrams? " + isAnagram);
+            boolean isAnagramJava8 = areAnagramsJava8s(s1, s2);
+            System.out.println("Are Anagrams? " + isAnagramJava8);
+        }
+
+        private static boolean areAnagrams(String s1, String s2) {
+            if (s1.length() != s2.length()) return false;
+
+            Map<Character, Integer> map1 = new HashMap<>();
+            Map<Character, Integer> map2 = new HashMap<>();
+
+            for (char c : s1.toCharArray()) {
+                map1.put(c, map1.getOrDefault(c, 0) + 1);
+            }
+
+            for (char c : s2.toCharArray()) {
+                map2.put(c, map2.getOrDefault(c, 0) + 1);
+            }
+
+            return map1.equals(map2);
+        }
+    }
+
+    private static boolean areAnagramsJava8s(String s1, String s2) {
+        return Arrays.equals(s1.chars().sorted().toArray(), s2.chars().sorted().toArray());
+    }
+
+    public static class NonRepeating {
+        public static void main(String[] args) {
+            int[] arr = {1, 2, 2, 3, 1, 4, 2, 3};
+            String result = nonRepeating(arr);
+            System.out.println("First Non-Repeating: " + result);
+            String results = nonRepeatingJava8(arr);
+            System.out.println("First Non-Repeating: " + results);
+        }
+
+
+        private static String nonRepeating(int[] arr) {
+            Map<Integer, Integer> freqMap = new HashMap<>();
+
+            // Step 1: Count frequencies
+            for (int num : arr) {
+                freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+            }
+
+            // Step 2: Find the first non-repeating element
+            for (int num : arr) {
+                if (freqMap.get(num) == 1) {
+                    return String.valueOf(num);
+                }
+            }
+
+            return "None";
+        }
+    }
+
+    private static String nonRepeatingJava8(int[] arr) {
+        Map<Integer, Long> freqMap = Arrays.stream(arr)
+                .boxed()
+                .collect(Collectors.groupingBy(
+                        Function.identity(),
+                        LinkedHashMap::new, // maintains insertion order
+                        Collectors.counting()
+                ));
+
+        return freqMap.entrySet().stream()
+                .filter(entry -> entry.getValue() == 1)
+                .map(entry -> String.valueOf(entry.getKey()))
+                .findFirst()
+                .orElse("None");
+    }
+    public static class FirstNonRepChart{
+        public static void main(String[] args) {
+            String str="swiss";
+            firstNonRepChart(str);
+        }
+
+        private static String firstNonRepChart(String str) {
+            Map<Character,Integer>map=new LinkedHashMap<>();
+                    for(char c:str.toCharArray()){
+                        map.put(c,map.getOrDefault(c,0)+1);
+                    }
+                    for (Map.Entry<Character,Integer>entry:map.entrySet()){
+                        if(entry.getValue()==1){
+                            return String.valueOf(entry.getKey());
+                        }
+                    }
+            return "No Unique class";
+        }
+    }
+
+    public static class MaxFreqsOccursElemShow {
+
+        public static void main(String[] args) {
+            int[] arr = {1, 2, 3, 1, 2, 4, 3, 5, 3, 1, 2, 1};
+
+            System.out.println("---- Java 7 Approach ----");
+            findMaxFreqJava7(arr);
+
+            System.out.println("---- Java 8 Approach ----");
+            findMaxFreqJava8(arr);
+        }
+
+        // ✅ Java 7 Approach
+        private static void findMaxFreqJava7(int[] arr) {
+            Map<Integer, Integer> freqMap = new HashMap<>();
+
+            // Count frequencies
+            for (int num : arr) {
+                freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+            }
+
+            // Find max
+            int maxFreq = 0, maxKey = -1;
+            for (Map.Entry<Integer, Integer> entry : freqMap.entrySet()) {
+                if (entry.getValue() > maxFreq) {
+                    maxFreq = entry.getValue();
+                    maxKey = entry.getKey();
+                }
+            }
+
+            System.out.println("Max Frequency Element (Java 7): " + maxKey + " => " + maxFreq);
+        }
+
+        // ✅ Java 8 Approach
+        private static void findMaxFreqJava8(int[] arr) {
+            Map<Integer, Long> freqMap = Arrays.stream(arr)
+                    .boxed()
+                    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+            Map.Entry<Integer, Long> maxEntry = freqMap.entrySet().stream()
+                    .max(Map.Entry.comparingByValue())
+                    .orElse(null);
+
+            if (maxEntry != null) {
+                System.out.println("Max Frequency Element (Java 8): " + maxEntry.getKey() + " => " + maxEntry.getValue());
+            } else {
+                System.out.println("No data found.");
+            }
+        }
+    }
+
+    public static class FirstNonRepeatedNumber {
+        public static void main(String[] args) {
+            int[] arr = {1, 2, 3, 4, 1, 2, 3, 4, 3, 5, 6};
+            Integer map = firstNonRepeatedNumber(arr);
+            System.out.println("FirstNonRepeatedNumber:" + map);
+            Integer mapJava8 = firstNonRepeatedNumberJava8(arr);
+            System.out.println("FirstNonRepeatedNumber mapJava8:" + mapJava8);
+        }
+
+
+        private static Integer firstNonRepeatedNumber(int[] arr) {
+            Map<Integer, Integer> map = new LinkedHashMap<>();
+            for (int num : arr) {
+                map.put(num, map.getOrDefault(num, 0) + 1);
+            }
+            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+                if (entry.getValue() == 1) {
+                    return entry.getKey();
+                }
+            }
+            return -1;
+        }
+    }
+
+    private static Integer firstNonRepeatedNumberJava8(int[] arr) {
+        Map<Integer, Long> map = Arrays.stream(arr)
+                .boxed()
+                .collect(Collectors.groupingBy(
+                        x -> x,
+                        LinkedHashMap::new,  // maintains insertion order
+                        Collectors.counting()
+                ));
+
+        return map.entrySet().stream()
+                .filter(e -> e.getValue() == 1)
+                .map(Map.Entry::getKey)         // extract only the key
+                .findFirst()
+                .orElse(-1);                    // return -1 if not found
+    }
+
+    public static class CharFreq {
+        public static void main(String[] args) {
+            char[] ch = {'a', 'd', 'a', 'f', 'e', 'r'};
+            Map<Character, Integer> freqMap = new HashMap<>();
+            for (char c : ch) {
+                freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
+            }
+            for (Map.Entry<Character, Integer> entry : freqMap.entrySet()) {
+                System.out.println(entry.getKey() + ":" + entry.getValue());
+            }
+            charFreqJava8(ch);
+        }
+
+        private static void charFreqJava8(char[] ch) {
+            Map<Character, Long> map = new String(ch).chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+            map.forEach((k, v) -> System.out.println(k + ":" + v));
+        }
+
+        public static class WordOccFreq {
+
+            public static void main(String[] args) {
+                String sentence = "Test I Test My Test abc pqr";
+
+                System.out.println("---- Java 7 Approach ----");
+                wordFreqJava7(sentence);
+
+                System.out.println("---- Java 8 Approach ----");
+                wordFreqJava8(sentence);
+            }
+
+            // ✅ Java 7 version (traditional for-loop)
+            private static void wordFreqJava7(String sentence) {
+                Map<String, Integer> map = new HashMap<>();
+                String[] words = sentence.toLowerCase().split("\\s+");
+
+                for (String word : words) {
+                    map.put(word, map.getOrDefault(word, 0) + 1);
+                }
+
+                System.out.println("Word Frequencies (Java 7): " + map);
+            }
+
+            // ✅ Java 8 version (stream-based)
+            private static void wordFreqJava8(String sentence) {
+                Map<String, Long> map = Arrays.stream(sentence.toLowerCase().split("\\s+"))
+                        .collect(Collectors.groupingBy(
+                                word -> word,
+                                LinkedHashMap::new,
+                                Collectors.counting()
+                        ));
+
+                System.out.println("Word Frequencies (Java 8): " + map);
+            }
+        }
+        public static class FirstNonRepChart {
+            public static void main(String[] args) {
+                String str = "swiss";
+
+                // Java 7 version
+                String result7 = firstNonRepChartJava7(str);
+                System.out.println("Java 7 - First Non-Repeating Character: " + result7);
+
+                // Java 8 version
+                String result8 = firstNonRepChartJava8(str);
+                System.out.println("Java 8 - First Non-Repeating Character: " + result8);
+            }
+
+            // ✅ Java 7 approach
+            private static String firstNonRepChartJava7(String str) {
+                Map<Character, Integer> map = new LinkedHashMap<>();
+                for (char c : str.toCharArray()) {
+                    map.put(c, map.getOrDefault(c, 0) + 1);
+                }
+                for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+                    if (entry.getValue() == 1) {
+                        return String.valueOf(entry.getKey());
+                    }
+                }
+                return "No Unique Character";
+            }
+
+            // ✅ Java 8 approach
+            private static String firstNonRepChartJava8(String str) {
+                Map<Character, Long> freqMap = str.chars()
+                        .mapToObj(c -> (char) c)
+                        .collect(Collectors.groupingBy(
+                                Function.identity(),
+                                LinkedHashMap::new, // preserves order
+                                Collectors.counting()
+                        ));
+
+                return freqMap.entrySet().stream()
+                        .filter(e -> e.getValue() == 1)
+                        .map(e -> String.valueOf(e.getKey()))
+                        .findFirst()
+                        .orElse("No Unique Character");
+            }
+        }
+
+        //Non-Repeating Character Finder
+        public static class NonRepeatingCharacterFinder{
+            public static void main(String[] args) {
+                String str="hello world java";
+                nonRepeatingCharacterFinder(str);
+            }
+
+            private static List<Character> nonRepeatingCharacterFinder(String str) {
+                str = str.replaceAll("\\s+", " ");
+                Map<Character,Integer>freMap=new LinkedHashMap<>();
+                List<Character>nonRepeatedChars=new ArrayList<>();
+                for (char c:str.toCharArray()){
+                    freMap.put(c,freMap.getOrDefault(c,0)+1);
+                }
+                for(Map.Entry<Character,Integer>entry:freMap.entrySet()){
+                    if(entry.getValue()==1){
+                        nonRepeatedChars.add(entry.getKey());
+                    }
+                }
+                return nonRepeatedChars;
+            }
+        }
+    }
+    public static class NonRepeatingCharacterFinder {
+
+        public static void main(String[] args) {
+            String str = "hello world java";
+
+            System.out.println("---- Java 7 Approach ----");
+            List<Character> result7 = findNonRepeatingJava7(str);
+            System.out.println("Non-Repeating Characters (Java 7): " + result7);
+
+            System.out.println("---- Java 8 Approach ----");
+            List<Character> result8 = findNonRepeatingJava8(str);
+            System.out.println("Non-Repeating Characters (Java 8): " + result8);
+        }
+
+        // ✅ Java 7 version
+        private static List<Character> findNonRepeatingJava7(String str) {
+            str = str.replaceAll("\\s+", ""); // remove all spaces
+            Map<Character, Integer> freqMap = new LinkedHashMap<>();
+            List<Character> nonRepeated = new ArrayList<>();
+
+            for (char c : str.toCharArray()) {
+                freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
+            }
+
+            for (Map.Entry<Character, Integer> entry : freqMap.entrySet()) {
+                if (entry.getValue() == 1) {
+                    nonRepeated.add(entry.getKey());
+                }
+            }
+
+            return nonRepeated;
+        }
+
+        // ✅ Java 8 version
+        private static List<Character> findNonRepeatingJava8(String str) {
+            return str.replaceAll("\\s+", "")
+                    .chars()
+                    .mapToObj(c -> (char) c)
+                    .collect(Collectors.groupingBy(
+                            Function.identity(),
+                            LinkedHashMap::new,
+                            Collectors.counting()
+                    ))
+                    .entrySet()
+                    .stream()
+                    .filter(e -> e.getValue() == 1)
+                    .map(Map.Entry::getKey)
+                    .collect(Collectors.toList());
+        }
+    }
+
+    //Index First Non Repeating char
+    public static class IndexFirstNonRepeatingChars {
+
+        public static void main(String[] args) {
+            String str = "loveleetcode";
+
+            System.out.println("---- Java 7 Approach ----");
+            int indexJava7 = indexFirstNonRepeatingJava7(str);
+            System.out.println("First Non-Repeating Char Index (Java 7): " + indexJava7);
+
+            System.out.println("---- Java 8 Approach ----");
+            int indexJava8 = indexFirstNonRepeatingJava8(str);
+            System.out.println("First Non-Repeating Char Index (Java 8): " + indexJava8);
+        }
+
+        // ✅ Java 7 approach
+        private static int indexFirstNonRepeatingJava7(String str) {
+            Map<Character, Integer> charCount = new LinkedHashMap<>();
+
+            for (int i = 0; i < str.length(); i++) {
+                char c = str.charAt(i);
+                charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+            }
+
+            for (Map.Entry<Character, Integer> entry : charCount.entrySet()) {
+                if (entry.getValue() == 1) {
+                    return str.indexOf(entry.getKey());
+                }
+            }
+
+            return -1;
+        }
+
+        // ✅ Java 8 approach
+        private static int indexFirstNonRepeatingJava8(String str) {
+            Map<Character, Long> freqMap = str.chars()
+                    .mapToObj(c -> (char) c)
+                    .collect(Collectors.groupingBy(
+                            Function.identity(),
+                            LinkedHashMap::new,
+                            Collectors.counting()
+                    ));
+
+            return freqMap.entrySet().stream()
+                    .filter(e -> e.getValue() == 1)
+                    .map(e -> str.indexOf(e.getKey()))
+                    .findFirst()
+                    .orElse(-1);
+        }
+    }
+    //print indices of elements
+    public static class PrintIndicesOfElements {
+        public static void main(String[] args) {
+            int[] arr={12,3,1,3,2,2,4};
+            printIndicesOfElements(arr);
+            printIndicesOfElementsJava(arr);
+        }
+
+
+        private static void printIndicesOfElements(int[] arr) {
+            Map<Integer,List<Integer>> map = new HashMap<>();
+            for(int i=0;i<arr.length;i++){
+                if(!map.containsKey(arr[i])){
+                    map.put(arr[i],new ArrayList<>());
+                }
+                map.get(arr[i]).add(i);
+            }
+            System.out.println(map);
+        }
+        /**
+         * This method takes an array of integers and prints out a map of element to its indices.
+         * It uses Java 8 Stream API to perform the operation.
+         *
+         * @param arr The input array
+         */
+        private static void printIndicesOfElementsJava(int[] arr) {
+            LinkedHashMap<Integer, List<Integer>> map = IntStream.range(0, arr.length)
+                    .boxed()
+                    .collect(Collectors.groupingBy(
+                            i -> arr[i],
+                            LinkedHashMap::new,
+                            Collectors.toList()
+                    ));
+            System.out.println(map);
         }
 
     }

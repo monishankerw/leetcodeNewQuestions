@@ -736,20 +736,26 @@ public class Basics {
     }
 
     //16.rotates arrays
-    public static class Roatatearray {
+    public static class RotateArrayReverse {
         public static void main(String[] args) {
-            int[] arr = new int[]{1, 2, 3, 4, 5};
-            int n = 3, j;
-            for (int i = 0; i < n; i++) {
-                int first = arr[0];
-                for (j = 0; j < arr.length - 1; j++) {
-                    arr[j] = arr[j + 1];
-                }
+            int[] arr = {1, 2, 3, 4, 5};
+            int n = 3;
+            n = n % arr.length;
 
-                arr[j] = first;
+            reverse(arr, 0, n - 1);        // Reverse first part
+            reverse(arr, n, arr.length - 1); // Reverse second part
+            reverse(arr, 0, arr.length - 1); // Reverse entire array
+
+            for (int val : arr) {
+                System.out.print(val + " ");
             }
-            for (int i = 0; i < arr.length; i++) {
-                System.out.println(arr[i] + " ");
+        }
+
+        static void reverse(int[] arr, int start, int end) {
+            while (start < end) {
+                int temp = arr[start];
+                arr[start++] = arr[end];
+                arr[end--] = temp;
             }
         }
     }
@@ -817,36 +823,29 @@ public class Basics {
     }
 
     //20. subset
-    public static class SubSet {
+
+
+    public static class SubSetUsingSet {
         public static void main(String[] args) {
-            int arr1[] = {1, 2, 3, 4, 5}; // Main array
-            int arr2[] = {3, 4, 12};      // Array to check as subset
-            int m = arr1.length;
-            int n = arr2.length;
+            int[] arr1 = {1, 2, 3, 4, 5};
+            int[] arr2 = {3, 4, 12};
 
-            if (isSubset(arr1, arr2, m, n)) {
-                System.out.println("arr2[] is a subset of arr1[]");
-            } else {
-                System.out.println("arr2[] is not a subset of arr1[]");
+            Set<Integer> set = new HashSet<>();
+            for (int num : arr1) {
+                set.add(num);
             }
-        }
 
-        private static boolean isSubset(int[] arr1, int[] arr2, int m, int n) {
-            for (int i = 0; i < n; i++) {
-                boolean found = false; // Flag to check if arr2[i] exists in arr1
-                for (int j = 0; j < m; j++) {
-                    if (arr2[i] == arr1[j]) {
-                        found = true;
-                        break; // Exit the inner loop if a match is found
-                    }
-                }
-                if (!found) {
-                    return false; // If arr2[i] is not found in arr1, return false
+            boolean isSubset = true;
+            for (int num : arr2) {
+                if (!set.contains(num)) {
+                    isSubset = false;
+                    break;
                 }
             }
-            return true; // All elements of arr2[] are found in arr1[]
-        }
 
+            System.out.println(isSubset ? "arr2 is a subset" : "arr2 is NOT a subset");
+        }
+    }
         //21. reverse array
         public static class ReverseArray {
             public static void main(String[] args) {
@@ -868,7 +867,7 @@ public class Basics {
                 }
             }
         }
-    }
+
 
     //22. trappping rainwater
     public static class TrappingRainwater {
