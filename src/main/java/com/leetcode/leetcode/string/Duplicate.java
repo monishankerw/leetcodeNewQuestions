@@ -9,8 +9,8 @@ public class Duplicate {
     // ✅ 1. Duplicate Characters in a String (Without Java 8)
     public static class DuplicateCharacters {
         public static void main(String[] args) {
-            String str = "javadeveloper";
-
+            String str = "java developer Duplicate";
+           str=str.toLowerCase();
             System.out.println("Duplicate characters in the string:");
             printDuplicateCharacters(str);
 
@@ -49,6 +49,7 @@ public class Duplicate {
 
             System.out.println("\n\nDuplicate elements in the array:");
             printDuplicateNumbers(arr);
+            printDuplicateNumbersJava8(arr);
         }
 
         private static void printDuplicateNumbers(int[] arr) {
@@ -63,9 +64,17 @@ public class Duplicate {
             duplicates.forEach(num -> System.out.print(num + " "));
         }
     }
-
+    private static void printDuplicateNumbersJava8(int[] arr) {
+        Arrays.stream(arr)
+                .boxed()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() > 1)
+                .forEach(entry -> System.out.print(entry.getKey() + " "));
+    }
     // ✅ 3. Duplicate Words in a String (With Java 8)
-    public static class DuplicateWords {
+    public static class WordOccurrence {
         public static void main(String[] args) {
             String str = "This is new word is This new word";
             System.out.println("\n\nDuplicate words in the string:");

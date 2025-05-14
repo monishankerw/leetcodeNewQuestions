@@ -507,6 +507,7 @@ public class MapQuestion {
 
     }
     // 16. Print Indices of Elements
+    // 1. Print Indices of Elements
     private static void printIndicesJava7() {
 
         int[] arr = {10, 20, 10, 30};
@@ -522,6 +523,7 @@ public class MapQuestion {
 
 
     }
+    // 2. Print Indices of Elements (Java 8)
     private static void printIndicesJava8() {
         int[] arr = {10, 20, 10, 30};
 
@@ -537,6 +539,7 @@ public class MapQuestion {
     }
     // 5. Group Words by Length
     // ✅ Java 7 version
+    // 3. Group Words by Length (Java 7)
     private static void groupWordsByLengthJava7() {
         List<String> words = Arrays.asList("hi", "hello", "world", "yes", "no");
 
@@ -554,6 +557,7 @@ public class MapQuestion {
     }
 
     // ✅ Java 8 version
+    // 4. Group Words by Length (Java 8)
     private static void groupWordsByLengthJava8() {
         List<String> words = Arrays.asList("hi", "hello", "world", "yes", "no");
 

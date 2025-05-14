@@ -1076,22 +1076,23 @@ public class QuestionPracts {
                 .findFirst()
                 .orElse("None");
     }
-    public static class FirstNonRepChart{
+
+    public static class FirstNonRepChart {
         public static void main(String[] args) {
-            String str="swiss";
+            String str = "swiss";
             firstNonRepChart(str);
         }
 
         private static String firstNonRepChart(String str) {
-            Map<Character,Integer>map=new LinkedHashMap<>();
-                    for(char c:str.toCharArray()){
-                        map.put(c,map.getOrDefault(c,0)+1);
-                    }
-                    for (Map.Entry<Character,Integer>entry:map.entrySet()){
-                        if(entry.getValue()==1){
-                            return String.valueOf(entry.getKey());
-                        }
-                    }
+            Map<Character, Integer> map = new LinkedHashMap<>();
+            for (char c : str.toCharArray()) {
+                map.put(c, map.getOrDefault(c, 0) + 1);
+            }
+            for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+                if (entry.getValue() == 1) {
+                    return String.valueOf(entry.getKey());
+                }
+            }
             return "No Unique class";
         }
     }
@@ -1241,6 +1242,7 @@ public class QuestionPracts {
                 System.out.println("Word Frequencies (Java 8): " + map);
             }
         }
+
         public static class FirstNonRepChart {
             public static void main(String[] args) {
                 String str = "swiss";
@@ -1287,21 +1289,21 @@ public class QuestionPracts {
         }
 
         //Non-Repeating Character Finder
-        public static class NonRepeatingCharacterFinder{
+        public static class NonRepeatingCharacterFinder {
             public static void main(String[] args) {
-                String str="hello world java";
+                String str = "hello world java";
                 nonRepeatingCharacterFinder(str);
             }
 
             private static List<Character> nonRepeatingCharacterFinder(String str) {
                 str = str.replaceAll("\\s+", " ");
-                Map<Character,Integer>freMap=new LinkedHashMap<>();
-                List<Character>nonRepeatedChars=new ArrayList<>();
-                for (char c:str.toCharArray()){
-                    freMap.put(c,freMap.getOrDefault(c,0)+1);
+                Map<Character, Integer> freMap = new LinkedHashMap<>();
+                List<Character> nonRepeatedChars = new ArrayList<>();
+                for (char c : str.toCharArray()) {
+                    freMap.put(c, freMap.getOrDefault(c, 0) + 1);
                 }
-                for(Map.Entry<Character,Integer>entry:freMap.entrySet()){
-                    if(entry.getValue()==1){
+                for (Map.Entry<Character, Integer> entry : freMap.entrySet()) {
+                    if (entry.getValue() == 1) {
                         nonRepeatedChars.add(entry.getKey());
                     }
                 }
@@ -1309,6 +1311,7 @@ public class QuestionPracts {
             }
         }
     }
+
     public static class NonRepeatingCharacterFinder {
 
         public static void main(String[] args) {
@@ -1410,31 +1413,35 @@ public class QuestionPracts {
                     .orElse(-1);
         }
     }
+
     //print indices of elements
     public static class PrintIndicesOfElements {
         public static void main(String[] args) {
-            int[] arr={12,3,1,3,2,2,4};
+            int[] arr = {12, 3, 1, 3, 2, 2, 4};
             printIndicesOfElements(arr);
             printIndicesOfElementsJava(arr);
         }
 
 
+        // 1. Print Indices of Elements
         private static void printIndicesOfElements(int[] arr) {
-            Map<Integer,List<Integer>> map = new HashMap<>();
-            for(int i=0;i<arr.length;i++){
-                if(!map.containsKey(arr[i])){
-                    map.put(arr[i],new ArrayList<>());
+            Map<Integer, List<Integer>> map = new HashMap<>();
+            for (int i = 0; i < arr.length; i++) {
+                if (!map.containsKey(arr[i])) {
+                    map.put(arr[i], new ArrayList<>());
                 }
                 map.get(arr[i]).add(i);
             }
             System.out.println(map);
         }
+
         /**
          * This method takes an array of integers and prints out a map of element to its indices.
          * It uses Java 8 Stream API to perform the operation.
          *
          * @param arr The input array
          */
+        // 2. Print Indices of Elements (Java 8)
         private static void printIndicesOfElementsJava(int[] arr) {
             LinkedHashMap<Integer, List<Integer>> map = IntStream.range(0, arr.length)
                     .boxed()
@@ -1447,6 +1454,92 @@ public class QuestionPracts {
         }
 
     }
+
+    public static class GroupWordsByLength {
+
+        public static void main(String[] args) {
+            groupWordsByLengthJava7s();
+            groupWordsByLengthJava8s();
+        }
+
+
+        private static void groupWordsByLengthJava7s() {
+            List<String> words = Arrays.asList("hi", "hello", "world", "yes", "no");
+            Map<Integer, List<String>> grouped = new HashMap<>();
+
+            for (String word : words) {
+                int len = word.length();
+                if (!grouped.containsKey(len)) {
+                    grouped.put(len, new ArrayList<>());
+                }
+                grouped.get(len).add(word);
+            }
+
+            System.out.println("Group by Length (Java 7): " + grouped);
+        }
+    }
+
+    private static void groupWordsByLengthJava8s() {
+        List<String> words = Arrays.asList("hi", "hello", "world", "yes", "no");
+
+        Map<Integer, List<String>> grouped = words.stream()
+                .collect(Collectors.groupingBy(String::length));
+
+        System.out.println("Group by Length (Java 8): " + grouped);
+    }
+
+    public static class ElementsMoreThanonce {
+        public static void main(String[] args) {
+            int[] arr = {12, 3, 1, 3, 2, 2, 4};
+            elementsMoreThanonce(arr);
+            elementsMoreThanOnceJava8(arr);
+        }
+
+
+        private static void elementsMoreThanonce(int[] arr) {
+            Map<Integer, Integer> freq = new HashMap<>();
+            for (int num : arr) {
+                freq.put(num, freq.getOrDefault(num, 0) + 1);
+                freq.entrySet().stream().filter(e -> e.getValue() > 1)
+                        .forEach(e -> System.out.println("Duplicate: " + e.getKey()));
+            }
+        }
+    }
+
+    private static void elementsMoreThanOnceJava8(int[] arr) {
+        Arrays.stream(arr)
+                .boxed()
+                .collect(Collectors.groupingBy(
+                        e -> e,
+                        Collectors.counting()
+                ))
+                .entrySet()
+                .stream()
+                .filter(e -> e.getValue() > 1)
+                .forEach(e -> System.out.println("Duplicate: " + e.getKey()));
+    }
+
+    public class ArrayToMap {
+        public static void main(String[] args) {
+            String[] str = {"a", "b", "c"};
+            arrayToMap(str);
+            arrayToMapJava8(str);
+        }
+
+        private static void arrayToMap(String[] str) {
+            Map<Integer, String> map = new HashMap<>();
+            for (int i = 0; i < str.length; i++) {
+                map.put(i, str[i]);
+            }
+            System.out.println("Traditional: " + map);
+        }
+
+        private static void arrayToMapJava8(String[] str) {
+            Map<Integer, String> map = IntStream.range(0, str.length)
+                    .mapToObj(i -> new AbstractMap.SimpleEntry<>(i, str[i]))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+            System.out.println("Java 8: " + map);
+        }
+    }
 }
-
-
