@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 public class MapQuestion {
 
 
-
+//1.
 
     public static class EvenOrOdd {
         public static void main(String[] args) {
@@ -33,7 +33,7 @@ public class MapQuestion {
             return Arrays.stream(arr).boxed().collect(Collectors.partitioningBy(x -> x % 2 == 0));
         }
     }
-
+//2.
     public static class FreqOcc {
         public static void main(String[] args) {
             int[] arr = {1, 2, 1, 3, 2, 4, 3, 1};
@@ -58,7 +58,7 @@ public class MapQuestion {
         }
 
     }
-
+//3.
     public static class FreqOccString {
         public static void main(String[] args) {
             String str = "tereterttee";
@@ -84,7 +84,7 @@ public class MapQuestion {
             return map;
         }
     }
-
+//4
     public static class FreOccWords {
         public static void main(String[] args) {
             String text = "Test I Test My Test abc prq";
@@ -118,7 +118,7 @@ public class MapQuestion {
                     ));
         }
 
-
+//5
         public static class CharFrequencyExample {
 
             public static void main(String[] args) {
@@ -156,7 +156,7 @@ public class MapQuestion {
         }
 
     }
-
+//6
     public static class FirstNonRepeatedNumber {
 
         public static void main(String[] args) {
@@ -205,6 +205,8 @@ public class MapQuestion {
             return -1;
         }
     }
+
+    //7
     public static class IndexOfFirstNonRepeatingChar {
         public static void main(String[] args) {
             String str = "loveleetcode";
@@ -225,6 +227,7 @@ public class MapQuestion {
             return -1; // No unique character found
         }
     }
+    //8
     public static class FirstNonRepeatedCharct {
         public static void main(String[] args) {
             String str = "swiss";
@@ -261,7 +264,7 @@ public class MapQuestion {
     }
 
 
-
+//9
     public static class NonRepeatedCharactersFinder {
 
         public static void main(String[] args) {
@@ -300,6 +303,7 @@ public class MapQuestion {
         }
     }
 
+    //10
     public static class FirstNonRepeatedWordFinder {
 
         public static void main(String[] args) {
@@ -349,6 +353,7 @@ public class MapQuestion {
             System.out.println("Most Frequent Element (Traditional): " + traditionalResult);
         }
 
+        //11
         // ✅ Java 8 version
         private Integer mostFrequentElementJava8(int[] arr) {
             Map<Integer, Long> freqMap = Arrays.stream(arr)
@@ -384,6 +389,7 @@ public class MapQuestion {
             return mostFrequent;
         }
     }
+    //12
     public static class ArraySplitExample {
         public static void main(String[] args) {
             int[] arr1 = {1, 6, 3, 8, 5, 9, 4};
@@ -410,6 +416,7 @@ public class MapQuestion {
         }
     }
 
+    //13
     public static class CheckAnagramNumber{
         public static void main(String[] args) {
             int ang1[]={1,2,3};
@@ -443,7 +450,7 @@ public class MapQuestion {
             return true;
         }
     }
-    // 9. Check Anagram
+    // 14. Check Anagram
     public static class CheckAnagramString {
 
         public static void main(String[] args) {
@@ -482,27 +489,44 @@ public class MapQuestion {
             return freqMap;
         }
     }
+
     public static void main(String[] args) {
+        // 16. Print Indices of Elements
         printIndicesJava7();
         printIndicesJava8();
         System.out.println("---- Java 7 Approach ----");
+        //17    
         groupWordsByLengthJava7();
 
         System.out.println("---- Java 8 Approach ----");
         groupWordsByLengthJava8();
+        //18
         sortMapByValue();
+        //19
         duplicateWords();
+        //20
         characterFrequency();
+        //21
         linkedHashMapOrder();
+        //22
         elementsMoreThanOnce();
+        //23
         arrayToMapWithIndex();
+        //24
         elementWithKFrequency(2);
+        //25
         mapOfSquares();
+        //26
         groupByRemainder(3);
+        //27
         pairSumCount(10);
+        //28
         countElementsGreaterThanK(5);
+        //29
         mapWithFirstAndLastIndex();
+        //30
         removeDuplicates();
+        //31
         valueGreaterThanKey();
 
     }
